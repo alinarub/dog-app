@@ -42,6 +42,7 @@ export default function HomePage() {
 
   // State (memory) for the answer values of the three questions
   const [answerValues, setAnswerValues] = useState({});
+  // This array is empty at the beginning and will be filled piece by piece (Peet Demo)
   const [assignedPoints, setAssignedPoints] = useState([
     { name: "Golden Retriever", points: 0 },
     { name: "Dachshund", points: 0 },
@@ -49,11 +50,21 @@ export default function HomePage() {
     { name: "Border Collie", points: 0 },
     { name: "Pug", points: 0 },
   ]);
-
+  // Algorithmus
   function calculateAssignedPoints() {
-    // dummyDogs.forEach(dog){
-    //   if(dog.barking === answerValues.barking)
-    // }
+    dummyDogs.forEach((dog) => {
+      if (answerValues.barking === dog.barking) {
+        // setAssignedPoints for these dogs +1
+        // we need a setAssignedPoints State here
+        const assignedPointsArray = assignedPoints.map((dogItem) => {
+          if (dog.name === dogItem.name) {
+            // dogItem.points++
+          }
+        });
+      } else {
+        // setAssignedPoints for these dogs +0
+      }
+    });
   }
 
   function handleClick(event) {
