@@ -160,7 +160,6 @@ export default function HomePage() {
   // }
 
   function handleClick(event) {
-    console.log("answerValues---", answerValues);
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
