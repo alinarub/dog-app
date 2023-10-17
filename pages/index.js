@@ -52,7 +52,6 @@ export default function HomePage() {
   // ]);
 
   function assignPointsToDog(dog) {
-    console.log("one point added");
     setAssignedPoints((assignedPoints) => {
       const foundDog = assignedPoints.find(
         (dogItem) => dogItem.name === dog.name
