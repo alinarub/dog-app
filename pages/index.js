@@ -82,7 +82,6 @@ export default function HomePage() {
       }
       // question #2
       if (+answerValues.energy === dog.energy) {
-        console.log("energy");
         assignPointsToDog(dog);
         // setAssignedPoints for these dogs +1
       }
