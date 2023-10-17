@@ -74,7 +74,6 @@ export default function HomePage() {
     dummyDogs.forEach((dog) => {
       // question #1
       if (+answerValues.barking === dog.barking) {
-        console.log("barking");
         assignPointsToDog(dog);
         // setAssignedPoints for these dogs +1
       }
