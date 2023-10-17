@@ -88,7 +88,6 @@ export default function HomePage() {
       }
       // question #3
       if (+answerValues.trainability === dog.trainability) {
-        console.log("trainability");
         assignPointsToDog(dog);
         // setAssignedPoints for these dogs +1
       } else {
