@@ -1,19 +1,21 @@
 import useSWR from "swr";
 import { useState } from "react";
+import QuizForm from "@/components/QuizForm";
+import IntroText from "@/components/IntroText";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
 const dummyDogs = [
   {
-    trainability: 5,
+    trainability: 4,
     energy: 3,
-    barking: 1,
+    barking: 2,
     name: "Golden Retriever",
   },
   {
-    trainability: 1,
-    energy: 2,
-    barking: 5,
+    trainability: 2,
+    energy: 3,
+    barking: 4,
     name: "Dachshund",
   },
   {
@@ -23,8 +25,8 @@ const dummyDogs = [
     name: "German Shepherd",
   },
   {
-    trainability: 5,
-    energy: 5,
+    trainability: 4,
+    energy: 4,
     barking: 2,
     name: "Border Collie",
   },
@@ -43,127 +45,135 @@ export default function HomePage() {
   // State (memory) for the answer values of the three questions
   const [answerValues, setAnswerValues] = useState({});
   // This array is empty at the beginning and will be filled piece by piece (Peet Demo)
-  const [assignedPoints, setAssignedPoints] = useState([
-    { name: "Golden Retriever", points: 0 },
-    { name: "Dachshund", points: 0 },
-    { name: "German Shepherd", points: 0 },
-    { name: "Border Collie", points: 0 },
-    { name: "Pug", points: 0 },
-  ]);
-  // Algorithmus
-  function calculateAssignedPoints() {
-    dummyDogs.forEach((dog) => {
-      if (answerValues.barking === dog.barking) {
-        // setAssignedPoints for these dogs +1
-        // we need a setAssignedPoints State here
-        const assignedPointsArray = assignedPoints.map((dogItem) => {
-          if (dog.name === dogItem.name) {
-            // dogItem.points++
-          }
-        });
-      } else {
-        // setAssignedPoints for these dogs +0
+  const [assignedPoints, setAssignedPoints] = useState([]);
+  console.log("assignedPoints---", assignedPoints);
+
+  // const [assignedPoints, setAssignedPoints] = useState([
+  //   { name: "Golden Retriever", points: 0 },
+  // ]);
+
+  function assignPointsToDog(dog) {
+    console.log("one point added");
+    setAssignedPoints((assignedPoints) => {
+      const foundDog = assignedPoints.find(
+        (dogItem) => dogItem.name === dog.name
+      );
+      // trifft noch nicht zu, da nur barking
+      if (foundDog) {
+        return assignedPoints.map((dogItem) =>
+          dogItem.name === dog.name
+            ? { ...dogItem, points: dogItem.points + 1 }
+            : dogItem
+        );
       }
+      // if the dog did not exist before
+      return [...assignedPoints, { name: dog.name, points: 1 }];
     });
   }
 
+  // Algorithmus Try #4
+  function calculateAssignedPoints() {
+    dummyDogs.forEach((dog) => {
+      // question #1
+      if (+answerValues.barking === dog.barking) {
+        console.log("barking");
+        assignPointsToDog(dog);
+        // setAssignedPoints for these dogs +1
+      }
+      // question #2
+      if (+answerValues.energy === dog.energy) {
+        console.log("energy");
+        assignPointsToDog(dog);
+        // setAssignedPoints for these dogs +1
+      }
+      // question #3
+      if (+answerValues.trainability === dog.trainability) {
+        console.log("trainability");
+        assignPointsToDog(dog);
+        // setAssignedPoints for these dogs +1
+      } else {
+        console.log("zero points added");
+        // setAssignedPoints for these dogs +0
+        // do nothing
+      }
+    });
+  }
+  // Algorithmus Try #3
+  // function calculateAssignedPoints() {
+  //   dummyDogs.forEach((dog) => {
+  //     if (+answerValues.barking === dog.barking) {
+  //       console.log("one point added");
+  //       setAssignedPoints((assignedPoints) => {
+  //         const foundDog = assignedPoints.find(
+  //           (dogItem) => dogItem.name === dog.name
+  //         );
+  //         // trifft noch nicht zu, da nur barking
+  //         if (foundDog) {
+  //           return assignedPoints.map((dogItem) =>
+  //             dogItem.name === dog.name
+  //               ? { ...dogItem, points: points + 1 }
+  //               : dogItem
+  //           );
+  //         }
+  //         // if the dog did not exist before
+  //         return [...assignedPoints, { name: dog.name, points: 1 }];
+  //       });
+  //       // setAssignedPoints for these dogs +1
+  //     } else {
+  //       console.log("zero points added");
+  //       // setAssignedPoints for these dogs +0
+  //       // do nothing
+  //     }
+  //   });
+  // }
+
+  // Algorithmus Try #2
+  // function calculateAssignedPoints() {
+  //   dummyDogs.forEach((dog) => {
+  //     if (answerValues.barking === dog.barking) {
+  //       const foundDog = assignedPoints.find(
+  //         (dogItem) => dog.name === dogItem.name
+  //       );
+  //       setAssignedPoints(...assignedPoints, {})
+  //       // setAssignedPoints for these dogs +1
+  //     } else {
+  //       // setAssignedPoints for these dogs +0
+  //     }
+  //   });
+  // }
+
+  // Algorithmus Try #1
+  // function calculateAssignedPoints() {
+  //   dummyDogs.forEach((dog) => {
+  //     if (answerValues.barking === dog.barking) {
+  //       // setAssignedPoints for these dogs +1
+  //       // we need a setAssignedPoints State here
+  //       const assignedPointsArray = assignedPoints.map((dogItem) => {
+  //         if (dog.name === dogItem.name) {
+  //           // dogItem.points++
+  //         }
+  //       });
+  //     } else {
+  //       // setAssignedPoints for these dogs +0
+  //     }
+  //   });
+  // }
+
   function handleClick(event) {
-    console.log("state---", answerValues);
+    console.log("answerValues---", answerValues);
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    console.log("data---", data);
+    // console.log("data---", data);
     setAnswerValues({ ...data });
+    // Assign Points to the corresponding dog
     calculateAssignedPoints();
   }
 
   return (
     <div>
-      <h1>Quiz Form</h1>
-      <form onSubmit={handleClick}>
-        <fieldset>
-          <legend>How much barking is ok for you?</legend>
-
-          <div>
-            <input
-              type="radio"
-              id="oneTwo"
-              name="barking"
-              value="oneTwo"
-              required
-            />
-            <label htmlFor="oneTwo">No barking (1+2)</label>
-          </div>
-
-          <div>
-            <input type="radio" id="three" name="barking" value="three" />
-            <label htmlFor="three">A little bit is ok (3)</label>
-          </div>
-
-          <div>
-            <input type="radio" id="fourFive" name="barking" value="fourFive" />
-            <label htmlFor="fourFive">I am deaf anyway (4+5)</label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>How much energy do you have for your dog?</legend>
-
-          <div>
-            <input
-              type="radio"
-              id="oneTwo"
-              name="energy"
-              value="oneTwo"
-              required
-            />
-            <label htmlFor="oneTwo">I like to stay on the couch (1+2)</label>
-          </div>
-
-          <div>
-            <input type="radio" id="three" name="energy" value="three" />
-            <label htmlFor="three">A little exercise is welcome (3)</label>
-          </div>
-
-          <div>
-            <input type="radio" id="fourFive" name="energy" value="fourFive" />
-            <label htmlFor="fourFive">
-              I want my dog to be just as active as me (4+5)
-            </label>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>How easy to train should your dog be?</legend>
-
-          <div>
-            <input
-              type="radio"
-              id="oneTwo"
-              name="trainability"
-              value="oneTwo"
-              required
-            />
-            <label htmlFor="oneTwo">Difficult to train (1+2)</label>
-          </div>
-
-          <div>
-            <input type="radio" id="three" name="trainability" value="three" />
-            <label htmlFor="three">
-              I want to teach my dog some tricks (3)
-            </label>
-          </div>
-
-          <div>
-            <input
-              type="radio"
-              id="fourFive"
-              name="trainability"
-              value="fourFive"
-            />
-            <label htmlFor="fourFive">Easy to train (4+5)</label>
-          </div>
-        </fieldset>
-        <button type="submit">Submit</button>
-      </form>
+      <IntroText />
+      <QuizForm handleClick={handleClick} />
       {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
     </div>
   );
