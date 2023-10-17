@@ -46,7 +46,6 @@ export default function HomePage() {
   const [answerValues, setAnswerValues] = useState({});
   // This array is empty at the beginning and will be filled piece by piece (Peet Demo)
   const [assignedPoints, setAssignedPoints] = useState([]);
-  console.log("assignedPoints---", assignedPoints);
 
   // const [assignedPoints, setAssignedPoints] = useState([
   //   { name: "Golden Retriever", points: 0 },
