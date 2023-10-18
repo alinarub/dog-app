@@ -1,7 +1,7 @@
-export default function QuizForm({ handleClick }) {
+export default function QuizForm({ onSubmit }) {
   return (
     <div>
-      <form onSubmit={handleClick}>
+      <form onSubmit={onSubmit}>
         <fieldset>
           <legend>How much barking is ok for you?</legend>
 

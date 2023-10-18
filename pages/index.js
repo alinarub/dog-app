@@ -47,10 +47,6 @@ export default function HomePage() {
   // This array is empty at the beginning and will be filled piece by piece (Peet Demo)
   const [assignedPoints, setAssignedPoints] = useState([]);
 
-  // const [assignedPoints, setAssignedPoints] = useState([
-  //   { name: "Golden Retriever", points: 0 },
-  // ]);
-
   function assignPointsToDog(dog) {
     setAssignedPoints((assignedPoints) => {
       const foundDog = assignedPoints.find(
@@ -87,78 +83,16 @@ export default function HomePage() {
         assignPointsToDog(dog);
         // setAssignedPoints for these dogs +1
       } else {
-        console.log("zero points added");
         // setAssignedPoints for these dogs +0
         // do nothing
       }
     });
   }
-  // Algorithmus Try #3
-  // function calculateAssignedPoints() {
-  //   dummyDogs.forEach((dog) => {
-  //     if (+answerValues.barking === dog.barking) {
-  //       console.log("one point added");
-  //       setAssignedPoints((assignedPoints) => {
-  //         const foundDog = assignedPoints.find(
-  //           (dogItem) => dogItem.name === dog.name
-  //         );
-  //         // trifft noch nicht zu, da nur barking
-  //         if (foundDog) {
-  //           return assignedPoints.map((dogItem) =>
-  //             dogItem.name === dog.name
-  //               ? { ...dogItem, points: points + 1 }
-  //               : dogItem
-  //           );
-  //         }
-  //         // if the dog did not exist before
-  //         return [...assignedPoints, { name: dog.name, points: 1 }];
-  //       });
-  //       // setAssignedPoints for these dogs +1
-  //     } else {
-  //       console.log("zero points added");
-  //       // setAssignedPoints for these dogs +0
-  //       // do nothing
-  //     }
-  //   });
-  // }
 
-  // Algorithmus Try #2
-  // function calculateAssignedPoints() {
-  //   dummyDogs.forEach((dog) => {
-  //     if (answerValues.barking === dog.barking) {
-  //       const foundDog = assignedPoints.find(
-  //         (dogItem) => dog.name === dogItem.name
-  //       );
-  //       setAssignedPoints(...assignedPoints, {})
-  //       // setAssignedPoints for these dogs +1
-  //     } else {
-  //       // setAssignedPoints for these dogs +0
-  //     }
-  //   });
-  // }
-
-  // Algorithmus Try #1
-  // function calculateAssignedPoints() {
-  //   dummyDogs.forEach((dog) => {
-  //     if (answerValues.barking === dog.barking) {
-  //       // setAssignedPoints for these dogs +1
-  //       // we need a setAssignedPoints State here
-  //       const assignedPointsArray = assignedPoints.map((dogItem) => {
-  //         if (dog.name === dogItem.name) {
-  //           // dogItem.points++
-  //         }
-  //       });
-  //     } else {
-  //       // setAssignedPoints for these dogs +0
-  //     }
-  //   });
-  // }
-
-  function handleClick(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    // console.log("data---", data);
     setAnswerValues({ ...data });
     // Assign Points to the corresponding dog
     calculateAssignedPoints();
@@ -167,8 +101,7 @@ export default function HomePage() {
   return (
     <div>
       <IntroText />
-      <QuizForm handleClick={handleClick} />
-      {/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
+      <QuizForm onSubmit={handleSubmit} />
     </div>
   );
 }
