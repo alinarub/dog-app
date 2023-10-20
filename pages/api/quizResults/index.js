@@ -1,23 +1,38 @@
 export default async function handler(request, response) {
-  // step 2: backend makes request to external API
-  console.log("request.query:", request.query);
   if (request.method === "GET") {
-    // make request to API. then send back response.
-    // this example does not use any API KEYS.
-    // If you need to keep something secret you could do the following. {process.env.YOUR_NAME_OF_THE_ENV_VARIABLE}
+    const barking = request.query.barking;
+    const trainability = request.query.trainability;
+    const energy = request.query.energy;
 
-    const dogResponse = await fetch(
-      `https://api.api-ninjas.com/v1/dogs?barking=${request.query.barking}`,
-      {
+    const barkingURL = `https://api.api-ninjas.com/v1/dogs?barking=${barking}`;
+    const trainabilityURL = `https://api.api-ninjas.com/v1/dogs?trainability=${trainability}`;
+    const energyURL = `https://api.api-ninjas.com/v1/dogs?energy=${energy}`;
+
+    // Backend makes request to external API
+    const dogResponses = await Promise.all([
+      fetch(barkingURL, {
         headers: {
           "X-Api-Key": process.env.DOG_API_KEY,
         },
-      }
-    );
-    const data = await dogResponse.json();
+      }),
+      fetch(trainabilityURL, {
+        headers: {
+          "X-Api-Key": process.env.DOG_API_KEY,
+        },
+      }),
+      fetch(energyURL, {
+        headers: {
+          "X-Api-Key": process.env.DOG_API_KEY,
+        },
+      }),
+    ]);
 
-    // step 3: backend sends response from external API back to the client
-    response.status(200).json(data);
+    const dataBarking = await dogResponses[0].json();
+    const dataTrainability = await dogResponses[1].json();
+    const dataEnergy = await dogResponses[2].json();
+
+    // Backend sends response from external API back to the client
+    response.status(200).json([dataBarking, dataEnergy, dataTrainability]);
     return;
   }
 

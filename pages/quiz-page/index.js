@@ -5,56 +5,30 @@ import IntroText from "@/components/IntroText";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
-const dummyDogs = [
-  {
-    trainability: 4,
-    energy: 3,
-    barking: 2,
-    name: "Golden Retriever",
-  },
-  {
-    trainability: 2,
-    energy: 3,
-    barking: 4,
-    name: "Dachshund",
-  },
-  {
-    trainability: 2,
-    energy: 4,
-    barking: 3,
-    name: "German Shepherd",
-  },
-  {
-    trainability: 4,
-    energy: 4,
-    barking: 2,
-    name: "Border Collie",
-  },
-  {
-    trainability: 3,
-    energy: 2,
-    barking: 3,
-    name: "Pug",
-  },
-];
-
 export default function QuizPage() {
   // State (memory) for the answer values of the three questions
   const [answerValues, setAnswerValues] = useState({});
-  const params = new URLSearchParams({
+  const userValues = new URLSearchParams({
     barking: answerValues.barking,
+    trainability: answerValues.trainability,
+    energy: answerValues.energy,
   });
-  const { data } = useSWR(`/api/quizResults?${params}`, fetcher);
-  console.log(data);
-  // This array is empty at the beginning and will be filled piece by piece (Peet Demo)
+
+  // Fetch Data for all questions (answers)
+  const { data } = useSWR(`/api/quizResults?${userValues}`, fetcher);
+
+  // This state array is empty at the beginning and will be filled piece by piece
   const [assignedPoints, setAssignedPoints] = useState([]);
+
+  // Solution 1 (derived state)
+  const filteredAssignedPoints = assignedPoints;
+  filteredAssignedPoints.sort((a, b) => b.points - a.points);
 
   function assignPointsToDog(dog) {
     setAssignedPoints((assignedPoints) => {
       const foundDog = assignedPoints.find(
         (dogItem) => dogItem.name === dog.name
       );
-      // trifft noch nicht zu, da nur barking
       if (foundDog) {
         return assignedPoints.map((dogItem) =>
           dogItem.name === dog.name
@@ -67,32 +41,28 @@ export default function QuizPage() {
     });
   }
 
-  // Algorithmus Try #4
+  // Algorithmus
   function calculateAssignedPoints() {
-    dummyDogs.forEach((dog) => {
-      // question #1
-      if (+answerValues.barking === dog.barking) {
-        assignPointsToDog(dog);
-        // setAssignedPoints for these dogs +1
-      }
-      // question #2
-      if (+answerValues.energy === dog.energy) {
-        assignPointsToDog(dog);
-        // setAssignedPoints for these dogs +1
-      }
-      // question #3
-      if (+answerValues.trainability === dog.trainability) {
-        assignPointsToDog(dog);
-        // setAssignedPoints for these dogs +1
-      } else {
-        // setAssignedPoints for these dogs +0
-        // do nothing
-      }
+    data[0].forEach((dog) => {
+      // question #1 (barking)
+      assignPointsToDog(dog);
+      // setAssignedPoints for these dogs +1
+    });
+    data[1].forEach((dog) => {
+      // question #2 (energy)
+      assignPointsToDog(dog);
+      // setAssignedPoints for these dogs +1
+    });
+    data[2].forEach((dog) => {
+      // question #3 (trainability)
+      assignPointsToDog(dog);
+      // setAssignedPoints for these dogs +1
     });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+    // Collect form data
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     setAnswerValues({ ...data });
@@ -104,6 +74,17 @@ export default function QuizPage() {
     <div>
       <IntroText />
       <QuizForm onSubmit={handleSubmit} />
+      <h2>List of dogs with their points</h2>
+      <ul>
+        {filteredAssignedPoints.map((dog) => {
+          return (
+            <li key={dog.name}>
+              {dog.name} -- {dog.points}
+            </li>
+          );
+        })}
+      </ul>
+      <p>Total dogs: {assignedPoints.length}</p>
     </div>
   );
 }
