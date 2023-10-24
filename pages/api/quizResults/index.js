@@ -1,89 +1,65 @@
 export default async function handler(request, response) {
   if (request.method === "GET") {
     const barking = request.query.barking;
-    const trainability = request.query.trainability;
     const energy = request.query.energy;
+    const trainability = request.query.trainability;
 
-    // const offset = 116;
+    // Arrays for all seven Questions
+    let dogPromisesBarking = [];
+    let dogPromisesEnergy = [];
+    let dogPromisesTrainability = [];
 
-    // We have to fetch 9 times
-    // const offset0 = 0-20;
-    // const offset20 = 21-40;
-    // const offset40 = 41-60;
-
-    // const barkingURL = `https://api.api-ninjas.com/v1/dogs?barking=${barking}&offset=${offset}`;
-    // const trainabilityURL = `https://api.api-ninjas.com/v1/dogs?trainability=${trainability}&offset=${offset}`;
-    // const energyURL = `https://api.api-ninjas.com/v1/dogs?energy=${energy}&offset=${offset}`;
-
-    let dogPromises = [];
+    // Loop for all 9 offsets and all 7 questions
     for (let offset = 0; offset < 200; offset += 20) {
-      dogPromises.push(
-        `https://api.api-ninjas.com/v1/dogs?barking=${barking}&offset=${offset}`,
-        {
-          headers: {
-            "X-Api-Key": process.env.DOG_API_KEY,
-          },
-        }
+      dogPromisesBarking.push(
+        fetch(
+          `https://api.api-ninjas.com/v1/dogs?barking=${barking}&offset=${offset}`,
+          {
+            headers: {
+              "X-Api-Key": process.env.DOG_API_KEY,
+            },
+          }
+        )
+      );
+
+      dogPromisesEnergy.push(
+        fetch(
+          `https://api.api-ninjas.com/v1/dogs?energy=${energy}&offset=${offset}`,
+          {
+            headers: {
+              "X-Api-Key": process.env.DOG_API_KEY,
+            },
+          }
+        )
+      );
+
+      dogPromisesTrainability.push(
+        fetch(
+          `https://api.api-ninjas.com/v1/dogs?trainability=${trainability}&offset=${offset}`,
+          {
+            headers: {
+              "X-Api-Key": process.env.DOG_API_KEY,
+            },
+          }
+        )
       );
     }
-    console.log("offset Sprünge", dogPromises);
 
-    // Promise.all(dogPromises)
-    //   .then(function handleData(data) {
-    //     return fetch("example.api") // should be returned 1 time
-    //       .then((response) => {
-    //         if (response.ok) return response.json();
-    //         throw new Error(response.statusText);
-    //       });
-    //   })
-    //   .catch(function handleError(error) {
-    //     console.log("Error" + error);
-    //   });
+    // Backend makes request to external API for all 7x9 fetches
+    const dogResponses = await Promise.all([
+      ...dogPromisesBarking,
+      ...dogPromisesEnergy,
+      ...dogPromisesTrainability,
+    ]);
 
-    // Backup Code
-    // Promise.all(dogPromises)
-    //   .then(function handleData(data) {
-    //     return fetch("example.api") // should be returned 1 time
-    //       .then(response => {
-    //         if (response.ok) return response.json();
-    //         throw new Error(response.statusText);
-    //       });
-    //   })
-    //   .catch(function handleError(error) {
-    //     console.log("Error" + error);
-    //   });
-
-    // ------------------------------------------------------
-    // Backend makes request to external API
-    // const dogResponses = await Promise.all([
-    //   fetch(barkingURL, {
-    //     headers: {
-    //       "X-Api-Key": process.env.DOG_API_KEY,
-    //     },
-    //   }),
-
-    // fetch(trainabilityURL, {
-    //   headers: {
-    //     "X-Api-Key": process.env.DOG_API_KEY,
-    //   },
-    // }),
-
-    // fetch(energyURL, {
-    //   headers: {
-    //     "X-Api-Key": process.env.DOG_API_KEY,
-    //   },
-    // }),
-    // ]);
-    // ------------------------------------------------------
-    // Backend makes request to external API
-    const dogResponses = await Promise.all(dogPromises);
-    const dataBarking = await dogResponses.json();
-
-    // const dataTrainability = await dogResponses[1].json();
-    // const dataEnergy = await dogResponses[2].json();
+    const dataCharacteristicsArray = await Promise.all(
+      dogResponses.map((response) => response.json())
+    );
+    // Flatten the array (reduce nesting from two levels to one level)
+    const dataCharacteristicsArrayFlat = dataCharacteristicsArray.flat();
 
     // Backend sends response from external API back to the client
-    response.status(200).json([...dataBarking]);
+    response.status(200).json([...dataCharacteristicsArrayFlat]);
     return;
   }
 
