@@ -29,6 +29,10 @@ export default function App({ Component, pageProps }) {
       barking: data.barking,
       trainability: data.trainability,
       energy: data.energy,
+      children: data.good_with_children,
+      otherdogs: data.otherdogs,
+      protectiveness: data.protectiveness,
+      shedding: data.shedding,
     });
     try {
       const response = await fetch(`/api/quizResults?${userValues}`);
