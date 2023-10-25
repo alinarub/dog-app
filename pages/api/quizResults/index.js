@@ -1,19 +1,13 @@
 export default async function handler(request, response) {
   if (request.method === "GET") {
-    const barking = request.query.barking;
-    const energy = request.query.energy;
-    const trainability = request.query.trainability;
-    const children = request.query.good_with_children;
-    const otherdogs = request.query.otherdogs;
-    const protectiveness = request.query.protectiveness;
-    const shedding = request.query.shedding;
+    // Destructuring Assignment
+    const { barking, energy, trainability, protectiveness, shedding } =
+      request.query;
 
     // Arrays for all seven Questions
     let dogPromisesBarking = [];
     let dogPromisesEnergy = [];
     let dogPromisesTrainability = [];
-    let dogPromisesChildren = [];
-    let dogPromisesOtherdogs = [];
     let dogPromisesProtectiveness = [];
     let dogPromisesShedding = [];
 
@@ -52,29 +46,7 @@ export default async function handler(request, response) {
           }
         )
       );
-      // children
-      dogPromisesChildren.push(
-        fetch(
-          `https://api.api-ninjas.com/v1/dogs?good_with_children=${children}&offset=${offset}`,
-          {
-            headers: {
-              "X-Api-Key": process.env.DOG_API_KEY,
-            },
-          }
-        )
-      );
-      // otherdogs
-      dogPromisesOtherdogs.push(
-        fetch(
-          `https://api.api-ninjas.com/v1/dogs?good_with_other_dogs=${otherdogs}&offset=${offset}`,
-          {
-            headers: {
-              "X-Api-Key": process.env.DOG_API_KEY,
-            },
-          }
-        )
-      );
-      protectiveness;
+      // protectiveness
       dogPromisesProtectiveness.push(
         fetch(
           `https://api.api-ninjas.com/v1/dogs?protectiveness=${protectiveness}&offset=${offset}`,
@@ -103,8 +75,6 @@ export default async function handler(request, response) {
       ...dogPromisesBarking,
       ...dogPromisesEnergy,
       ...dogPromisesTrainability,
-      ...dogPromisesChildren,
-      // ...dogPromisesOtherdogs,
       ...dogPromisesProtectiveness,
       ...dogPromisesShedding,
     ]);
