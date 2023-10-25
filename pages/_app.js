@@ -4,8 +4,9 @@ import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
   const [assignedPoints, setAssignedPoints] = useState([]);
+  // const [answerValues, setAnswerValues] = useState({});
   const router = useRouter();
-
+  console.log("Punkte für Hunde", assignedPoints);
   // Logic 1
   function assignPointsToDog(dog) {
     setAssignedPoints((assignedPoints) => {
@@ -24,28 +25,54 @@ export default function App({ Component, pageProps }) {
     });
   }
   // Fetch from Backend
-  async function getDogs(data) {
-    const userValues = new URLSearchParams({
-      barking: data.barking,
-      trainability: data.trainability,
-      energy: data.energy,
-      protectiveness: data.protectiveness,
-      shedding: data.shedding,
-    });
+  async function getDogs(dataFromForm) {
     try {
-      const response = await fetch(`/api/quizResults?${userValues}`);
+      const response = await fetch(`/api/quizResults`);
 
       const data = await response.json();
-
-      calculateAssignedPoints(data);
+      console.log("Daten vom Backend", data);
+      calculateAssignedPoints(data, dataFromForm);
     } catch (error) {
       console.error(error);
     }
   }
   // Loop to assign points to each dog
-  function calculateAssignedPoints(dogData) {
+  function calculateAssignedPoints(dogData, dataFromForm) {
+    console.log("user input", dataFromForm);
+    const {
+      barking,
+      energy,
+      trainability,
+      good_with_children,
+      good_with_other_dogs,
+      protectiveness,
+      shedding,
+    } = dataFromForm;
     dogData.forEach((dog) => {
-      assignPointsToDog(dog);
+      if (+barking === +dog.barking) {
+        assignPointsToDog(dog);
+        console.log("dog", dog);
+      }
+      if (+energy === +dog.energy) {
+        assignPointsToDog(dog);
+      }
+      if (+trainability === +dog.trainability) {
+        assignPointsToDog(dog);
+      }
+      if (+good_with_children === +dog.good_with_children) {
+        assignPointsToDog(dog);
+      }
+      if (+good_with_other_dogs === +dog.good_with_other_dogs) {
+        assignPointsToDog(dog);
+      }
+      if (+protectiveness === +dog.protectiveness) {
+        assignPointsToDog(dog);
+      }
+      if (+shedding === +dog.shedding) {
+        assignPointsToDog(dog);
+      } else {
+        // setAssignedPoints for these dogs +0
+      }
     });
   }
   // User submits his answers and triggers logic

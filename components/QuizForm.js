@@ -141,7 +141,7 @@ export default function QuizForm({ onSubmit }) {
             <input
               type="radio"
               id="otherdogs2"
-              name="otherdogs"
+              name="good_with_other_dogs"
               value="2"
               required
             />
@@ -151,14 +151,24 @@ export default function QuizForm({ onSubmit }) {
           </div>
 
           <div>
-            <input type="radio" id="otherdogs3" name="otherdogs" value="3" />
+            <input
+              type="radio"
+              id="otherdogs3"
+              name="good_with_other_dogs"
+              value="3"
+            />
             <label htmlFor="otherdogs3">
               My dog should be neutral with other dogs (3)
             </label>
           </div>
 
           <div>
-            <input type="radio" id="otherdogs4" name="otherdogs" value="4" />
+            <input
+              type="radio"
+              id="otherdogs4"
+              name="good_with_other_dogs"
+              value="4"
+            />
             <label htmlFor="otherdogs4">I want a sociable dog (4)</label>
           </div>
         </fieldset>
