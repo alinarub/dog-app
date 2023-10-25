@@ -42,12 +42,10 @@ export default function App({ Component, pageProps }) {
       console.error(error);
     }
   }
-  // Loop to assign Points to each dog
+  // Loop to assign points to each dog
   function calculateAssignedPoints(dogData) {
     dogData.forEach((dog) => {
-      // question #1 (barking)
       assignPointsToDog(dog);
-      // setAssignedPoints for these dogs +1
     });
   }
   // User submits his answers and triggers logic
