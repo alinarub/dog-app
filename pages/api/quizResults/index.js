@@ -1,7 +1,7 @@
 export default async function handler(request, response) {
   if (request.method === "GET") {
     // Arrays for all seven Questions
-    let dogPromisesBarking = [];
+    const dogPromisesBarking = [];
 
     // Loop for all 9 offsets and all 7 questions
     for (let offset = 0; offset < 200; offset += 20) {
