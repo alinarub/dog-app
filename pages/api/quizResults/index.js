@@ -7,7 +7,7 @@ export default async function handler(request, response) {
     for (let offset = 0; offset < 200; offset += 20) {
       for (let barking = 1; barking < 6; barking++) {
         // for barking value 1-5
-        console.log("number", barking);
+
         dogPromisesBarking.push(
           fetch(
             `https://api.api-ninjas.com/v1/dogs?barking=${barking}&offset=${offset}`,
@@ -20,8 +20,6 @@ export default async function handler(request, response) {
         );
       }
     }
-
-    console.log("barking", dogPromisesBarking);
 
     // Backend makes request to external API for all 7x9 fetches
     const dogResponses = await Promise.all([...dogPromisesBarking]);

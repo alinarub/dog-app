@@ -4,9 +4,8 @@ import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
   const [assignedPoints, setAssignedPoints] = useState([]);
-  // const [answerValues, setAnswerValues] = useState({});
   const router = useRouter();
-  console.log("Punkte für Hunde", assignedPoints);
+
   // Logic 1
   function assignPointsToDog(dog) {
     setAssignedPoints((assignedPoints) => {
@@ -30,7 +29,7 @@ export default function App({ Component, pageProps }) {
       const response = await fetch(`/api/quizResults`);
 
       const data = await response.json();
-      console.log("Daten vom Backend", data);
+
       calculateAssignedPoints(data, dataFromForm);
     } catch (error) {
       console.error(error);
@@ -38,7 +37,6 @@ export default function App({ Component, pageProps }) {
   }
   // Loop to assign points to each dog
   function calculateAssignedPoints(dogData, dataFromForm) {
-    console.log("user input", dataFromForm);
     const {
       barking,
       energy,
@@ -51,7 +49,6 @@ export default function App({ Component, pageProps }) {
     dogData.forEach((dog) => {
       if (+barking === +dog.barking) {
         assignPointsToDog(dog);
-        console.log("dog", dog);
       }
       if (+energy === +dog.energy) {
         assignPointsToDog(dog);

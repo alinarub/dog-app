@@ -1,4 +1,8 @@
 export default function QuizResults({ assignedPoints }) {
+  if (assignedPoints.length === 0) {
+    return null;
+  }
+
   // Sort by points descending
   const sortedAssignedPoints = assignedPoints.toSorted(
     (a, b) => b.points - a.points
