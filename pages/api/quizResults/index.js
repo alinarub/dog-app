@@ -1,22 +1,37 @@
 export default async function handler(request, response) {
-  // step 2: backend makes request to external API
-
   if (request.method === "GET") {
-    // make request to API. then send back response.
-    // this example does not use any API KEYS.
-    // If you need to keep something secret you could do the following. {process.env.YOUR_NAME_OF_THE_ENV_VARIABLE}
-    const dogResponse = await fetch(
-      "https://api.api-ninjas.com/v1/dogs?barking=5",
-      {
-        headers: {
-          "X-Api-Key": process.env.DOG_API_KEY,
-        },
-      }
-    );
-    const data = await dogResponse.json();
+    // Arrays for all seven Questions
+    let dogPromisesBarking = [];
 
-    // step 3: backend sends response from external API back to the client
-    response.status(200).json(data);
+    // Loop for all 9 offsets and all 7 questions
+    for (let offset = 0; offset < 200; offset += 20) {
+      for (let barking = 1; barking < 6; barking++) {
+        // for barking value 1-5
+
+        dogPromisesBarking.push(
+          fetch(
+            `https://api.api-ninjas.com/v1/dogs?barking=${barking}&offset=${offset}`,
+            {
+              headers: {
+                "X-Api-Key": process.env.DOG_API_KEY,
+              },
+            }
+          )
+        );
+      }
+    }
+
+    // Backend makes request to external API for all 7x9 fetches
+    const dogResponses = await Promise.all([...dogPromisesBarking]);
+    // All 7 characteristics summarized
+    const dataCharacteristicsArray = await Promise.all(
+      dogResponses.map((response) => response.json())
+    );
+    // Flatten the array (reduce nesting from two levels to one level)
+    const dataCharacteristicsArrayFlat = dataCharacteristicsArray.flat();
+
+    // Backend sends response from external API back to the client
+    response.status(200).json([...dataCharacteristicsArrayFlat]);
     return;
   }
 
