@@ -1,14 +1,13 @@
-import Button from "@/components/Button";
+import LinkButton from "@/components/LinkButton";
 import Headline from "@/components/Headline";
 import ImageTextModule from "@/components/ImageTextModule";
 
 export default function HomePage() {
   return (
     <div>
-      <h1>Home Page</h1>
       <ImageTextModule />
-      <Headline />
-      <Button />
+      <Headline name="Find your dog" />
+      <LinkButton fullwidth={true} href="/quiz-page" name="Start the quiz!" />
     </div>
   );
 }

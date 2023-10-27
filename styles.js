@@ -10,13 +10,27 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
+    background-color: var(--backgroundcolor);
   }
   :root {
-    --yellow: #FFC40C;
-    --blue: #2072AF;
+    --yellow: #febb49;
+    --blue: #056393;
+    --backgroundcolor: #F2F3F4
     --almostblack: #242124;
-
-  
-  
+    --lightgray: #E5E4E2;
+    --borderradius: .5rem;
+    --basicmargin: 2.4rem;
   }
+
+  p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+  }
+
+  fieldset {
+    border: none;
+  }
+
+  legend {margin-top: 4rem;
+  font-size: 1.4rem}
 `;
