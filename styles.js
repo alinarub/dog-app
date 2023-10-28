@@ -15,10 +15,13 @@ export default createGlobalStyle`
   :root {
     --yellow: #febb49;
     --blue: #056393;
-    --backgroundcolor: #F2F3F4
+    --backgroundcolor: #F2F3F4;
     --almostblack: #242124;
     --lightgray: #E5E4E2;
-    --borderradius: .5rem;
+
+    --mobilewidth: 23rem;
+    --borderradius-small: .5rem;
+    --borderradius-medium: 1.3rem;
     --basicmargin: 2.4rem;
   }
 
@@ -28,9 +31,15 @@ export default createGlobalStyle`
   }
 
   fieldset {
-    border: none;
+    border: 2px solid var(--lightgray);
+    width: var(--mobilewidth);
+    max-width: var(--mobilewidth);
+    border-radius: var(--borderradius-small);
+    padding-bottom: 1.5;
+    margin: 2rem 0;
   }
 
-  legend {margin-top: 4rem;
-  font-size: 1.4rem}
+  legend {
+    font-size: 1.3rem
+  }
 `;

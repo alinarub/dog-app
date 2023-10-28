@@ -1,10 +1,10 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function LinkButton({ href, name, fullWidth }) {
+export default function LinkButton({ href, children, fullwidth }) {
   return (
     <StyledLink fullwidth={fullwidth} href={href}>
-      {name}
+      {children}
     </StyledLink>
   );
 }
@@ -19,7 +19,7 @@ const StyledLink = styled(Link)`
   margin: 2.4rem;
   padding: 0.7rem 1em;
   border: 2px solid var(--lightgray);
-  border-radius: var(--borderradius);
+  border-radius: var(--borderradius-small);
   &:hover {
     border: 2px solid var(--blue);
   }

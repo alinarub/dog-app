@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
-export default function Headline({ name }) {
+export default function Headline({ children }) {
   return (
-    <StyledHeadline>
-      <StyledH1>{name}</StyledH1>
-    </StyledHeadline>
+    <StyledHeadlineWrapper>
+      <StyledH1>{children}</StyledH1>
+    </StyledHeadlineWrapper>
   );
 }
 
-const StyledHeadline = styled.div`
+const StyledHeadlineWrapper = styled.div`
   margin: 0 var(--basicmargin);
 `;
-const StyledH1 = styled.div`
+const StyledH1 = styled.h1`
   border-bottom: 2px solid var(--yellow);
   padding-bottom: 0.8rem;
   font-size: 2rem;

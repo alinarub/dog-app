@@ -1,10 +1,19 @@
 import styled from "styled-components";
 import Image from "next/image";
 import genieLogo from "../public/genie-logo.png";
+import lampIcon from "../public/lamp-icon.png";
 
-export default function ImageTextModule() {
+export default function ImageTextModule({ children }) {
   return (
     <StyledSection>
+      <StyledIcon
+        src={lampIcon}
+        alt="Icon of a lamp"
+        width={80}
+        height={80}
+        blurDataURL="data:..."
+        placeholder="blur" // Optional blur-up while loading
+      />
       <StyledImage
         src={genieLogo}
         alt="Logo of a Genie with a Lamp"
@@ -13,23 +22,32 @@ export default function ImageTextModule() {
         blurDataURL="data:..."
         placeholder="blur" // Optional blur-up while loading
       />
-      <p>
-        I am the dog genie and I will help you to find the right dog for you.
-        <br />
-        <br />
-        First let us take a short quiz!
-      </p>
+      <StyledP>{children}</StyledP>
     </StyledSection>
   );
 }
 
 const StyledSection = styled.div`
-  margin: 0 var(--basicmargin);
+  position: relative;
+  width: var(--mobilewidth);
+  margin: 2rem var(--basicmargin);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border: 2px solid var(--blue);
+  border-radius: var(--borderradius-medium);
 `;
 const StyledImage = styled(Image)`
   width: 10rem;
   height: auto;
+`;
+const StyledP = styled.p`
+  padding-right: 2rem;
+`;
+const StyledIcon = styled(Image)`
+  position: absolute;
+  bottom: -2.5rem;
+  left: 41%;
+  background: var(--backgroundcolor);
+  border-radius: 100%;
 `;
