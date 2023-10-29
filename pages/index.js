@@ -5,7 +5,7 @@ import ImageTextModule from "@/components/ImageTextModule";
 export default function HomePage() {
   return (
     <div>
-      <ImageTextModule>
+      <ImageTextModule showimage={true}>
         I am the dog genie and I will help you to find the right dog for you.
         First let us take a short quiz!
       </ImageTextModule>

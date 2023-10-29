@@ -3,7 +3,7 @@ import Image from "next/image";
 import genieLogo from "../public/genie-logo.png";
 import lampIcon from "../public/lamp-icon.png";
 
-export default function ImageTextModule({ children }) {
+export default function ImageTextModule({ children, showimage }) {
   return (
     <StyledSection>
       <StyledIcon
@@ -14,15 +14,17 @@ export default function ImageTextModule({ children }) {
         blurDataURL="data:..."
         placeholder="blur" // Optional blur-up while loading
       />
-      <StyledImage
-        src={genieLogo}
-        alt="Logo of a Genie with a Lamp"
-        width={1004 / 2}
-        height={1396 / 2}
-        blurDataURL="data:..."
-        placeholder="blur" // Optional blur-up while loading
-      />
-      <StyledP>{children}</StyledP>
+      {showimage && (
+        <StyledImage
+          src={genieLogo}
+          alt="Logo of a Genie with a Lamp"
+          width={1004 / 2}
+          height={1396 / 2}
+          blurDataURL="data:..."
+          placeholder="blur" // Optional blur-up while loading
+        />
+      )}
+      <StyledP showimage={showimage}>{children}</StyledP>
     </StyledSection>
   );
 }
@@ -42,7 +44,9 @@ const StyledImage = styled(Image)`
   height: auto;
 `;
 const StyledP = styled.p`
-  padding-right: 2rem;
+  /* padding: 1rem 1rem; */
+  padding: ${(props) => (props.showimage ? "0" : "2rem 2.5rem")};
+  padding-right: ${(props) => (props.showimage ? "2rem" : "0")};
 `;
 const StyledIcon = styled(Image)`
   position: absolute;
