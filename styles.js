@@ -27,7 +27,7 @@ export default createGlobalStyle`
 
   p {
     line-height: 1.6;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   fieldset {
@@ -42,4 +42,27 @@ export default createGlobalStyle`
   legend {
     font-size: 1.3rem
   }
+
+  ul {
+    list-style: none;
+  }
+
+li {
+  background-color: var(--lightgray);
+  width: fit-content;
+  border-radius: var(--borderradius-small);
+  margin: var(--basicmargin);
+  padding: .5rem;
+}
+
+span {
+  margin-left: 2rem;
+  background-color: var(--yellow);
+  padding: .4rem;
+  height: 25px;
+  width: 25px;
+  border-radius: 100%;
+  display: inline-block;
+}
+
 `;

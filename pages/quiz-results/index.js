@@ -1,3 +1,5 @@
+import ImageTextModule from "@/components/ImageTextModule";
+
 export default function QuizResults({ assignedPoints }) {
   if (assignedPoints.length === 0) {
     return null;
@@ -10,12 +12,16 @@ export default function QuizResults({ assignedPoints }) {
 
   return (
     <div>
-      <h2>List of dogs with their points</h2>
+      <ImageTextModule showimage={true}>
+        Here we meet again. The dog results are shown in descending order,
+        according to their points.
+      </ImageTextModule>
       <ul>
         {sortedAssignedPoints.map((dog) => {
           return (
             <li key={dog.name}>
-              {dog.name} -- {dog.points}
+              {dog.name}
+              <span>{dog.points}</span>
             </li>
           );
         })}

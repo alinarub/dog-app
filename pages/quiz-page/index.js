@@ -1,5 +1,4 @@
 import QuizForm from "@/components/QuizForm";
-import IntroText from "@/components/IntroText";
 import ImageTextModule from "@/components/ImageTextModule";
 
 export default function QuizPage({ handleSubmit }) {

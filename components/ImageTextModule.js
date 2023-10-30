@@ -6,14 +6,16 @@ import lampIcon from "../public/lamp-icon.png";
 export default function ImageTextModule({ children, showimage }) {
   return (
     <StyledSection>
-      <StyledIcon
-        src={lampIcon}
-        alt="Icon of a lamp"
-        width={80}
-        height={80}
-        blurDataURL="data:..."
-        placeholder="blur" // Optional blur-up while loading
-      />
+      {!showimage && (
+        <StyledIcon
+          src={lampIcon}
+          alt="Icon of a lamp"
+          width={80}
+          height={80}
+          blurDataURL="data:..."
+          placeholder="blur" // Optional blur-up while loading
+        />
+      )}
       {showimage && (
         <StyledImage
           src={genieLogo}
@@ -44,9 +46,8 @@ const StyledImage = styled(Image)`
   height: auto;
 `;
 const StyledP = styled.p`
-  /* padding: 1rem 1rem; */
   padding: ${(props) => (props.showimage ? "0" : "2rem 2.5rem")};
-  padding-right: ${(props) => (props.showimage ? "2rem" : "0")};
+  padding-right: ${(props) => (props.showimage ? "1rem" : "0")};
 `;
 const StyledIcon = styled(Image)`
   position: absolute;

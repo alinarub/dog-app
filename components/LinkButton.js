@@ -1,16 +1,16 @@
 import Link from "next/link";
 import styled from "styled-components";
 
-export default function LinkButton({ href, children, fullwidth }) {
+export default function LinkButton({ href, children, $fullwidth }) {
   return (
-    <StyledLink fullwidth={fullwidth} href={href}>
+    <StyledLink $fullwidth={$fullwidth} href={href}>
       {children}
     </StyledLink>
   );
 }
 
 const StyledLink = styled(Link)`
-  display: ${(props) => (props.fullwidth ? "block" : "inline-block")};
+  display: ${(props) => (props.$fullwidth ? "block" : "inline-block")};
   background-color: var(--lightgray);
   color: var(--almostblack);
   text-decoration: none;

@@ -6,11 +6,12 @@ export default function HomePage() {
   return (
     <div>
       <ImageTextModule showimage={true}>
-        I am the dog genie and I will help you to find the right dog for you.
-        First let us take a short quiz!
+        Welcome, child! As a genie of knowledge and guidance, I am here to
+        assist you in your quest to find the perfect canine companion.
+        Let&apos;s embark on this magical journey together!
       </ImageTextModule>
       <Headline>Find your dog</Headline>
-      <LinkButton fullwidth={true ? 1 : 0} href="/quiz-page">
+      <LinkButton $fullwidth href="/quiz-page">
         Start the quiz
       </LinkButton>
     </div>

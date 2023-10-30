@@ -14,17 +14,15 @@ export default function QuizForm({ onSubmit }) {
           value="2"
           required
         />
-        <StyledLabel htmlFor="barking2">
-          I do not want any barking (2)
-        </StyledLabel>
+        <StyledLabel htmlFor="barking2">I do not want any barking</StyledLabel>
 
         <StyledInput type="radio" id="barking3" name="barking" value="3" />
         <StyledLabel htmlFor="barking3">
-          A little bit of barking is ok (3)
+          A little bit of barking is ok
         </StyledLabel>
 
         <StyledInput type="radio" id="barking4" name="barking" value="4" />
-        <StyledLabel htmlFor="barking4">I am deaf anyway (4)</StyledLabel>
+        <StyledLabel htmlFor="barking4">I am deaf anyway</StyledLabel>
       </fieldset>
       {/* Question #2 energy */}
       <fieldset>
@@ -37,18 +35,16 @@ export default function QuizForm({ onSubmit }) {
           value="2"
           required
         />
-        <StyledLabel htmlFor="energy2">
-          I like to stay on the couch (2)
-        </StyledLabel>
+        <StyledLabel htmlFor="energy2">I like to stay on the couch</StyledLabel>
 
         <StyledInput type="radio" id="energy3" name="energy" value="3" />
         <StyledLabel htmlFor="energy3">
-          A little exercise is welcome (3)
+          A little exercise is welcome
         </StyledLabel>
 
         <StyledInput type="radio" id="energy4" name="energy" value="4" />
         <StyledLabel htmlFor="energy4">
-          I want my dog to be just as active as me (4)
+          I want my dog to be just as active as me
         </StyledLabel>
       </fieldset>
       {/* Question #3 trainability */}
@@ -63,7 +59,7 @@ export default function QuizForm({ onSubmit }) {
           required
         />
         <StyledLabel htmlFor="trainability2">
-          He does not need to do any tricks (2)
+          He does not need to do any tricks
         </StyledLabel>
 
         <StyledInput
@@ -73,7 +69,7 @@ export default function QuizForm({ onSubmit }) {
           value="3"
         />
         <StyledLabel htmlFor="trainability3">
-          I want to teach my dog some tricks (3)
+          I want to teach my dog some tricks
         </StyledLabel>
 
         <StyledInput
@@ -83,7 +79,7 @@ export default function QuizForm({ onSubmit }) {
           value="4"
         />
         <StyledLabel htmlFor="trainability4">
-          He should be able to learn a lot (4)
+          He should be able to learn a lot
         </StyledLabel>
       </fieldset>
       {/* Question #4 children */}
@@ -100,7 +96,7 @@ export default function QuizForm({ onSubmit }) {
           required
         />
         <StyledLabel htmlFor="children2">
-          It is not important, my dog won&apos;t get in touch with children (2)
+          It is not important, my dog won&apos;t get in touch with children
         </StyledLabel>
 
         <StyledInput
@@ -110,7 +106,7 @@ export default function QuizForm({ onSubmit }) {
           value="3"
         />
         <StyledLabel htmlFor="children3">
-          It would be good, but it&apos;s not crucial (3)
+          It would be good, but it&apos;s not crucial
         </StyledLabel>
 
         <StyledInput
@@ -120,7 +116,7 @@ export default function QuizForm({ onSubmit }) {
           value="4"
         />
         <StyledLabel htmlFor="children4">
-          It is very important, I want a friendly dog (4)
+          It is very important, I want a friendly dog
         </StyledLabel>
       </fieldset>
       {/* Question #5 otherdogs */}
@@ -135,7 +131,7 @@ export default function QuizForm({ onSubmit }) {
           required
         />
         <StyledLabel htmlFor="otherdogs2">
-          I want my dog to only care about his home (2)
+          I want my dog to only care about his home
         </StyledLabel>
 
         <StyledInput
@@ -145,7 +141,7 @@ export default function QuizForm({ onSubmit }) {
           value="3"
         />
         <StyledLabel htmlFor="otherdogs3">
-          My dog should be neutral with other dogs (3)
+          My dog should be neutral with other dogs
         </StyledLabel>
 
         <StyledInput
@@ -154,9 +150,7 @@ export default function QuizForm({ onSubmit }) {
           name="good_with_other_dogs"
           value="4"
         />
-        <StyledLabel htmlFor="otherdogs4">
-          I want a sociable dog (4)
-        </StyledLabel>
+        <StyledLabel htmlFor="otherdogs4">I want a sociable dog</StyledLabel>
       </fieldset>
       {/* Question #6 protectiveness */}
       <fieldset>
@@ -170,7 +164,7 @@ export default function QuizForm({ onSubmit }) {
           required
         />
         <StyledLabel htmlFor="protectiveness2">
-          I do not want a protective dog (2)
+          I do not want a protective dog
         </StyledLabel>
 
         <StyledInput
@@ -180,7 +174,7 @@ export default function QuizForm({ onSubmit }) {
           value="3"
         />
         <StyledLabel htmlFor="protectiveness3">
-          A little protectiveness is good (3)
+          A little protectiveness is good
         </StyledLabel>
 
         <StyledInput
@@ -190,7 +184,7 @@ export default function QuizForm({ onSubmit }) {
           value="4"
         />
         <StyledLabel htmlFor="protectiveness4">
-          I want an alert and protective dog (4)
+          I want an alert and protective dog
         </StyledLabel>
       </fieldset>
       {/* Question #7 shedding */}
@@ -205,16 +199,16 @@ export default function QuizForm({ onSubmit }) {
             value="2"
             required
           />
-          <StyledLabel htmlFor="shedding2">It bothers me a lot (2)</StyledLabel>
+          <StyledLabel htmlFor="shedding2">It bothers me a lot</StyledLabel>
         </div>
 
         <StyledInput type="radio" id="shedding3" name="shedding" value="3" />
         <StyledLabel htmlFor="shedding3">
-          I do not mind if my dog sheds a little (3)
+          I do not mind if my dog sheds a little
         </StyledLabel>
 
         <StyledInput type="radio" id="shedding4" name="shedding" value="4" />
-        <StyledLabel htmlFor="shedding4">I do not mind at all (4)</StyledLabel>
+        <StyledLabel htmlFor="shedding4">I do not mind at all</StyledLabel>
       </fieldset>
       {/* Submit Button */}
       <StyledButton type="submit">Submit</StyledButton>
@@ -266,11 +260,13 @@ const StyledButton = styled.button`
   padding: 0.7rem 1.6em;
   text-align: center;
   cursor: pointer;
-  background-color: var(--yellow);
+  background-color: var(--lightgray);
   color: var(--almostblack);
   border-radius: var(--borderradius-small);
-  border: 2px solid var(--yellow);
+  border: 2px solid var(--lightgray);
   &:hover {
     border: 2px solid var(--blue);
+    background-color: var(--blue);
+    color: var(--backgroundcolor);
   }
 `;
