@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import LinkButton from "./LinkButton";
 
 export default function QuizForm({ onSubmit }) {
   return (
@@ -211,7 +212,7 @@ export default function QuizForm({ onSubmit }) {
         <StyledLabel htmlFor="shedding4">I do not mind at all</StyledLabel>
       </fieldset>
       {/* Submit Button */}
-      <StyledButton type="submit">Submit</StyledButton>
+      <LinkButton>Submit</LinkButton>
     </StyledForm>
   );
 }
@@ -243,6 +244,7 @@ const StyledLabel = styled.label`
   vertical-align: middle;
   padding: 0.7rem 1em;
   text-align: center;
+  height: 4.3rem;
   cursor: pointer;
   background-color: var(--soft-background);
   color: var(--font-color);
@@ -250,23 +252,5 @@ const StyledLabel = styled.label`
   border: 2px solid var(--soft-background);
   &:hover {
     border: 2px solid var(--primary-color);
-  }
-`;
-
-const StyledButton = styled.button`
-  text-align: center;
-  display: table-cell;
-  vertical-align: middle;
-  padding: 0.7rem 1.6em;
-  text-align: center;
-  cursor: pointer;
-  background-color: var(--soft-background);
-  color: var(--font-color);
-  border-radius: var(--borderradius-small);
-  border: 2px solid var(--soft-background);
-  &:hover {
-    border: 2px solid var(--primary-color);
-    background-color: var(--primary-color);
-    color: var(--background-color);
   }
 `;

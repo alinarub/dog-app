@@ -3,10 +3,10 @@ import Image from "next/image";
 import genieLogo from "../public/genie-logo.png";
 import lampIcon from "../public/lamp-icon.png";
 
-export default function ImageTextModule({ children, showImage }) {
+export default function ImageTextModule({ children, $showImage }) {
   return (
     <StyledSection>
-      {!showImage && (
+      {!$showImage && (
         <StyledIcon
           src={lampIcon}
           alt="Icon of a lamp"
@@ -16,7 +16,7 @@ export default function ImageTextModule({ children, showImage }) {
           placeholder="blur" // Optional blur-up while loading
         />
       )}
-      {showImage && (
+      {$showImage && (
         <StyledImage
           src={genieLogo}
           alt="Logo of a Genie with a Lamp"
@@ -26,7 +26,7 @@ export default function ImageTextModule({ children, showImage }) {
           placeholder="blur" // Optional blur-up while loading
         />
       )}
-      <StyledP showImage={showImage}>{children}</StyledP>
+      <StyledP $showImage={$showImage}>{children}</StyledP>
     </StyledSection>
   );
 }
@@ -46,8 +46,8 @@ const StyledImage = styled(Image)`
   height: auto;
 `;
 const StyledP = styled.p`
-  padding: ${(props) => (props.showImage ? "0" : "2rem 2.5rem")};
-  padding-right: ${(props) => (props.showImage ? "1rem" : "0")};
+  padding: ${({ $showImage }) => ($showImage ? "0" : "2rem 2.5rem")};
+  padding-right: ${({ $showImage }) => ($showImage ? "1rem" : "0")};
 `;
 const StyledIcon = styled(Image)`
   position: absolute;
