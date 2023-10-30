@@ -3,10 +3,10 @@ import Image from "next/image";
 import genieLogo from "../public/genie-logo.png";
 import lampIcon from "../public/lamp-icon.png";
 
-export default function ImageTextModule({ children, showimage }) {
+export default function ImageTextModule({ children, showImage }) {
   return (
     <StyledSection>
-      {!showimage && (
+      {!showImage && (
         <StyledIcon
           src={lampIcon}
           alt="Icon of a lamp"
@@ -16,7 +16,7 @@ export default function ImageTextModule({ children, showimage }) {
           placeholder="blur" // Optional blur-up while loading
         />
       )}
-      {showimage && (
+      {showImage && (
         <StyledImage
           src={genieLogo}
           alt="Logo of a Genie with a Lamp"
@@ -26,7 +26,7 @@ export default function ImageTextModule({ children, showimage }) {
           placeholder="blur" // Optional blur-up while loading
         />
       )}
-      <StyledP showimage={showimage}>{children}</StyledP>
+      <StyledP showImage={showImage}>{children}</StyledP>
     </StyledSection>
   );
 }
@@ -46,13 +46,13 @@ const StyledImage = styled(Image)`
   height: auto;
 `;
 const StyledP = styled.p`
-  padding: ${(props) => (props.showimage ? "0" : "2rem 2.5rem")};
-  padding-right: ${(props) => (props.showimage ? "1rem" : "0")};
+  padding: ${(props) => (props.showImage ? "0" : "2rem 2.5rem")};
+  padding-right: ${(props) => (props.showImage ? "1rem" : "0")};
 `;
 const StyledIcon = styled(Image)`
   position: absolute;
   bottom: -2.5rem;
   left: 41%;
-  background: var(--backgroundcolor);
+  background: var(--background-color);
   border-radius: 100%;
 `;

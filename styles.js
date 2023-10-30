@@ -10,14 +10,14 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
-    background-color: var(--backgroundcolor);
+    background-color: var(--background-color);
   }
   :root {
     --accent-color: #febb49;
     --primary-color: #056393;
-    --backgroundcolor: #F2F3F4;
+    --background-color: #F2F3F4;
     --font-color: #242124;
-    --lightgray: #E5E4E2;
+    --soft-background: #E5E4E2;
 
     --mobilewidth: 23rem;
     --borderradius-small: .5rem;
@@ -31,7 +31,7 @@ export default createGlobalStyle`
   }
 
   fieldset {
-    border: 2px solid var(--lightgray);
+    border: 2px solid var(--soft-background);
     width: var(--mobilewidth);
     max-width: var(--mobilewidth);
     border-radius: var(--borderradius-small);
@@ -48,7 +48,7 @@ export default createGlobalStyle`
   }
 
 li {
-  background-color: var(--lightgray);
+  background-color: var(--soft-background);
   width: fit-content;
   border-radius: var(--borderradius-small);
   margin: var(--basicmargin);

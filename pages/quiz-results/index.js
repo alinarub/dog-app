@@ -12,19 +12,16 @@ export default function QuizResults({ assignedPoints }) {
 
   return (
     <div>
-      <ImageTextModule showimage={true}>
+      <ImageTextModule showImage={true}>
         Here we meet again. The dog results are shown in descending order,
         according to their points.
       </ImageTextModule>
       <ul>
-        {sortedAssignedPoints.map((dog) => {
-          return (
-            <li key={dog.name}>
-              {dog.name}
-              <span>{dog.points}</span>
-            </li>
-          );
-        })}
+        {sortedAssignedPoints.map(({ name, points }) => (
+          <li key={name}>
+            {name} <span>{points}</span>
+          </li>
+        ))}
       </ul>
       <p>Total dogs: {assignedPoints.length}</p>
     </div>

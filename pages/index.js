@@ -4,8 +4,8 @@ import ImageTextModule from "@/components/ImageTextModule";
 
 export default function HomePage() {
   return (
-    <div>
-      <ImageTextModule showimage={true}>
+    <>
+      <ImageTextModule showImage>
         Welcome, child! As a genie of knowledge and guidance, I am here to
         assist you in your quest to find the perfect canine companion.
         Let&apos;s embark on this magical journey together!
@@ -14,6 +14,6 @@ export default function HomePage() {
       <LinkButton $fullwidth href="/quiz-page">
         Start the quiz
       </LinkButton>
-    </div>
+    </>
   );
 }

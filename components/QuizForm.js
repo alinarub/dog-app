@@ -244,10 +244,10 @@ const StyledLabel = styled.label`
   padding: 0.7rem 1em;
   text-align: center;
   cursor: pointer;
-  background-color: var(--lightgray);
+  background-color: var(--soft-background);
   color: var(--font-color);
   border-radius: var(--borderradius-small);
-  border: 2px solid var(--lightgray);
+  border: 2px solid var(--soft-background);
   &:hover {
     border: 2px solid var(--primary-color);
   }
@@ -260,13 +260,13 @@ const StyledButton = styled.button`
   padding: 0.7rem 1.6em;
   text-align: center;
   cursor: pointer;
-  background-color: var(--lightgray);
+  background-color: var(--soft-background);
   color: var(--font-color);
   border-radius: var(--borderradius-small);
-  border: 2px solid var(--lightgray);
+  border: 2px solid var(--soft-background);
   &:hover {
     border: 2px solid var(--primary-color);
     background-color: var(--primary-color);
-    color: var(--backgroundcolor);
+    color: var(--background-color);
   }
 `;
