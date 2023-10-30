@@ -13,10 +13,10 @@ export default createGlobalStyle`
     background-color: var(--backgroundcolor);
   }
   :root {
-    --yellow: #febb49;
-    --blue: #056393;
+    --accent-color: #febb49;
+    --primary-color: #056393;
     --backgroundcolor: #F2F3F4;
-    --almostblack: #242124;
+    --font-color: #242124;
     --lightgray: #E5E4E2;
 
     --mobilewidth: 23rem;
@@ -57,7 +57,7 @@ li {
 
 span {
   margin-left: 2rem;
-  background-color: var(--yellow);
+  background-color: var(--accent-color);
   padding: .4rem;
   height: 25px;
   width: 25px;

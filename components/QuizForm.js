@@ -230,9 +230,9 @@ const StyledInput = styled.input`
   width: 0;
 
   &:checked + label {
-    border: 2px solid var(--blue);
-    background-color: var(--yellow);
-    border: 2px solid var(--yellow);
+    border: 2px solid var(--primary-color);
+    background-color: var(--accent-color);
+    border: 2px solid var(--accent-color);
   }
 `;
 
@@ -245,11 +245,11 @@ const StyledLabel = styled.label`
   text-align: center;
   cursor: pointer;
   background-color: var(--lightgray);
-  color: var(--almostblack);
+  color: var(--font-color);
   border-radius: var(--borderradius-small);
   border: 2px solid var(--lightgray);
   &:hover {
-    border: 2px solid var(--blue);
+    border: 2px solid var(--primary-color);
   }
 `;
 
@@ -261,12 +261,12 @@ const StyledButton = styled.button`
   text-align: center;
   cursor: pointer;
   background-color: var(--lightgray);
-  color: var(--almostblack);
+  color: var(--font-color);
   border-radius: var(--borderradius-small);
   border: 2px solid var(--lightgray);
   &:hover {
-    border: 2px solid var(--blue);
-    background-color: var(--blue);
+    border: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
     color: var(--backgroundcolor);
   }
 `;

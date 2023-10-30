@@ -38,7 +38,7 @@ const StyledSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid var(--blue);
+  border: 2px solid var(--primary-color);
   border-radius: var(--borderradius-medium);
 `;
 const StyledImage = styled(Image)`
