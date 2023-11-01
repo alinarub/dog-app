@@ -5,15 +5,14 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import DogCard from "@/components/DogCard";
 
-const fetcher = (url) => fetch(url).then((response) => response.json());
+// const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function QuizResults() {
   const router = useRouter();
   const { data: dogs, isLoading } = useSWR(
     router.isReady
       ? `/api/quizResults?${new URLSearchParams(router.query)}`
-      : null,
-    fetcher
+      : null
   );
 
   if (!dogs || isLoading) {

@@ -1,14 +1,14 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-export default function DogCard({ dogs }) {
+export default function DogCard({ dogs, showPoints }) {
   return (
     <StyledList>
       {dogs.map(({ name, points, image_link }, index) => {
         if (index < 5) {
           return (
             <StyledListItem key={name}>
-              <StyledPoints>{points}</StyledPoints>
+              {showPoints && <StyledPoints>{points}</StyledPoints>}
               <StyledParagraph>{name}</StyledParagraph>
 
               <StyledImage
@@ -50,7 +50,7 @@ const StyledListItem = styled.li`
   }
 `;
 
-const StyledPoints = styled.p`
+const StyledPoints = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,11 +66,8 @@ const StyledPoints = styled.p`
 
 const StyledParagraph = styled.p`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   margin-top: 1rem;
-  padding: 0 1rem;
 `;
 
 const StyledImage = styled(Image)`

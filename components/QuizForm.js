@@ -15,8 +15,8 @@ export default function QuizForm() {
   return (
     <StyledForm onSubmit={onSubmit}>
       {/* Question #1 barking */}
-      <fieldset>
-        <legend>How much barking is ok for you?</legend>
+      <StyledFieldset>
+        <StyledLegend>How much barking is ok for you?</StyledLegend>
 
         <StyledInput
           type="radio"
@@ -34,10 +34,10 @@ export default function QuizForm() {
 
         <StyledInput type="radio" id="barking4" name="barking" value="4" />
         <StyledLabel htmlFor="barking4">I am deaf anyway</StyledLabel>
-      </fieldset>
+      </StyledFieldset>
       {/* Question #2 energy */}
-      <fieldset>
-        <legend>How much energy do you have for your dog?</legend>
+      <StyledFieldset>
+        <StyledLegend>How much energy do you have for your dog?</StyledLegend>
 
         <StyledInput
           type="radio"
@@ -57,10 +57,10 @@ export default function QuizForm() {
         <StyledLabel htmlFor="energy4">
           I want my dog to be just as active as me
         </StyledLabel>
-      </fieldset>
+      </StyledFieldset>
       {/* Question #3 trainability */}
-      <fieldset>
-        <legend>How trainable should your dog be?</legend>
+      <StyledFieldset>
+        <StyledLegend>How trainable should your dog be?</StyledLegend>
 
         <StyledInput
           type="radio"
@@ -92,12 +92,12 @@ export default function QuizForm() {
         <StyledLabel htmlFor="trainability4">
           He should be able to learn a lot
         </StyledLabel>
-      </fieldset>
+      </StyledFieldset>
       {/* Question #4 children */}
-      <fieldset>
-        <legend>
+      <StyledFieldset>
+        <StyledLegend>
           How important is it that your dog gets along with children?
-        </legend>
+        </StyledLegend>
 
         <StyledInput
           type="radio"
@@ -129,10 +129,12 @@ export default function QuizForm() {
         <StyledLabel htmlFor="children4">
           It is very important, I want a friendly dog
         </StyledLabel>
-      </fieldset>
+      </StyledFieldset>
       {/* Question #5 otherdogs */}
-      <fieldset>
-        <legend>How easily should your dog get along with other dogs?</legend>
+      <StyledFieldset>
+        <StyledLegend>
+          How easily should your dog get along with other dogs?
+        </StyledLegend>
 
         <StyledInput
           type="radio"
@@ -162,10 +164,10 @@ export default function QuizForm() {
           value="4"
         />
         <StyledLabel htmlFor="otherdogs4">I want a sociable dog</StyledLabel>
-      </fieldset>
+      </StyledFieldset>
       {/* Question #6 protectiveness */}
-      <fieldset>
-        <legend>How protective do you want your dog to be?</legend>
+      <StyledFieldset>
+        <StyledLegend>How protective do you want your dog to be?</StyledLegend>
 
         <StyledInput
           type="radio"
@@ -197,10 +199,10 @@ export default function QuizForm() {
         <StyledLabel htmlFor="protectiveness4">
           I want an alert and protective dog
         </StyledLabel>
-      </fieldset>
+      </StyledFieldset>
       {/* Question #7 shedding */}
-      <fieldset>
-        <legend>Does it bother you if your dog sheds?</legend>
+      <StyledFieldset>
+        <StyledLegend>Does it bother you if your dog sheds?</StyledLegend>
 
         <StyledInput
           type="radio"
@@ -218,7 +220,7 @@ export default function QuizForm() {
 
         <StyledInput type="radio" id="shedding4" name="shedding" value="4" />
         <StyledLabel htmlFor="shedding4">I do not mind at all</StyledLabel>
-      </fieldset>
+      </StyledFieldset>
       {/* Submit Button */}
       <LinkButton>Submit</LinkButton>
     </StyledForm>
@@ -231,6 +233,21 @@ const StyledForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const StyledFieldset = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  width: var(--mobilewidth);
+  padding-bottom: 1.5;
+  margin: 2rem 0;
+`;
+
+const StyledLegend = styled.legend`
+  font-size: 1.3rem;
 `;
 
 const StyledInput = styled.input`
@@ -251,8 +268,6 @@ const StyledLabel = styled.label`
   justify-content: center;
   width: 100%;
   text-align: center;
-  /* display: table-cell;
-  vertical-align: middle; */
   margin: 0.7rem;
   height: 4.3rem;
   cursor: pointer;

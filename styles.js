@@ -44,19 +44,4 @@ export default createGlobalStyle`
     line-height: 1.6;
     font-size: 1rem;
   }
-
-  fieldset {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 0;
-    width: var(--mobilewidth);
-    padding-bottom: 1.5;
-    margin: 2rem 0;
-  }
-
-  legend {
-    font-size: 1.3rem
-  }
 `;
