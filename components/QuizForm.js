@@ -202,16 +202,14 @@ export default function QuizForm() {
       <fieldset>
         <legend>Does it bother you if your dog sheds?</legend>
 
-        <div>
-          <StyledInput
-            type="radio"
-            id="shedding2"
-            name="shedding"
-            value="2"
-            required
-          />
-          <StyledLabel htmlFor="shedding2">It bothers me a lot</StyledLabel>
-        </div>
+        <StyledInput
+          type="radio"
+          id="shedding2"
+          name="shedding"
+          value="2"
+          required
+        />
+        <StyledLabel htmlFor="shedding2">It bothers me a lot</StyledLabel>
 
         <StyledInput type="radio" id="shedding3" name="shedding" value="3" />
         <StyledLabel htmlFor="shedding3">
@@ -248,12 +246,14 @@ const StyledInput = styled.input`
 `;
 
 const StyledLabel = styled.label`
-  width: var(--mobilewidth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   text-align: center;
-  display: table-cell;
-  vertical-align: middle;
-  padding: 0.7rem 1em;
-  text-align: center;
+  /* display: table-cell;
+  vertical-align: middle; */
+  margin: 0.7rem;
   height: 4.3rem;
   cursor: pointer;
   background-color: var(--soft-background);
