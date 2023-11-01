@@ -1,7 +1,17 @@
 import styled from "styled-components";
 import LinkButton from "./LinkButton";
+import { useRouter } from "next/router";
 
-export default function QuizForm({ onSubmit }) {
+export default function QuizForm() {
+  const router = useRouter();
+
+  function onSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    const params = new URLSearchParams(data);
+    router.push(`/quiz-results?${params}`);
+  }
   return (
     <StyledForm onSubmit={onSubmit}>
       {/* Question #1 barking */}
