@@ -247,7 +247,7 @@ const StyledFieldset = styled.fieldset`
 `;
 
 const StyledLegend = styled.legend`
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 `;
 
 const StyledInput = styled.input`

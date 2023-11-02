@@ -55,7 +55,7 @@ const StyledPoints = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 4.1rem;
+  right: 3.1rem;
   top: 4.1rem;
   background-color: var(--accent-color);
   padding: 0.4rem;
