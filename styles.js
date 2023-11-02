@@ -1,17 +1,49 @@
 import { createGlobalStyle } from "styled-components";
 
+import { DM_Serif_Display, Poppins } from "next/font/google";
+
+const decorativeFont = DM_Serif_Display({
+  weight: ["400"],
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const basicFont = Poppins({
+  weight: ["200", "300", "400", "700"],
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export default createGlobalStyle`
   *,
   *::before,
   *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input, button, textarea, select {
+    font: inherit;
+  }
+
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
   }
 
   body {
-    margin: 0;
-    font-family: system-ui;
+    font-family: ${basicFont.style.fontFamily}; 
     background-color: var(--background-color);
+    font-weight: 300;
   }
+
   :root {
     --accent-color: #febb49;
     --primary-color: #056393;
@@ -30,39 +62,9 @@ export default createGlobalStyle`
     font-size: 1rem;
   }
 
-  fieldset {
-    border: 2px solid var(--soft-background);
-    width: var(--mobilewidth);
-    max-width: var(--mobilewidth);
-    border-radius: var(--borderradius-small);
-    padding-bottom: 1.5;
-    margin: 2rem 0;
+  h1, h2, h3, h4, h5, h6, legend {
+    font-family: ${decorativeFont.style.fontFamily}; 
+    color: var(--primary-color);
+    text-align: center;
   }
-
-  legend {
-    font-size: 1.3rem
-  }
-
-  ul {
-    list-style: none;
-  }
-
-li {
-  background-color: var(--soft-background);
-  width: fit-content;
-  border-radius: var(--borderradius-small);
-  margin: var(--basicmargin);
-  padding: .5rem;
-}
-
-span {
-  margin-left: 2rem;
-  background-color: var(--accent-color);
-  padding: .4rem;
-  height: 25px;
-  width: 25px;
-  border-radius: 100%;
-  display: inline-block;
-}
-
 `;

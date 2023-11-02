@@ -1,29 +1,31 @@
 import ImageTextModule from "@/components/ImageTextModule";
+import Headline from "@/components/Headline";
+import useSWR from "swr";
 
-export default function QuizResults({ assignedPoints }) {
-  if (assignedPoints.length === 0) {
-    return null;
-  }
+import { useRouter } from "next/router";
+import DogCard from "@/components/DogCard";
 
-  // Sort by points descending
-  const sortedAssignedPoints = assignedPoints.toSorted(
-    (a, b) => b.points - a.points
+export default function QuizResults() {
+  const router = useRouter();
+  const { data: dogs, isLoading } = useSWR(
+    router.isReady
+      ? `/api/quizResults?${new URLSearchParams(router.query)}`
+      : null
   );
 
+  if (!dogs || isLoading) {
+    return "Loading...";
+  }
+
   return (
-    <div>
-      <ImageTextModule showImage={true}>
+    <>
+      <ImageTextModule $showImage>
         Here we meet again. The dog results are shown in descending order,
         according to their points.
       </ImageTextModule>
-      <ul>
-        {sortedAssignedPoints.map(({ name, points }) => (
-          <li key={name}>
-            {name} <span>{points}</span>
-          </li>
-        ))}
-      </ul>
-      <p>Total dogs: {assignedPoints.length}</p>
-    </div>
+      <Headline>Your best matches</Headline>
+      <DogCard dogs={dogs} showPoints />
+      <p>Total dogs: {dogs.length}</p>
+    </>
   );
 }

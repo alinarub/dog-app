@@ -8,11 +8,10 @@ export default function HomePage() {
       <ImageTextModule $showImage>
         Welcome, child! As a genie of knowledge and guidance, I am here to
         assist you in your quest to find the perfect canine companion.
-        Let&apos;s embark on this magical journey together!
       </ImageTextModule>
-      <Headline>Find your dog</Headline>
+      <Headline> Start your journey!</Headline>
       <LinkButton $fullWidth href="/quiz-page">
-        Start the quiz
+        Let&apos;s begin
       </LinkButton>
     </>
   );

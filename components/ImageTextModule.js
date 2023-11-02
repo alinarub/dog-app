@@ -46,13 +46,14 @@ const StyledImage = styled(Image)`
   height: auto;
 `;
 const StyledP = styled.p`
+  font-size: 1.1rem;
   padding: ${({ $showImage }) => ($showImage ? "0" : "2rem 2.5rem")};
-  padding-right: ${({ $showImage }) => ($showImage ? "1rem" : "0")};
+  padding-right: ${({ $showImage }) => ($showImage ? "1rem" : "2.5rem")};
 `;
 const StyledIcon = styled(Image)`
   position: absolute;
   bottom: -2.5rem;
-  left: 41%;
+  left: 39%;
   background: var(--background-color);
   border-radius: 100%;
 `;
