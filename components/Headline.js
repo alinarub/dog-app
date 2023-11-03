@@ -10,4 +10,5 @@ const StyledH1 = styled.h1`
   font-size: 2rem;
   font-weight: 200;
   margin: 0 var(--basicmargin);
+  margin-top: 2rem;
 `;
