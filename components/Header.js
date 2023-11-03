@@ -8,15 +8,6 @@ export default function Header() {
       <StyledWrapper>
         <Logo />
         <StyledHeadline>Dog Genie</StyledHeadline>
-
-        <StyledHamburger
-          src="/hamburger-icon.svg"
-          alt="Icon of a hamburger menu"
-          width={40}
-          height={40}
-          blurDataURL="data:..."
-          placeholder="blur" // Optional blur-up while loading
-        />
       </StyledWrapper>
     </StyledNav>
   );
@@ -38,13 +29,6 @@ const StyledNav = styled.nav`
   padding: var(--basicmargin) 0;
 `;
 
-const StyledHamburger = styled(Image)`
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
-  &:hover {
-    transform: rotate(90deg);
-  }
-`;
 const StyledWrapper = styled.div`
   width: var(--mobilewidth);
   display: flex;
