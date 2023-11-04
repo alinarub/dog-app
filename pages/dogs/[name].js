@@ -4,6 +4,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import Headline from "@/components/Headline";
 import RatingLine from "@/components/RatingLine";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 export default function Name() {
   // get route from URL
@@ -15,7 +16,7 @@ export default function Name() {
   const routerName = router.query.name;
 
   if (!dogs || isLoading) {
-    return "Loading...";
+    return <LoadingSpinner />;
   }
 
   // find dog according to URL
@@ -66,16 +67,15 @@ export default function Name() {
         </StyledListItem>
       </StyledList>
       <StyledNavigation>
-        <StyledButton>
-          <StyledImage
-            type="button"
-            onClick={() => router.back()}
+        <StyledButton type="button" onClick={() => router.back()}>
+          <StyledIcon
             src="/arrow-left.svg"
             alt="Icon of an arrow"
             width={29}
             height={29}
             blurDataURL="data:..."
           />
+          back
         </StyledButton>
       </StyledNavigation>
     </>
@@ -87,6 +87,7 @@ const StyledImage = styled(Image)`
   outline: 2px solid var(--primary-color);
   outline-offset: 0.5rem;
   margin: auto;
+  margin-top: 8rem;
 `;
 
 const StyledList = styled.ul`
@@ -106,7 +107,6 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0.7rem 1.6em;
-
   cursor: pointer;
   background-color: var(--soft-background);
   color: var(--font-color);
@@ -116,5 +116,13 @@ const StyledButton = styled.button`
     border: 2px solid var(--primary-color);
     background-color: var(--primary-color);
     color: var(--background-color);
+  }
+`;
+
+const StyledIcon = styled(Image)`
+  margin-right: 0.3rem;
+  transition: all 0.25s;
+  ${StyledButton}:hover & {
+    margin-right: 1rem;
   }
 `;

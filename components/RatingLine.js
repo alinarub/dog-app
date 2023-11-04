@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function RatingLine({ characteristic, rating }) {
   let stars = [];
-  for (let i = 0; i < 5; ++i) {
+  for (let i = 1; i < 6; ++i) {
     if (i <= +rating) {
       stars.push(
         <StyledImage
