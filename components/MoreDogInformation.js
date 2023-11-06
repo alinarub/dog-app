@@ -1,8 +1,28 @@
 import styled from "styled-components";
 
 export default function MoreDogInformation({ dog }) {
+  const maleHeight = (
+    ((dog.max_height_male + dog.min_height_male) / 2) *
+    2.54
+  ).toFixed(0);
+
+  const femaleHeight = (
+    ((dog.max_height_female + dog.min_height_female) / 2) *
+    2.54
+  ).toFixed(0);
+
+  const maleWeight = (
+    ((dog.max_weight_male + dog.min_weight_male) / 2) *
+    0.4536
+  ).toFixed(0);
+
+  const femaleWeight = (
+    ((dog.max_weight_female + dog.min_weight_female) / 2) *
+    0.4536
+  ).toFixed(0);
+
   return (
-    <div>
+    <>
       <StyledList>
         <StyledListItem>
           <p>
@@ -17,48 +37,29 @@ export default function MoreDogInformation({ dog }) {
             Male height
             <StyledUnit>⌀ cm</StyledUnit>
           </p>
-          <StyledParagraph>
-            {(((dog.max_height_male + dog.min_height_male) / 2) * 2.54).toFixed(
-              0
-            )}
-          </StyledParagraph>
+          <StyledParagraph>{maleHeight}</StyledParagraph>
         </StyledListItem>
         <StyledListItem>
           <p>
             Female height
             <StyledUnit>⌀ cm</StyledUnit>
           </p>
-          <StyledParagraph>
-            {(
-              ((dog.max_height_female + dog.min_height_female) / 2) *
-              2.54
-            ).toFixed(0)}
-          </StyledParagraph>
+          <StyledParagraph>{femaleHeight}</StyledParagraph>
         </StyledListItem>
         <StyledListItem>
           <p>
             Male weight <StyledUnit>⌀ kg</StyledUnit>
           </p>
-          <StyledParagraph>
-            {(
-              ((dog.max_weight_male + dog.min_weight_male) / 2) *
-              0.4536
-            ).toFixed(0)}
-          </StyledParagraph>
+          <StyledParagraph>{maleWeight}</StyledParagraph>
         </StyledListItem>
         <StyledListItem>
           <p>
             Female weight <StyledUnit>⌀ kg</StyledUnit>
           </p>
-          <StyledParagraph>
-            {(
-              ((dog.max_weight_female + dog.min_weight_female) / 2) *
-              0.4536
-            ).toFixed(0)}
-          </StyledParagraph>
+          <StyledParagraph>{femaleWeight}</StyledParagraph>
         </StyledListItem>
       </StyledList>
-    </div>
+    </>
   );
 }
 
@@ -68,7 +69,7 @@ const StyledList = styled.ul`
   margin: var(--basicmargin) 0;
 `;
 
-const StyledListItem = styled.div`
+const StyledListItem = styled.li`
   display: flex;
   justify-content: space-between;
 `;

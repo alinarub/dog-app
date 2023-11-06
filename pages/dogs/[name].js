@@ -23,7 +23,7 @@ export default function Name() {
   }
 
   // find dog according to URL
-  const dog = dogs.find((arrayItem) => arrayItem.name === routerName);
+  const dog = dogs.find((findDog) => findDog.name === routerName);
 
   function toggleMoreDogInformation() {
     setToggleInformation(!toggleInformation);
