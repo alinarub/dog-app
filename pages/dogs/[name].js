@@ -1,12 +1,15 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 import useSWR from "swr";
 import Image from "next/image";
 import styled from "styled-components";
 import Headline from "@/components/Headline";
 import RatingLine from "@/components/RatingLine";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import MoreDogInformation from "@/components/MoreDogInformation";
 
 export default function Name() {
+  const [toggleInformation, setToggleInformation] = useState(false);
   // get route from URL
   const router = useRouter();
 
@@ -21,6 +24,10 @@ export default function Name() {
 
   // find dog according to URL
   const dog = dogs.find((arrayItem) => arrayItem.name === routerName);
+
+  function toggleMoreDogInformation() {
+    setToggleInformation(!toggleInformation);
+  }
 
   return (
     <>
@@ -66,9 +73,10 @@ export default function Name() {
           <RatingLine rating={dog.trainability} characteristic="Trainability" />
         </StyledListItem>
       </StyledList>
+      {toggleInformation && <MoreDogInformation dog={dog} />}
       <StyledNavigation>
         <StyledButton type="button" onClick={() => router.back()}>
-          <StyledIcon
+          <StyledIconLeft
             src="/arrow-left.svg"
             alt="Icon of an arrow"
             width={29}
@@ -76,6 +84,9 @@ export default function Name() {
             blurDataURL="data:..."
           />
           back
+        </StyledButton>
+        <StyledButton type="button" onClick={toggleMoreDogInformation}>
+          {toggleInformation ? "less" : "more"}
         </StyledButton>
       </StyledNavigation>
     </>
@@ -95,21 +106,26 @@ const StyledList = styled.ul`
   margin-left: -0.6rem;
   margin: var(--basicmargin) 0;
 `;
+
 const StyledListItem = styled.li`
   margin: 0.2rem 0;
 `;
+
 const StyledNavigation = styled.nav`
   margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.7rem 1.6em;
+  padding: 0.1rem 0.5em;
   cursor: pointer;
   background-color: var(--soft-background);
   color: var(--font-color);
+  font-size: 0.7rem;
   border-radius: var(--borderradius-small);
   border: 2px solid var(--soft-background);
   &:hover {
@@ -117,9 +133,10 @@ const StyledButton = styled.button`
     background-color: var(--primary-color);
     color: var(--background-color);
   }
+  min-width: 4.8rem;
 `;
 
-const StyledIcon = styled(Image)`
+const StyledIconLeft = styled(Image)`
   margin-right: 0.3rem;
   transition: all 0.25s;
   ${StyledButton}:hover & {
