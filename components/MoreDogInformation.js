@@ -43,7 +43,7 @@ export default function MoreDogInformation({ dog }) {
             {(
               ((dog.max_weight_male + dog.min_weight_male) / 2) *
               0.4536
-            ).toFixed(1)}
+            ).toFixed(0)}
           </StyledParagraph>
         </StyledListItem>
         <StyledListItem>
@@ -54,7 +54,7 @@ export default function MoreDogInformation({ dog }) {
             {(
               ((dog.max_weight_female + dog.min_weight_female) / 2) *
               0.4536
-            ).toFixed(1)}
+            ).toFixed(0)}
           </StyledParagraph>
         </StyledListItem>
       </StyledList>
