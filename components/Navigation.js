@@ -8,7 +8,7 @@ export default function Navigation({ handleNavigation }) {
       <StyledHeader>
         <StyledWrapper>
           <Logo />
-
+          <StyledHeadline>Dog Genie</StyledHeadline>
           <StyledHamburgerButton type="button" onClick={handleNavigation}>
             <Image
               src="/close-icon.svg"
@@ -29,12 +29,9 @@ const StyledNavigation = styled.nav`
   top: 0;
   left: 0;
   position: fixed;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-color: var(--soft-background);
-`;
-const StyledHeadline = styled.h2`
-  font-size: 2rem;
 `;
 
 const StyledHeader = styled.nav`
@@ -43,7 +40,7 @@ const StyledHeader = styled.nav`
   justify-content: center;
   top: 0;
   position: fixed;
-  height: 8rem;
+  height: 6.2rem;
   width: 100%;
   background-color: var(--soft-background);
   padding: var(--basicmargin) 0;
@@ -60,4 +57,7 @@ const StyledHamburgerButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
+`;
+const StyledHeadline = styled.h2`
+  font-size: 2rem;
 `;

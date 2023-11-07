@@ -42,7 +42,7 @@ const StyledHeader = styled.nav`
   justify-content: center;
   top: 0;
   position: fixed;
-  height: 8rem;
+  height: 6.2rem;
   width: 100%;
   background-color: var(--soft-background);
   padding: var(--basicmargin) 0;
@@ -64,6 +64,7 @@ const StyledHamburgerIcon = styled(Image)`
 
 const StyledSection = styled.section`
   position: relative;
+  width: 100%;
 `;
 const StyledHamburgerButton = styled.button`
   transition: transform 0.3s ease-in-out;
