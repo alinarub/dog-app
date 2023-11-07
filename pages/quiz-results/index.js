@@ -8,9 +8,7 @@ import DogCard from "@/components/DogCard";
 export default function QuizResults() {
   const router = useRouter();
   const { data: dogs, isLoading } = useSWR(
-    router.isReady
-      ? `/api/quizResults?${new URLSearchParams(router.query)}`
-      : null
+    router.isReady ? `/api/dogs?${new URLSearchParams(router.query)}` : null
   );
 
   if (!dogs || isLoading) {

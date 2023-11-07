@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
+import Link from "next/link";
 
 export default function DogCard({ dogs, showPoints }) {
   return (
@@ -7,19 +8,21 @@ export default function DogCard({ dogs, showPoints }) {
       {dogs.map(({ name, points, image_link }, index) => {
         if (index < 5) {
           return (
-            <StyledListItem key={name}>
-              {showPoints && <StyledPoints>{points}</StyledPoints>}
-              <StyledParagraph>{name}</StyledParagraph>
+            <Link href={`dogs/${name}`} key={name}>
+              <StyledListItem>
+                {showPoints && <StyledPoints>{points}</StyledPoints>}
+                <StyledParagraph>{name}</StyledParagraph>
 
-              <StyledImage
-                src={image_link}
-                alt="Image of the dog"
-                width={256}
-                height={171}
-                blurDataURL="data:..."
-                placeholder="blur" // Optional blur-up while loading
-              />
-            </StyledListItem>
+                <StyledImage
+                  src={image_link}
+                  alt="Image of the dog"
+                  width={256}
+                  height={171}
+                  blurDataURL="data:..."
+                  placeholder="blur" // Optional blur-up while loading
+                />
+              </StyledListItem>
+            </Link>
           );
         }
       })}
