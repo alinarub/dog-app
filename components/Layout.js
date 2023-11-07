@@ -13,7 +13,7 @@ export default function Layout({ children }) {
 const StyledContainer = styled.div`
   position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  /* justify-content: center; */
   align-items: center;
 `;

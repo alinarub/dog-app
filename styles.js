@@ -50,6 +50,7 @@ export default createGlobalStyle`
     --background-color: #F2F3F4;
     --font-color: #242124;
     --soft-background: #E5E4E2;
+  
 
     --mobilewidth: 23rem;
     --borderradius-small: .5rem;

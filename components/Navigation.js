@@ -1,25 +1,18 @@
-import Logo from "./Logo";
-import Image from "next/image";
 import styled from "styled-components";
-import Navigation from "./Navigation";
-import { useState } from "react";
+import Image from "next/image";
+import Logo from "./Logo";
 
-export default function Header() {
-  const [hamburgerOpen, setHamburgerOpen] = useState(false);
-  function handleNavigation() {
-    setHamburgerOpen(!hamburgerOpen);
-  }
+export default function Navigation({ handleNavigation }) {
   return (
-    <StyledSection>
-      {hamburgerOpen && <Navigation handleNavigation={handleNavigation} />}
+    <StyledNavigation>
       <StyledHeader>
         <StyledWrapper>
           <Logo />
-          <StyledHeadline>Dog Genie</StyledHeadline>
+
           <StyledHamburgerButton type="button" onClick={handleNavigation}>
-            <StyledHamburgerIcon
-              src="/hamburger-icon.svg"
-              alt="Icon of a hamburger menu"
+            <Image
+              src="/close-icon.svg"
+              alt="close icon"
               width={40}
               height={40}
               blurDataURL="data:..."
@@ -28,10 +21,18 @@ export default function Header() {
           </StyledHamburgerButton>
         </StyledWrapper>
       </StyledHeader>
-    </StyledSection>
+    </StyledNavigation>
   );
 }
-
+const StyledNavigation = styled.nav`
+  z-index: 20;
+  top: 0;
+  left: 0;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--soft-background);
+`;
 const StyledHeadline = styled.h2`
   font-size: 2rem;
 `;
@@ -54,23 +55,9 @@ const StyledWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const StyledHamburgerIcon = styled(Image)`
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
-  &:hover {
-    transform: rotate(90deg);
-  }
-`;
 
-const StyledSection = styled.section`
-  position: relative;
-`;
 const StyledHamburgerButton = styled.button`
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
   border: none;
   background-color: transparent;
-  &:hover {
-    transform: rotate(90deg);
-  }
+  cursor: pointer;
 `;
