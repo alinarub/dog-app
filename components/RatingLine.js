@@ -24,7 +24,7 @@ export default function RatingLine({ characteristic, rating }) {
   );
 }
 
-const StyledSection = styled.section`
+const StyledSection = styled.article`
   display: flex;
   justify-content: space-between;
 `;
@@ -32,7 +32,7 @@ const StyledImage = styled(Image)`
   display: flex;
   justify-content: space-between;
 `;
-const StyledWrapper = styled.div`
+const StyledWrapper = styled.article`
   display: flex;
   justify-content: space-between;
   align-items: center;

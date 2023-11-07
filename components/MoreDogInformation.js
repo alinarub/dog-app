@@ -22,44 +22,42 @@ export default function MoreDogInformation({ dog }) {
   ).toFixed(0);
 
   return (
-    <>
-      <StyledList>
-        <StyledListItem>
-          <p>
-            Life span <StyledUnit>years </StyledUnit>
-          </p>
-          <StyledParagraph>
-            {dog.min_life_expectancy} - {dog.max_life_expectancy}
-          </StyledParagraph>
-        </StyledListItem>
-        <StyledListItem>
-          <p>
-            Male height
-            <StyledUnit>⌀ cm</StyledUnit>
-          </p>
-          <StyledParagraph>{maleHeight}</StyledParagraph>
-        </StyledListItem>
-        <StyledListItem>
-          <p>
-            Female height
-            <StyledUnit>⌀ cm</StyledUnit>
-          </p>
-          <StyledParagraph>{femaleHeight}</StyledParagraph>
-        </StyledListItem>
-        <StyledListItem>
-          <p>
-            Male weight <StyledUnit>⌀ kg</StyledUnit>
-          </p>
-          <StyledParagraph>{maleWeight}</StyledParagraph>
-        </StyledListItem>
-        <StyledListItem>
-          <p>
-            Female weight <StyledUnit>⌀ kg</StyledUnit>
-          </p>
-          <StyledParagraph>{femaleWeight}</StyledParagraph>
-        </StyledListItem>
-      </StyledList>
-    </>
+    <StyledList>
+      <StyledListItem>
+        <p>
+          Life span <StyledUnit>years </StyledUnit>
+        </p>
+        <StyledParagraph>
+          {dog.min_life_expectancy} - {dog.max_life_expectancy}
+        </StyledParagraph>
+      </StyledListItem>
+      <StyledListItem>
+        <p>
+          Male height
+          <StyledUnit>⌀ cm</StyledUnit>
+        </p>
+        <StyledParagraph>{maleHeight}</StyledParagraph>
+      </StyledListItem>
+      <StyledListItem>
+        <p>
+          Female height
+          <StyledUnit>⌀ cm</StyledUnit>
+        </p>
+        <StyledParagraph>{femaleHeight}</StyledParagraph>
+      </StyledListItem>
+      <StyledListItem>
+        <p>
+          Male weight <StyledUnit>⌀ kg</StyledUnit>
+        </p>
+        <StyledParagraph>{maleWeight}</StyledParagraph>
+      </StyledListItem>
+      <StyledListItem>
+        <p>
+          Female weight <StyledUnit>⌀ kg</StyledUnit>
+        </p>
+        <StyledParagraph>{femaleWeight}</StyledParagraph>
+      </StyledListItem>
+    </StyledList>
   );
 }
 
