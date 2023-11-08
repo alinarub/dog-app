@@ -3,15 +3,16 @@ import Image from "next/image";
 import genieLogo from "../public/genie-logo.png";
 import lampIcon from "../public/lamp-icon.png";
 
-export default function ImageTextModule({ children, $showImage }) {
+export default function ImageTextModule({ children, $showImage, $makeGray }) {
   return (
     <StyledSection>
       {!$showImage && (
         <StyledIcon
+          $makeGray={$makeGray}
           src={lampIcon}
           alt="Icon of a lamp"
-          width={80}
-          height={80}
+          width={60}
+          height={30}
           blurDataURL="data:..."
           placeholder="blur" // Optional blur-up while loading
         />
@@ -53,8 +54,9 @@ const StyledP = styled.p`
 `;
 const StyledIcon = styled(Image)`
   position: absolute;
-  bottom: -2.5rem;
-  left: 39%;
-  background: var(--background-color);
+  bottom: -1rem;
+  left: 42%;
   border-radius: 100%;
+  background-color: ${({ $makeGray }) =>
+    $makeGray ? "var(--soft-background)" : "var(--background-color)"};
 `;
