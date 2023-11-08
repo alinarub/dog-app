@@ -68,11 +68,5 @@ export default createGlobalStyle`
     color: var(--primary-color);
     text-align: center;
   }
-  a {text-decoration: none;
-  color: var(--font-color);
-  border-bottom: 2px solid var(--accent-color);
-&:hover{
-  border-bottom: 2px solid var(--primary-color);
 
-}}
 `;

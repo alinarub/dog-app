@@ -45,9 +45,9 @@ export default function Navigation({ handleNavigation }) {
           This little helper was brought to you by Alina, Achim and Gregor. The
           website was created in 2023 as a capstone project within our web dev
           bootcamp at{" "}
-          <a href="https://www.neuefische.de/en" target="_blank">
+          <StyledSimpleLink href="https://www.neuefische.de/en" target="_blank">
             neue fische
-          </a>
+          </StyledSimpleLink>
           .
         </ImageTextModule>
       </StyledImageTextModuleWrapper>
@@ -55,21 +55,16 @@ export default function Navigation({ handleNavigation }) {
   );
 }
 const customAnimation = keyframes`
-    0% {
-      
+    0% {     
       opacity: 0;
     }
-    30% {
-      
+    30% {    
       opacity: 0.5;
     }
     60% {
-      
       opacity: 0.8;
-     
     }
-    100% {
-      
+    100% {   
       opacity: 1;
     }
 `;
@@ -116,6 +111,15 @@ const StyledHamburgerButton = styled.button`
 const StyledHeadline = styled.h2`
   font-size: 2rem;
 `;
+
+const StyledSimpleLink = styled(Link)`
+  text-decoration: none;
+  color: var(--font-color);
+  border-bottom: 2px solid var(--accent-color);
+  &:hover {
+    border-bottom: 2px solid var(--primary-color);
+  }
+`;
 const StyledLink = styled(Link)`
   display: flex;
   min-width: 8rem;
@@ -139,6 +143,7 @@ const StyledLink = styled(Link)`
   }
 `;
 const StyledNavigationList = styled.ul`
+  z-index: 50;
   list-style: none;
   display: flex;
   flex-direction: column;
