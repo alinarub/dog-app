@@ -44,7 +44,11 @@ export default function Navigation({ handleNavigation }) {
         <ImageTextModule $makeGray>
           This little helper was brought to you by Alina, Achim and Gregor. The
           website was created in 2023 as a capstone project within our web dev
-          bootcamp at neue fische.
+          bootcamp at{" "}
+          <a href="https://www.neuefische.de/en" target="_blank">
+            neue fische
+          </a>
+          .
         </ImageTextModule>
       </StyledImageTextModuleWrapper>
     </StyledNavigation>
