@@ -11,7 +11,12 @@ export default function Header() {
   }
   return (
     <StyledSection>
-      {hamburgerOpen && <Navigation handleNavigation={handleNavigation} />}
+      {hamburgerOpen && (
+        <Navigation
+          handleNavigation={handleNavigation}
+          $hamburgerOpen={hamburgerOpen}
+        />
+      )}
       <StyledHeader>
         <StyledWrapper>
           <Logo />
@@ -36,7 +41,7 @@ const StyledHeadline = styled.h2`
   font-size: 2rem;
 `;
 
-const StyledHeader = styled.nav`
+const StyledHeader = styled.header`
   z-index: 10;
   display: flex;
   justify-content: center;

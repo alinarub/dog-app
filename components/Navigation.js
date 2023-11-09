@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Logo from "./Logo";
 import Link from "next/link";
-import ImageTextModule from "./ImageTextModule";
 import styled, { keyframes } from "styled-components";
+import AppInfo from "./AppInfo";
 
-export default function Navigation({ handleNavigation }) {
+export default function Navigation({ handleNavigation, $hamburgerOpen }) {
   return (
-    <StyledNavigation>
+    <StyledNavigation $hamburgerOpen={$hamburgerOpen}>
       <StyledHeader>
         <StyledWrapper>
           <Logo handleNavigation={handleNavigation} />
@@ -40,41 +40,11 @@ export default function Navigation({ handleNavigation }) {
           </StyledLink>
         </StyledNavigationListItem>
       </StyledNavigationList>
-      <StyledImageTextModuleWrapper>
-        <ImageTextModule $makeGray>
-          This little helper was brought to you by{" "}
-          <StyledSimpleLink
-            href="https://www.github.com/alinarub"
-            target="_blank"
-          >
-            Alina
-          </StyledSimpleLink>
-          ,{" "}
-          <StyledSimpleLink
-            href="https://github.com/AchimBartscht"
-            target="_blank"
-          >
-            Achim
-          </StyledSimpleLink>{" "}
-          and{" "}
-          <StyledSimpleLink
-            href="https://github.com/gregorsart"
-            target="_blank"
-          >
-            Gregor
-          </StyledSimpleLink>
-          . The website was created in 2023 as a capstone project within our web
-          dev bootcamp at{" "}
-          <StyledSimpleLink href="https://www.neuefische.de/en" target="_blank">
-            neue fische
-          </StyledSimpleLink>
-          .
-        </ImageTextModule>
-      </StyledImageTextModuleWrapper>
+      <AppInfo />
     </StyledNavigation>
   );
 }
-const customAnimation = keyframes`
+const customAnimationIn = keyframes`
     0% {     
       opacity: 0;
     }
@@ -88,6 +58,22 @@ const customAnimation = keyframes`
       opacity: 1;
     }
 `;
+
+const customAnimationOut = keyframes`
+    0% {     
+      opacity: 1;
+    }
+    30% {    
+      opacity: 0.8;
+    }
+    60% {
+      opacity: 0.5;
+    }
+    100% {   
+      opacity: 0;
+    }
+`;
+
 const StyledNavigation = styled.nav`
   overflow: hidden;
   display: flex;
@@ -101,7 +87,11 @@ const StyledNavigation = styled.nav`
   height: 100%;
   width: 100%;
   background-color: var(--soft-background);
-  animation: ${customAnimation} 100ms ease-in-out forwards;
+
+  animation: ${({ $hamburgerOpen }) =>
+    $hamburgerOpen
+      ? `${customAnimationIn} 100ms ease-in-out forwards;`
+      : `${customAnimationOut} 100ms ease-in-out forwards;`};
 `;
 
 const StyledHeader = styled.nav`
@@ -132,14 +122,6 @@ const StyledHeadline = styled.h2`
   font-size: 2rem;
 `;
 
-const StyledSimpleLink = styled(Link)`
-  text-decoration: none;
-  color: var(--font-color);
-  border-bottom: 2px solid var(--accent-color);
-  &:hover {
-    border-bottom: 2px solid var(--primary-color);
-  }
-`;
 const StyledLink = styled(Link)`
   display: flex;
   min-width: 8rem;
@@ -176,16 +158,12 @@ const StyledNavigationListItem = styled.li`
     border-bottom: 2px solid var(--accent-color);
   }
   &:first-child {
-    animation: ${customAnimation} 0.6s 0.2s ease-in-out forwards;
+    animation: ${customAnimationIn} 0.6s 0.2s ease-in-out forwards;
   }
   &:nth-child(2) {
-    animation: ${customAnimation} 0.6s 0.3s ease-in-out forwards;
+    animation: ${customAnimationIn} 0.6s 0.3s ease-in-out forwards;
   }
   &:nth-child(3) {
-    animation: ${customAnimation} 0.6s 0.4s ease-in-out forwards;
+    animation: ${customAnimationIn} 0.6s 0.4s ease-in-out forwards;
   }
-`;
-const StyledImageTextModuleWrapper = styled.div`
-  opacity: 0;
-  animation: ${customAnimation} 0.6s 0.8s ease-in-out forwards;
 `;
