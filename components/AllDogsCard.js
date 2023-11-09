@@ -1,45 +1,55 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function AllDogsCard({ dog }) {
   const { image_link, name } = dog;
   return (
-    <StyledListItem>
-      <StyledParagraph>{name}</StyledParagraph>
+    <StyledLink href={`dogs/${name}`} key={name}>
+      <StyledListItem>
+        <StyledParagraph>{name}</StyledParagraph>
 
-      <StyledImage
-        src={image_link}
-        alt="Image of the dog"
-        width={256}
-        height={171}
-        blurDataURL="data:..."
-        placeholder="blur" // Optional blur-up while loading
-      />
-    </StyledListItem>
+        <StyledImage
+          src={image_link}
+          alt="Image of the dog"
+          width={256}
+          height={171}
+          blurDataURL="data:..."
+          placeholder="blur" // Optional blur-up while loading
+        />
+      </StyledListItem>
+    </StyledLink>
   );
 }
 const StyledListItem = styled.li`
   position: relative;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 2px solid var(--accent-color);
-  border-radius: var(--borderradius-medium);
+  background-color: var(--soft-background);
+  border-radius: var(--borderradius-small);
   width: 100%;
   &:hover {
-    border: 2px solid var(--primary-color);
+    background-color: var(--accent-color);
     cursor: pointer;
   }
 `;
 const StyledParagraph = styled.p`
   width: 100%;
-  text-align: center;
-  margin-top: 1rem;
+  text-align: left;
+  font-size: 0.9rem;
+  padding-left: 1rem;
 `;
 
 const StyledImage = styled(Image)`
-  border-radius: var(--borderradius-small);
-  margin: 1rem;
-  margin-bottom: 3.1rem;
+  width: 6rem;
+  height: auto;
+
+  border-top-right-radius: var(--borderradius-small);
+  border-bottom-right-radius: var(--borderradius-small);
+`;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: var(--font-color);
 `;
