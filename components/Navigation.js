@@ -9,7 +9,7 @@ export default function Navigation({ handleNavigation }) {
     <StyledNavigation>
       <StyledHeader>
         <StyledWrapper>
-          <Logo />
+          <Logo handleNavigation={handleNavigation} />
           <StyledHeadline>Dog Genie</StyledHeadline>
           <StyledHamburgerButton type="button" onClick={handleNavigation}>
             <Image
@@ -42,9 +42,29 @@ export default function Navigation({ handleNavigation }) {
       </StyledNavigationList>
       <StyledImageTextModuleWrapper>
         <ImageTextModule $makeGray>
-          This little helper was brought to you by Alina, Achim and Gregor. The
-          website was created in 2023 as a capstone project within our web dev
-          bootcamp at{" "}
+          This little helper was brought to you by{" "}
+          <StyledSimpleLink
+            href="https://www.github.com/alinarub"
+            target="_blank"
+          >
+            Alina
+          </StyledSimpleLink>
+          ,{" "}
+          <StyledSimpleLink
+            href="https://github.com/AchimBartscht"
+            target="_blank"
+          >
+            Achim
+          </StyledSimpleLink>{" "}
+          and{" "}
+          <StyledSimpleLink
+            href="https://github.com/gregorsart"
+            target="_blank"
+          >
+            Gregor
+          </StyledSimpleLink>
+          . The website was created in 2023 as a capstone project within our web
+          dev bootcamp at{" "}
           <StyledSimpleLink href="https://www.neuefische.de/en" target="_blank">
             neue fische
           </StyledSimpleLink>
@@ -81,7 +101,7 @@ const StyledNavigation = styled.nav`
   height: 100%;
   width: 100%;
   background-color: var(--soft-background);
-  animation: ${customAnimation} 600ms ease-in-out forwards;
+  animation: ${customAnimation} 100ms ease-in-out forwards;
 `;
 
 const StyledHeader = styled.nav`
@@ -156,16 +176,16 @@ const StyledNavigationListItem = styled.li`
     border-bottom: 2px solid var(--accent-color);
   }
   &:first-child {
-    animation: ${customAnimation} 0.6s 0.6s ease-in-out forwards;
+    animation: ${customAnimation} 0.6s 0.2s ease-in-out forwards;
   }
   &:nth-child(2) {
-    animation: ${customAnimation} 0.6s 0.7s ease-in-out forwards;
+    animation: ${customAnimation} 0.6s 0.3s ease-in-out forwards;
   }
   &:nth-child(3) {
-    animation: ${customAnimation} 0.6s 0.8s ease-in-out forwards;
+    animation: ${customAnimation} 0.6s 0.4s ease-in-out forwards;
   }
 `;
 const StyledImageTextModuleWrapper = styled.div`
   opacity: 0;
-  animation: ${customAnimation} 0.6s 1.4s ease-in-out forwards;
+  animation: ${customAnimation} 0.6s 0.8s ease-in-out forwards;
 `;
