@@ -7,12 +7,7 @@ import Headline from "@/components/Headline";
 
 export default function Dogs() {
   // get route from URL
-  const router = useRouter();
-
-  const { data: dogs, isLoading } = useSWR(
-    router.isReady ? `/api/dogs?` : null
-  );
-
+  const { data: dogs, isLoading } = useSWR(`/api/dogs`);
   if (!dogs || isLoading) {
     return <LoadingSpinner />;
   }
