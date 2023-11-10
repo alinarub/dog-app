@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export default function Headline({ children }) {
-  return <StyledH1>{children}</StyledH1>;
+export default function Headline({ children, marginTop }) {
+  return <StyledH1 marginTop={marginTop}>{children}</StyledH1>;
 }
 
 const StyledH1 = styled.h1`
@@ -10,5 +10,5 @@ const StyledH1 = styled.h1`
   font-size: 2rem;
   font-weight: 200;
   margin: 0 var(--basicmargin);
-  margin-top: 2rem;
+  margin-top: ${(props) => props.marginTop || "2rem"};
 `;

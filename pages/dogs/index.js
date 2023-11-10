@@ -1,12 +1,10 @@
 import useSWR from "swr";
-import { useRouter } from "next/router";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import AllDogsCard from "@/components/AllDogsCard";
 import styled from "styled-components";
 import Headline from "@/components/Headline";
 
 export default function Dogs() {
-  // get route from URL
   const { data: dogs, isLoading } = useSWR(`/api/dogs`);
   if (!dogs || isLoading) {
     return <LoadingSpinner />;
@@ -16,9 +14,8 @@ export default function Dogs() {
   });
   return (
     <>
-      <StyleHeadlineWrapper>
-        <Headline>All dogs</Headline>
-      </StyleHeadlineWrapper>
+      <Headline marginTop="11rem">All dogs</Headline>
+
       <StyledList>
         {alphabeticallySortedDogs.map((dog) => {
           return <AllDogsCard key={dog.name} dog={dog} />;
@@ -35,7 +32,4 @@ const StyledList = styled.ul`
   width: var(--mobilewidth);
   margin: var(--basicmargin);
   gap: 1rem;
-`;
-const StyleHeadlineWrapper = styled.div`
-  margin-top: 11rem;
 `;
