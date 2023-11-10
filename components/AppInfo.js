@@ -2,9 +2,9 @@ import Link from "next/link";
 import ImageTextModule from "./ImageTextModule";
 import styled, { keyframes } from "styled-components";
 
-export default function AppInfo() {
+export default function AppInfo({ $hamburgerOpen, delay }) {
   return (
-    <StyledImageTextModuleWrapper>
+    <StyledImageTextModuleWrapper $hamburgerOpen={$hamburgerOpen} delay={delay}>
       <ImageTextModule $makeGray>
         This little helper was brought to you by{" "}
         <StyledSimpleLink
@@ -60,6 +60,9 @@ const StyledSimpleLink = styled(Link)`
 `;
 
 const StyledImageTextModuleWrapper = styled.div`
-  opacity: 0;
-  animation: ${customAnimation} 0.6s 0.8s ease-in-out forwards;
+  visibility: ${(props) => (props.$hamburgerOpen ? "visible" : "hidden")};
+  transition: visibility ${(props) => props.delay} linear,
+    opacity ${(props) => props.delay} linear;
+  opacity: ${(props) => (props.$hamburgerOpen ? 1 : 0)};
+  transition-delay: 900ms;
 `;

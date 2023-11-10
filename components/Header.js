@@ -6,17 +6,17 @@ import { useState } from "react";
 
 export default function Header() {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
+
   function handleNavigation() {
     setHamburgerOpen(!hamburgerOpen);
   }
   return (
     <StyledSection>
-      {hamburgerOpen && (
-        <Navigation
-          handleNavigation={handleNavigation}
-          $hamburgerOpen={hamburgerOpen}
-        />
-      )}
+      <Navigation
+        handleNavigation={handleNavigation}
+        $hamburgerOpen={hamburgerOpen}
+      />
+
       <StyledHeader>
         <StyledWrapper>
           <Logo />

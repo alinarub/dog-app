@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Logo from "./Logo";
 import Link from "next/link";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import AppInfo from "./AppInfo";
 
 export default function Navigation({ handleNavigation, $hamburgerOpen }) {
   return (
-    <StyledNavigation $hamburgerOpen={$hamburgerOpen}>
+    <StyledNavigation $hamburgerOpen={$hamburgerOpen} delay="400ms">
       <StyledHeader>
         <StyledWrapper>
           <Logo handleNavigation={handleNavigation} />
@@ -24,59 +24,34 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
         </StyledWrapper>
       </StyledHeader>
       <StyledNavigationList>
-        <StyledNavigationListItem>
+        <StyledNavigationListItem $hamburgerOpen={$hamburgerOpen} delay="600ms">
           <StyledLink href="/" onClick={handleNavigation}>
             Home
           </StyledLink>
         </StyledNavigationListItem>
-        <StyledNavigationListItem>
+        <StyledNavigationListItem $hamburgerOpen={$hamburgerOpen} delay="700ms">
           <StyledLink href="/quiz-page" onClick={handleNavigation}>
             Quiz page
           </StyledLink>
         </StyledNavigationListItem>
-        <StyledNavigationListItem>
+        <StyledNavigationListItem $hamburgerOpen={$hamburgerOpen} delay="800ms">
           <StyledLink href="/dogs" onClick={handleNavigation}>
             All dogs
           </StyledLink>
         </StyledNavigationListItem>
       </StyledNavigationList>
-      <AppInfo />
+      <AppInfo $hamburgerOpen={$hamburgerOpen} delay="800ms" />
     </StyledNavigation>
   );
 }
-const customAnimationIn = keyframes`
-    0% {     
-      opacity: 0;
-    }
-    30% {    
-      opacity: 0.5;
-    }
-    60% {
-      opacity: 0.8;
-    }
-    100% {   
-      opacity: 1;
-    }
-`;
-
-const customAnimationOut = keyframes`
-    0% {     
-      opacity: 1;
-    }
-    30% {    
-      opacity: 0.8;
-    }
-    60% {
-      opacity: 0.5;
-    }
-    100% {   
-      opacity: 0;
-    }
-`;
 
 const StyledNavigation = styled.nav`
-  overflow: hidden;
   display: flex;
+  overflow: hidden;
+  visibility: ${(props) => (props.$hamburgerOpen ? "visible" : "hidden")};
+  transition: visibility ${(props) => props.delay} linear,
+    opacity ${(props) => props.delay} linear;
+  opacity: ${(props) => (props.$hamburgerOpen ? 1 : 0)};
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -87,11 +62,6 @@ const StyledNavigation = styled.nav`
   height: 100%;
   width: 100%;
   background-color: var(--soft-background);
-
-  animation: ${({ $hamburgerOpen }) =>
-    $hamburgerOpen
-      ? `${customAnimationIn} 100ms ease-in-out forwards;`
-      : `${customAnimationOut} 100ms ease-in-out forwards;`};
 `;
 
 const StyledHeader = styled.nav`
@@ -153,17 +123,20 @@ const StyledNavigationList = styled.ul`
   margin-bottom: -8rem;
 `;
 const StyledNavigationListItem = styled.li`
-  opacity: 0;
+  visibility: ${(props) => (props.$hamburgerOpen ? "visible" : "hidden")};
+  transition: visibility ${(props) => props.delay} linear,
+    opacity ${(props) => props.delay} linear;
+  opacity: ${(props) => (props.$hamburgerOpen ? 1 : 0)};
   &:not(:last-child) {
     border-bottom: 2px solid var(--accent-color);
   }
   &:first-child {
-    animation: ${customAnimationIn} 0.6s 0.2s ease-in-out forwards;
+    transition-delay: 300ms;
   }
   &:nth-child(2) {
-    animation: ${customAnimationIn} 0.6s 0.3s ease-in-out forwards;
+    transition-delay: 400ms;
   }
   &:nth-child(3) {
-    animation: ${customAnimationIn} 0.6s 0.4s ease-in-out forwards;
+    transition-delay: 500ms;
   }
 `;
