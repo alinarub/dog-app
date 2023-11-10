@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ImageTextModule from "./ImageTextModule";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 export default function AppInfo({ $hamburgerOpen, delay }) {
   return (
@@ -34,21 +34,6 @@ export default function AppInfo({ $hamburgerOpen, delay }) {
     </StyledImageTextModuleWrapper>
   );
 }
-
-const customAnimation = keyframes`
-    0% {     
-      opacity: 0;
-    }
-    30% {    
-      opacity: 0.5;
-    }
-    60% {
-      opacity: 0.8;
-    }
-    100% {   
-      opacity: 1;
-    }
-`;
 
 const StyledSimpleLink = styled(Link)`
   text-decoration: none;
