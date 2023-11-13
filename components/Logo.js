@@ -3,18 +3,34 @@ import styled from "styled-components";
 import genieLogo from "../public/genie-logo.png";
 import Link from "next/link";
 
-export default function Logo() {
+export default function Logo({ handleNavigation }) {
   return (
-    <Link href="/">
-      <StyledImage
-        src={genieLogo}
-        alt="Logo of a Genie with a Lamp"
-        width={1004 / 2}
-        height={1396 / 2}
-        blurDataURL="data:..."
-        placeholder="blur" // Optional blur-up while loading
-      />
-    </Link>
+    <>
+      {handleNavigation && (
+        <Link href="/" onClick={handleNavigation}>
+          <StyledImage
+            src={genieLogo}
+            alt="Logo of a Genie with a Lamp"
+            width={502}
+            height={698}
+            blurDataURL="data:..."
+            placeholder="blur" // Optional blur-up while loading
+          />
+        </Link>
+      )}
+      {!handleNavigation && (
+        <Link href="/">
+          <StyledImage
+            src={genieLogo}
+            alt="Logo of a Genie with a Lamp"
+            width={502}
+            height={698}
+            blurDataURL="data:..."
+            placeholder="blur" // Optional blur-up while loading
+          />
+        </Link>
+      )}
+    </>
   );
 }
 
