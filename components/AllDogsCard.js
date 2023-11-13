@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function AllDogsCard({ dog }) {
   const { image_link, name } = dog;
   return (
-    <StyledLink href={`dogs/${name}`} key={name}>
+    <StyledLink href={`dogs/${name}`}>
       <StyledListItem>
         <StyledParagraph>{name}</StyledParagraph>
 

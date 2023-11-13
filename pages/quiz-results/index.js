@@ -23,7 +23,6 @@ export default function QuizResults() {
       </ImageTextModule>
       <Headline>Your best matches</Headline>
       <DogCard dogs={dogs} showPoints />
-      <p>Total dogs: {dogs.length}</p>
     </>
   );
 }
