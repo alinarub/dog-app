@@ -79,22 +79,16 @@ export default function Faq() {
       links: [],
     },
   ];
+  // Logic
+  function handleToggle(e, index) {
+    e.preventDefault();
+    setOpenIndex(index);
+  }
 
   return (
     <StyledDiv>
       <Headline>FAQs</Headline>
-      <>
-        {accordionData.map(({ title, content, id, isOpen, links }) => (
-          <Accordion
-            key={id}
-            id={id}
-            title={title}
-            content={content}
-            isOpen={isOpen}
-            links={links}
-          />
-        ))}
-      </>
+      <Accordion accordionData={accordionData} />
     </StyledDiv>
   );
 }

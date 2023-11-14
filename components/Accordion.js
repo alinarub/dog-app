@@ -3,21 +3,14 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Accordion({
-  title,
-  content,
-  isOpen,
-  toggleAccordion,
-  id,
-  links,
-}) {
-  const [openIndex, setOpenIndex] = useState(5);
-  const [isActive, setisActive] = useState(false);
+export default function Accordion({ accordionData }) {
+  const [openIndex, setOpenIndex] = useState(0);
+  // Logic
   function handleToggle(e, index) {
     e.preventDefault();
     setOpenIndex(index);
   }
-  return (
+  return accordionData.map(({ id, title, content, links }) => (
     <StyledDetails
       key={id}
       open={id === openIndex}
@@ -26,7 +19,7 @@ export default function Accordion({
       <StyledSummary>
         {title}
 
-        {isActive && (
+        {id === openIndex && (
           <StyledIcon
             src="/chevron-up.svg"
             alt="Chevron up arrow"
@@ -35,7 +28,7 @@ export default function Accordion({
             blurDataURL="data:..."
           />
         )}
-        {!isActive && (
+        {id != openIndex && (
           <StyledIcon
             src="/chevron-down.svg"
             alt="Chevron down arrow"
@@ -60,9 +53,8 @@ export default function Accordion({
           ))}
       </StyledAnswer>
     </StyledDetails>
-  );
+  ));
 }
-
 const StyledDetails = styled.details`
   display: flex;
   align-items: center;
