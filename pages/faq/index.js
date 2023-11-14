@@ -79,11 +79,6 @@ export default function Faq() {
       links: [],
     },
   ];
-  // Logic
-  function handleToggle(e, index) {
-    e.preventDefault();
-    setOpenIndex(index);
-  }
 
   return (
     <StyledDiv>
@@ -92,11 +87,6 @@ export default function Faq() {
     </StyledDiv>
   );
 }
-
-const StyledList = styled.div`
-  width: 100%;
-  margin-top: 2rem;
-`;
 
 const StyledDiv = styled.div`
   margin: 0 1rem;
