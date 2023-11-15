@@ -3,6 +3,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import AllDogsCard from "@/components/AllDogsCard";
 import styled from "styled-components";
 import Headline from "@/components/Headline";
+import SearchBar from "@/components/SearchBar";
 
 export default function Dogs() {
   const { data: dogs, isLoading } = useSWR(`/api/dogs`);
@@ -14,8 +15,8 @@ export default function Dogs() {
   });
   return (
     <>
-      <Headline marginTop="11rem">All dogs</Headline>
-
+      <SearchBar />
+      <Headline $marginTop="11rem">All dogs</Headline>
       <StyledList>
         {alphabeticallySortedDogs.map((dog) => {
           return <AllDogsCard key={dog.name} dog={dog} />;

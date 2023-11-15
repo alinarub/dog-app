@@ -6,7 +6,7 @@ import AppInfo from "./AppInfo";
 
 export default function Navigation({ handleNavigation, $hamburgerOpen }) {
   return (
-    <StyledNavigation $hamburgerOpen={$hamburgerOpen} delay="400ms">
+    <StyledNavigation $hamburgerOpen={$hamburgerOpen} $delay="400ms">
       <StyledHeader>
         <StyledWrapper>
           <Logo handleNavigation={handleNavigation} />
@@ -24,23 +24,32 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
         </StyledWrapper>
       </StyledHeader>
       <StyledNavigationList>
-        <StyledNavigationListItem $hamburgerOpen={$hamburgerOpen} delay="600ms">
+        <StyledNavigationListItem
+          $hamburgerOpen={$hamburgerOpen}
+          $delay="600ms"
+        >
           <StyledLink href="/" onClick={handleNavigation}>
             Home
           </StyledLink>
         </StyledNavigationListItem>
-        <StyledNavigationListItem $hamburgerOpen={$hamburgerOpen} delay="700ms">
+        <StyledNavigationListItem
+          $hamburgerOpen={$hamburgerOpen}
+          $delay="700ms"
+        >
           <StyledLink href="/quiz-page" onClick={handleNavigation}>
             Quiz page
           </StyledLink>
         </StyledNavigationListItem>
-        <StyledNavigationListItem $hamburgerOpen={$hamburgerOpen} delay="800ms">
+        <StyledNavigationListItem
+          $hamburgerOpen={$hamburgerOpen}
+          $delay="800ms"
+        >
           <StyledLink href="/dogs" onClick={handleNavigation}>
             All dogs
           </StyledLink>
         </StyledNavigationListItem>
       </StyledNavigationList>
-      <AppInfo $hamburgerOpen={$hamburgerOpen} delay="800ms" />
+      <AppInfo $hamburgerOpen={$hamburgerOpen} $delay="800ms" />
     </StyledNavigation>
   );
 }
