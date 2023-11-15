@@ -1,7 +1,6 @@
 import Accordion from "@/components/Accordion";
 import Headline from "@/components/Headline";
 import styled from "styled-components";
-import { useState } from "react";
 
 export default function Faq() {
   return (

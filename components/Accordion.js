@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
@@ -99,8 +99,8 @@ export default function Accordion() {
     });
   }
   return accordionData.map(({ id, title, content, links, isOpen }) => (
-    <StyledDetails key={id} open={isOpen} onClick={(e) => handleToggle(id, e)}>
-      <StyledSummary>
+    <StyledDetails key={id} open={isOpen}>
+      <StyledSummary onClick={(e) => handleToggle(id, e)}>
         {title}
 
         {id === openIndex && (
