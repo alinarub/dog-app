@@ -1,25 +1,15 @@
 import styled from "styled-components";
 
-export default function SearchBar() {
-  function handleSearch(event) {
-    if (!fuse) {
-      return;
-    }
-    const searchPattern = event.target.value;
-    const searchResult = fuse.search(searchPattern).slice(0, 10);
-    // .slice(0, 10) will ensure there will never be more than 10 results
-
-    setResults(searchResult.map((result) => result.item.name));
-  }
+export default function SearchBar({ handleSearch }) {
   return (
     <StyledForm>
       <StyledSearchField
         type="text"
-        id="sarch"
+        id="search"
         name="search"
         required
-        minlength="0"
-        maxlength="14"
+        minLength="0"
+        maxLength="14"
         size="10"
         placeholder="Search for dog breed"
         onChange={handleSearch}
@@ -31,7 +21,7 @@ export default function SearchBar() {
 const StyledForm = styled.form`
   display: flex;
   justify-content: center;
-  margin-top: 8rem;
+  margin-top: 2.5rem;
 `;
 
 const StyledSearchField = styled.input`
@@ -39,4 +29,8 @@ const StyledSearchField = styled.input`
   border: 2px solid var(--accent-color);
   padding: 0.9rem 2rem;
   border-radius: var(--borderradius-medium);
+  &:focus {
+    border: 2px solid var(--primary-color);
+    outline: 0;
+  }
 `;
