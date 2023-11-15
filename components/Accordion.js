@@ -140,16 +140,11 @@ export default function Accordion() {
   ));
 }
 const StyledDetails = styled.details`
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  flex-direction: column;
   max-width: var(--mobilewidth);
   text-align: center;
   margin: 0.7rem;
   padding: 0.4rem 0.7rem;
   min-height: 4.3rem;
-
   background-color: var(--soft-background);
   color: var(--font-color);
   border-radius: var(--borderradius-small);
@@ -169,6 +164,9 @@ const StyledSummary = styled.summary`
   }
   &:active {
     color: var(--accent-color);
+  }
+  &::-webkit-details-marker {
+    display: none;
   }
   padding: 0.5rem;
 `;

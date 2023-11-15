@@ -39,6 +39,11 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
             All dogs
           </StyledLink>
         </StyledNavigationListItem>
+        <StyledNavigationListItem $hamburgerOpen={$hamburgerOpen} delay="900ms">
+          <StyledLink href="/faq" onClick={handleNavigation}>
+            FAQ
+          </StyledLink>
+        </StyledNavigationListItem>
       </StyledNavigationList>
       <AppInfo $hamburgerOpen={$hamburgerOpen} delay="800ms" />
     </StyledNavigation>
