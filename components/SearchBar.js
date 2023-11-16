@@ -1,8 +1,11 @@
 import styled from "styled-components";
 
-export default function SearchBar({ handleSearch }) {
+export default function SearchBar({ handleSearch, dogsLength }) {
   return (
     <StyledForm>
+      <StyledLabel htmlFor="search">
+        Search from our {dogsLength} dogs{" "}
+      </StyledLabel>
       <StyledSearchField
         type="text"
         id="search"
@@ -11,7 +14,7 @@ export default function SearchBar({ handleSearch }) {
         minLength="0"
         maxLength="14"
         size="10"
-        placeholder="Search for dog breed"
+        placeholder={`Search from our ${dogsLength} dogs`}
         onChange={handleSearch}
       />
     </StyledForm>
@@ -22,6 +25,17 @@ const StyledForm = styled.form`
   display: flex;
   justify-content: center;
   margin-top: 2.5rem;
+`;
+
+const StyledLabel = styled.label`
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 `;
 
 const StyledSearchField = styled.input`

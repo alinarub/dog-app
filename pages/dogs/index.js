@@ -8,11 +8,6 @@ import Headline from "@/components/Headline";
 import SearchBar from "@/components/SearchBar";
 import Fuse from "fuse.js";
 
-/*
-This example uses Fuse.js as a fuzzy search
-See the docs for more information: https://www.fusejs.io/
-*/
-
 const fuseOptions = {
   // isCaseSensitive: false,
   // includeScore: false,
@@ -35,33 +30,27 @@ export default function Dogs() {
   const [fuse, setFuse] = useState(null);
   const [isFuseActive, setIsFuseActive] = useState(false);
   useEffect(() => {
-    async function getPokemon() {
+    async function getDogs() {
       const response = await fetch(`/api/dogs`);
-      const fetchedPokemon = await response.json();
-      console.log("fetchedPokemon", fetchedPokemon);
-      setFuse(new Fuse(fetchedPokemon, fuseOptions));
-      console.log("fuse", fuse);
+      const fetchedDogs = await response.json();
+      setFuse(new Fuse(fetchedDogs, fuseOptions));
     }
 
-    getPokemon();
-    console.log("results", results);
+    getDogs();
   }, []);
-  console.log("fuse", fuse);
+
   // Search logic START
   function handleSearch(event) {
+    event.preventDefault();
     if (!fuse) {
       return;
     }
     const searchPattern = event.target.value;
-    console.log("search pattern", searchPattern);
-    const searchResult = fuse.search(searchPattern).slice(0, 15);
-    // .slice(0, 10) will ensure there will never be more than 10 results
-    console.log("search results", searchResult);
+    const searchResult = fuse.search(searchPattern);
     setResults(searchResult);
     searchPattern.length === 0 ? setIsFuseActive(false) : setIsFuseActive(true);
   }
   // Search logic END
-  console.log("results after remder", results);
 
   // Get dogs from Backend at the beginning of page load
   const { data: dogs, isLoading } = useSWR(`/api/dogs`);
@@ -73,9 +62,8 @@ export default function Dogs() {
   });
   return (
     <>
-      {" "}
       <Headline $marginTop="8rem">All dogs</Headline>
-      <SearchBar handleSearch={handleSearch} />
+      <SearchBar handleSearch={handleSearch} dogsLength={dogs.length} />
       <StyledList>
         {!isFuseActive &&
           alphabeticallySortedDogs.map((dog) => {
