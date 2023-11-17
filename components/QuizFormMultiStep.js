@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import LinkButton from "./LinkButton";
 import { useRouter } from "next/router";
-import { useState } from "react";
-import next from "next";
+import { useState, useEffect } from "react";
 
 const questionsData = [
   {
@@ -34,21 +33,21 @@ const questionsData = [
     question: "How much energy do you have for your dog?",
     answers: [
       {
-        answer: "I do not want any barking",
-        id: "barking2",
-        name: "barking",
+        answer: "energy 2",
+        id: "energy2",
+        name: "energy",
         value: "2",
       },
       {
-        answer: "A little bit of barking is ok",
-        id: "barking3",
-        name: "barking",
+        answer: "energy 3",
+        id: "energy3",
+        name: "energy",
         value: "3",
       },
       {
-        answer: "I am deaf anyway",
-        id: "barking4",
-        name: "barking",
+        answer: "energy 4",
+        id: "energy4",
+        name: "energy",
         value: "4",
       },
     ],
@@ -58,6 +57,44 @@ const questionsData = [
 export default function QuizFormMultiStep() {
   const [currentStepIndex, setCurrentStepIndex] = useState(1);
   const [questions, setQuestions] = useState(questionsData);
+  const [formDataMulti, setFormDataMulti] = useState([
+    {
+      id: 1,
+      characteristic: "barking",
+      value: "0",
+    },
+    {
+      id: 2,
+      characteristic: "energy",
+      value: "0",
+    },
+    {
+      id: 3,
+      characteristic: "trainability",
+      value: "0",
+    },
+    {
+      id: 4,
+      characteristic: "good_with_children",
+      value: "0",
+    },
+    {
+      id: 5,
+      characteristic: "good_with_other_dogs",
+      value: "0",
+    },
+    {
+      id: 6,
+      characteristic: "protectiveness",
+      value: "0",
+    },
+    {
+      id: 7,
+      characteristic: "shedding",
+      value: "0",
+    },
+  ]);
+  const [multiStepFormData, setMultiStepFormData] = useState([]);
   const currentQuestion = questions.filter((question) => {
     return currentStepIndex === question.id;
   });
@@ -81,19 +118,52 @@ export default function QuizFormMultiStep() {
   }
 
   const router = useRouter();
-
+  // Form Submission for one question at a time
   function onSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    const params = new URLSearchParams(data);
-    router.push(`/quiz-results?${params}`);
+
+    // setAccordionData((accordionItems) => {
+    //   const info = accordionItems.find((info) => info.id === id);
+    //   return accordionItems.map((info) => {
+    //     if (info.id === id) return { ...info, isOpen: !info.isOpen };
+    //     else return { ...info, isOpen: false };
+    //   });
+    // });
+
+    setFormDataMulti((questions) => {
+      questions.map((info) => {
+        // for (let property in data) {
+        //   return {
+        //     ...info,
+        //     characteristic: property,
+        //     value: data.barking,
+        //   };
+        // }
+        return "0";
+      });
+    });
+    nextQuestion();
+
+    console.log("data", data);
+    console.log("multi step form data", formDataMulti);
   }
-  console.log("questions", questions);
+
+  useEffect(() => {
+    // const params = new URLSearchParams(
+    //   `${multiStepFormData.characteristic}=${multiStepFormData.value}`
+    // );
+    console.log("multi step form data use effect", formDataMulti);
+    // if (multiStepFormData)
+    //   router.push(
+    //     `/quiz-results?${multiStepFormData.characteristic}=${multiStepFormData.value}`
+    //   );
+  }, [currentStepIndex]);
 
   return (
     <>
-      <StyledForm>
+      <StyledForm onSubmit={onSubmit}>
         {currentQuestion.map((questionItem) => {
           const { id, question, answers } = questionItem;
           return (
@@ -108,238 +178,22 @@ export default function QuizFormMultiStep() {
                       id={id}
                       name={name}
                       value={value}
-                      required
                     />
-                    <StyledLabel htmlFor="barking2">
-                      {answerItem.answer}
-                    </StyledLabel>
+                    <StyledLabel htmlFor={id}>{answerItem.answer}</StyledLabel>
                   </>
                 );
               })}
             </StyledFieldset>
           );
         })}
+        <LinkButton>next</LinkButton>
       </StyledForm>
       <StyledNavigation>
         <StyledButton type="button" onClick={previousQuestion}>
           previous
         </StyledButton>
-        <StyledButton type="button" onClick={nextQuestion}>
-          next
-        </StyledButton>
       </StyledNavigation>
     </>
-    // <StyledForm onSubmit={onSubmit}>
-    //   {/* Question #1 barking */}
-    //   <StyledFieldset>
-    //     <StyledLegend>How much barking is ok for you?</StyledLegend>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="barking2"
-    //       name="barking"
-    //       value="2"
-    //       required
-    //     />
-    //     <StyledLabel htmlFor="barking2">I do not want any barking</StyledLabel>
-
-    //     <StyledInput type="radio" id="barking3" name="barking" value="3" />
-    //     <StyledLabel htmlFor="barking3">
-    //       A little bit of barking is ok
-    //     </StyledLabel>
-
-    //     <StyledInput type="radio" id="barking4" name="barking" value="4" />
-    //     <StyledLabel htmlFor="barking4">I am deaf anyway</StyledLabel>
-    //   </StyledFieldset>
-    //   {/* Question #2 energy */}
-    //   <StyledFieldset>
-    //     <StyledLegend>How much energy do you have for your dog?</StyledLegend>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="energy2"
-    //       name="energy"
-    //       value="2"
-    //       required
-    //     />
-    //     <StyledLabel htmlFor="energy2">I like to stay on the couch</StyledLabel>
-
-    //     <StyledInput type="radio" id="energy3" name="energy" value="3" />
-    //     <StyledLabel htmlFor="energy3">
-    //       A little exercise is welcome
-    //     </StyledLabel>
-
-    //     <StyledInput type="radio" id="energy4" name="energy" value="4" />
-    //     <StyledLabel htmlFor="energy4">
-    //       I want my dog to be just as active as me
-    //     </StyledLabel>
-    //   </StyledFieldset>
-    //   {/* Question #3 trainability */}
-    //   <StyledFieldset>
-    //     <StyledLegend>How trainable should your dog be?</StyledLegend>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="trainability2"
-    //       name="trainability"
-    //       value="2"
-    //       required
-    //     />
-    //     <StyledLabel htmlFor="trainability2">
-    //       He does not need to do any tricks
-    //     </StyledLabel>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="trainability3"
-    //       name="trainability"
-    //       value="3"
-    //     />
-    //     <StyledLabel htmlFor="trainability3">
-    //       I want to teach my dog some tricks
-    //     </StyledLabel>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="trainability4"
-    //       name="trainability"
-    //       value="4"
-    //     />
-    //     <StyledLabel htmlFor="trainability4">
-    //       He should be able to learn a lot
-    //     </StyledLabel>
-    //   </StyledFieldset>
-    //   {/* Question #4 children */}
-    //   <StyledFieldset>
-    //     <StyledLegend>
-    //       How important is it that your dog gets along with children?
-    //     </StyledLegend>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="children2"
-    //       name="good_with_children"
-    //       value="2"
-    //       required
-    //     />
-    //     <StyledLabel htmlFor="children2">
-    //       It is not important, my dog won&apos;t get in touch with children
-    //     </StyledLabel>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="children3"
-    //       name="good_with_children"
-    //       value="3"
-    //     />
-    //     <StyledLabel htmlFor="children3">
-    //       It would be good, but it&apos;s not crucial
-    //     </StyledLabel>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="children4"
-    //       name="good_with_children"
-    //       value="4"
-    //     />
-    //     <StyledLabel htmlFor="children4">
-    //       It is very important, I want a friendly dog
-    //     </StyledLabel>
-    //   </StyledFieldset>
-    //   {/* Question #5 otherdogs */}
-    //   <StyledFieldset>
-    //     <StyledLegend>
-    //       How easily should your dog get along with other dogs?
-    //     </StyledLegend>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="otherdogs2"
-    //       name="good_with_other_dogs"
-    //       value="2"
-    //       required
-    //     />
-    //     <StyledLabel htmlFor="otherdogs2">
-    //       I want my dog to only care about his home
-    //     </StyledLabel>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="otherdogs3"
-    //       name="good_with_other_dogs"
-    //       value="3"
-    //     />
-    //     <StyledLabel htmlFor="otherdogs3">
-    //       My dog should be neutral with other dogs
-    //     </StyledLabel>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="otherdogs4"
-    //       name="good_with_other_dogs"
-    //       value="4"
-    //     />
-    //     <StyledLabel htmlFor="otherdogs4">I want a sociable dog</StyledLabel>
-    //   </StyledFieldset>
-    //   {/* Question #6 protectiveness */}
-    //   <StyledFieldset>
-    //     <StyledLegend>How protective do you want your dog to be?</StyledLegend>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="protectiveness2"
-    //       name="protectiveness"
-    //       value="2"
-    //       required
-    //     />
-    //     <StyledLabel htmlFor="protectiveness2">
-    //       I do not want a protective dog
-    //     </StyledLabel>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="protectiveness3"
-    //       name="protectiveness"
-    //       value="3"
-    //     />
-    //     <StyledLabel htmlFor="protectiveness3">
-    //       A little protectiveness is good
-    //     </StyledLabel>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="protectiveness4"
-    //       name="protectiveness"
-    //       value="4"
-    //     />
-    //     <StyledLabel htmlFor="protectiveness4">
-    //       I want an alert and protective dog
-    //     </StyledLabel>
-    //   </StyledFieldset>
-    //   {/* Question #7 shedding */}
-    //   <StyledFieldset>
-    //     <StyledLegend>Does it bother you if your dog sheds?</StyledLegend>
-
-    //     <StyledInput
-    //       type="radio"
-    //       id="shedding2"
-    //       name="shedding"
-    //       value="2"
-    //       required
-    //     />
-    //     <StyledLabel htmlFor="shedding2">It bothers me a lot</StyledLabel>
-
-    //     <StyledInput type="radio" id="shedding3" name="shedding" value="3" />
-    //     <StyledLabel htmlFor="shedding3">
-    //       I do not mind if my dog sheds a little
-    //     </StyledLabel>
-
-    //     <StyledInput type="radio" id="shedding4" name="shedding" value="4" />
-    //     <StyledLabel htmlFor="shedding4">I do not mind at all</StyledLabel>
-    //   </StyledFieldset>
-    //   {/* Submit Button */}
-    //   <LinkButton>Submit</LinkButton>
-    // </StyledForm>
   );
 }
 
