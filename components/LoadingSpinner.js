@@ -8,7 +8,7 @@ export default function LoadingSpinner() {
         src="/lamp-icon.png"
         alt="Icon of a lamp"
         width={120}
-        height={120}
+        height={60}
         blurDataURL="data:..."
       />
     </StyledWrapper>
