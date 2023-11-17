@@ -11,15 +11,10 @@ export default function Accordion() {
     e.preventDefault();
     setAccordionData((accordionItems) => {
       const info = accordionItems.find((info) => info.id === id);
-
-      if (info) {
-        return accordionItems.map((info) => {
-          if (info.id === id) return { ...info, isOpen: !info.isOpen };
-          else return { ...info, isOpen: false };
-        });
-      }
-
-      return [...accordionItems, { id, isOpen: false }];
+      return accordionItems.map((info) => {
+        if (info.id === id) return { ...info, isOpen: !info.isOpen };
+        else return { ...info, isOpen: false };
+      });
     });
   }
   if (!accordionData) return null;
