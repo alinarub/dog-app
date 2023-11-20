@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import LinkButton from "./LinkButton";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import QuizFormQuestion from "./QuizFormQuestion";
+import LinkButton from "./LinkButton";
 
 const questionsData = [
   {
@@ -56,7 +56,6 @@ const questionsData = [
 ];
 
 export default function QuizFormMultiStep() {
-  const [currentStepIndex, setCurrentStepIndex] = useState(1);
   const [questions, setQuestions] = useState(questionsData);
   const [formResults, setFormResults] = useState({});
   const [step, setStep] = useState(0);
@@ -85,10 +84,11 @@ export default function QuizFormMultiStep() {
     <StyledForm onSubmit={handleSubmit}>
       {/* Here we show the submit button if we have reached the end of the questions */}
       {step === questionsData.length ? (
-        <button type="submit">Submit</button>
+        <LinkButton>Submit</LinkButton>
       ) : (
-        // Here the question that gets passed to the Question component is based on the value of step
         <QuizFormQuestion
+          step={step}
+          questionsDataLength={questionsData.length}
           questionData={questionsData[step]}
           handleNextButtonClick={handleNextButtonClick}
           handlePreviousButtonClick={handlePreviousButtonClick}

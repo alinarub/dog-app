@@ -2,9 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 
 export default function QuizFormQuestion({
+  questionsDataLength,
   questionData,
   handlePreviousButtonClick,
   handleNextButtonClick,
+  step,
 }) {
   // Keep track of the value of radio button in state and via the onChange event
   const [selectedValue, setSelectedValue] = useState(null);
@@ -28,6 +30,18 @@ export default function QuizFormQuestion({
         </StyledFieldset>
       ))}
       <StyledNavigation>
+        {step != 0 && (
+          <StyledButton
+            type="button"
+            onClick={() =>
+              handlePreviousButtonClick(questionData.topic, selectedValue)
+            }
+          >
+            previous
+          </StyledButton>
+        )}
+        {console.log("questuondsDatalength", questionsDataLength)}
+
         <StyledButton
           type="button"
           onClick={() =>
@@ -35,14 +49,6 @@ export default function QuizFormQuestion({
           }
         >
           next
-        </StyledButton>
-        <StyledButton
-          type="button"
-          onClick={() =>
-            handlePreviousButtonClick(questionData.topic, selectedValue)
-          }
-        >
-          previous
         </StyledButton>
       </StyledNavigation>
     </div>
