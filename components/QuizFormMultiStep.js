@@ -2,53 +2,54 @@ import styled from "styled-components";
 import LinkButton from "./LinkButton";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import QuizFormQuestion from "./QuizFormQuestion";
 
 const questionsData = [
   {
     id: 1,
     question: "How much barking is ok for you?",
+    topic: "barking",
     answers: [
       {
         answer: "I do not want any barking",
-        id: "barking2",
-        name: "barking",
-        value: "2",
       },
       {
         answer: "A little bit of barking is ok",
-        id: "barking3",
-        name: "barking",
-        value: "3",
       },
       {
         answer: "I am deaf anyway",
-        id: "barking4",
-        name: "barking",
-        value: "4",
       },
     ],
   },
   {
     id: 2,
     question: "How much energy do you have for your dog?",
+    topic: "energy",
     answers: [
       {
-        answer: "energy 2",
-        id: "energy2",
-        name: "energy",
-        value: "2",
+        answer: "I like to stay on the couch",
       },
       {
-        answer: "energy 3",
-        id: "energy3",
-        name: "energy",
-        value: "3",
+        answer: "A little exercise is welcome",
       },
       {
-        answer: "energy 4",
-        id: "energy4",
-        name: "energy",
-        value: "4",
+        answer: "I want my dog to be just as active as me",
+      },
+    ],
+  },
+  {
+    id: 3,
+    question: "How trainable should your dog be?",
+    topic: "trainability",
+    answers: [
+      {
+        answer: "He does not need to do any tricks",
+      },
+      {
+        answer: "I want to teach my dog some tricks",
+      },
+      {
+        answer: "He should be able to learn a lot",
       },
     ],
   },
@@ -57,145 +58,52 @@ const questionsData = [
 export default function QuizFormMultiStep() {
   const [currentStepIndex, setCurrentStepIndex] = useState(1);
   const [questions, setQuestions] = useState(questionsData);
-  const [formDataMulti, setFormDataMulti] = useState([
-    {
-      id: 1,
-      characteristic: "barking",
-      value: "0",
-    },
-    {
-      id: 2,
-      characteristic: "energy",
-      value: "0",
-    },
-    {
-      id: 3,
-      characteristic: "trainability",
-      value: "0",
-    },
-    {
-      id: 4,
-      characteristic: "good_with_children",
-      value: "0",
-    },
-    {
-      id: 5,
-      characteristic: "good_with_other_dogs",
-      value: "0",
-    },
-    {
-      id: 6,
-      characteristic: "protectiveness",
-      value: "0",
-    },
-    {
-      id: 7,
-      characteristic: "shedding",
-      value: "0",
-    },
-  ]);
-  const [multiStepFormData, setMultiStepFormData] = useState([]);
-  const currentQuestion = questions.filter((question) => {
-    return currentStepIndex === question.id;
-  });
-
-  function nextQuestion() {
-    setCurrentStepIndex((currentStepIndex) => {
-      // if (currentStepIndex >= steps.length - 1) return currentStepIndex;
-      return currentStepIndex + 1;
-    });
-  }
-
-  function previousQuestion() {
-    setCurrentStepIndex((currentStepIndex) => {
-      // if (currentStepIndex <= 0) return currentStepIndex;
-      return currentStepIndex - 1;
-    });
-  }
-
-  function goTo(index) {
-    setCurrentStepIndex(index);
-  }
+  const [formResults, setFormResults] = useState({});
+  const [step, setStep] = useState(0);
 
   const router = useRouter();
-  // Form Submission for one question at a time
-  function onSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
 
-    // setAccordionData((accordionItems) => {
-    //   const info = accordionItems.find((info) => info.id === id);
-    //   return accordionItems.map((info) => {
-    //     if (info.id === id) return { ...info, isOpen: !info.isOpen };
-    //     else return { ...info, isOpen: false };
-    //   });
-    // });
-
-    setFormDataMulti((questions) => {
-      questions.map((info) => {
-        // for (let property in data) {
-        //   return {
-        //     ...info,
-        //     characteristic: property,
-        //     value: data.barking,
-        //   };
-        // }
-        return "0";
-      });
-    });
-    nextQuestion();
-
-    console.log("data", data);
-    console.log("multi step form data", formDataMulti);
+  function handlePreviousButtonClick(topic, value) {
+    if (step <= 0) return step;
+    setStep(step - 1);
+    setFormResults((oldFormResults) => ({ ...oldFormResults, [topic]: value }));
   }
 
-  useEffect(() => {
-    // const params = new URLSearchParams(
-    //   `${multiStepFormData.characteristic}=${multiStepFormData.value}`
-    // );
-    console.log("multi step form data use effect", formDataMulti);
-    // if (multiStepFormData)
-    //   router.push(
-    //     `/quiz-results?${multiStepFormData.characteristic}=${multiStepFormData.value}`
-    //   );
-  }, [currentStepIndex]);
+  function handleNextButtonClick(topic, value) {
+    if (step >= step.length - 1) return step;
+    setStep(step + 1);
+    setFormResults((oldFormResults) => ({ ...oldFormResults, [topic]: value }));
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    const params = new URLSearchParams(formResults);
+    router.push(`/quiz-results?${params}`);
+    console.log("formResults to give to URLSearchParams", formResults);
+  }
 
   return (
-    <>
-      <StyledForm onSubmit={onSubmit}>
-        {currentQuestion.map((questionItem) => {
-          const { id, question, answers } = questionItem;
-          return (
-            <StyledFieldset key={id}>
-              <StyledLegend>{question}</StyledLegend>
-              {answers.map((answerItem) => {
-                const { id, name, value } = answerItem;
-                return (
-                  <>
-                    <StyledInput
-                      type="radio"
-                      id={id}
-                      name={name}
-                      value={value}
-                    />
-                    <StyledLabel htmlFor={id}>{answerItem.answer}</StyledLabel>
-                  </>
-                );
-              })}
-            </StyledFieldset>
-          );
-        })}
-        <LinkButton>next</LinkButton>
-      </StyledForm>
-      <StyledNavigation>
-        <StyledButton type="button" onClick={previousQuestion}>
-          previous
-        </StyledButton>
-      </StyledNavigation>
-    </>
+    <StyledForm onSubmit={handleSubmit}>
+      {/* Here we show the submit button if we have reached the end of the questions */}
+      {step === questionsData.length ? (
+        <button type="submit">Submit</button>
+      ) : (
+        // Here the question that gets passed to the Question component is based on the value of step
+        <QuizFormQuestion
+          questionData={questionsData[step]}
+          handleNextButtonClick={handleNextButtonClick}
+          handlePreviousButtonClick={handlePreviousButtonClick}
+        />
+      )}
+    </StyledForm>
   );
 }
+const StyledForm = styled.form`
+  margin: var(--basicmargin);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const StyledButton = styled.button`
   display: flex;
@@ -222,57 +130,4 @@ const StyledNavigation = styled.nav`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-`;
-
-const StyledForm = styled.form`
-  margin: var(--basicmargin);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StyledFieldset = styled.fieldset`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 0;
-  width: var(--mobilewidth);
-  padding-bottom: 1.5;
-  margin: 2rem 0;
-`;
-
-const StyledLegend = styled.legend`
-  font-size: 1.5rem;
-`;
-
-const StyledInput = styled.input`
-  visibility: hidden;
-  height: 0;
-  width: 0;
-
-  &:checked + label {
-    border: 2px solid var(--primary-color);
-    background-color: var(--accent-color);
-    border: 2px solid var(--accent-color);
-  }
-`;
-
-const StyledLabel = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  text-align: center;
-  margin: 0.7rem;
-  height: 4.3rem;
-  cursor: pointer;
-  background-color: var(--soft-background);
-  color: var(--font-color);
-  border-radius: var(--borderradius-small);
-  border: 2px solid var(--soft-background);
-  &:hover {
-    border: 2px solid var(--primary-color);
-  }
 `;
