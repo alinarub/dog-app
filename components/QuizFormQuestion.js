@@ -6,12 +6,6 @@ export default function QuizFormQuestion({
   handleNextButtonClick,
 }) {
   const [selectedValue, setSelectedValue] = useState(null);
-  const [isChecked, setIsChecked] = useState(false);
-
-  function handleChange(value) {
-    setSelectedValue(Number(value));
-    setIsChecked(!isChecked);
-  }
 
   return (
     <>
@@ -24,7 +18,7 @@ export default function QuizFormQuestion({
             name={questionData.topic}
             id={`${questionData.topic}${i + 2}`}
             value={i + 2}
-            onChange={(event) => handleChange(event.target.value)}
+            onChange={(event) => setSelectedValue(Number(event.target.value))}
           />
           <StyledLabel htmlFor={`${questionData.topic}${i + 2}`}>
             {`${questionData.answers[i].answer}`}
@@ -34,7 +28,7 @@ export default function QuizFormQuestion({
       <StyledNavigation>
         <StyledButton
           type="button"
-          disabled={isChecked ? false : true}
+          disabled={selectedValue ? false : true}
           onClick={() => {
             handleNextButtonClick(questionData.topic, selectedValue);
             setSelectedValue(null);
@@ -99,17 +93,26 @@ const StyledButton = styled.button`
   align-items: center;
   padding: 0.3rem 0.5em;
   cursor: pointer;
-  background-color: var(--soft-background);
+  background-color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  min-width: 4.8rem;
   color: var(--font-color);
   font-size: 1rem;
   border-radius: var(--borderradius-small);
-  border: 2px solid var(--soft-background);
+
   &:hover {
     border: 2px solid var(--primary-color);
     background-color: var(--primary-color);
     color: var(--background-color);
   }
-  min-width: 4.8rem;
+  &:disabled:hover {
+    color: var(--font-color);
+  }
+  &:disabled {
+    background-color: var(--soft-background);
+    border: 2px solid var(--soft-background);
+    opacity: 0.6;
+  }
 `;
 
 const StyledNavigation = styled.nav`
