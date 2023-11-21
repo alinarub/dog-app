@@ -2,19 +2,16 @@ import { useState } from "react";
 import styled from "styled-components";
 
 export default function QuizFormQuestion({
-  questionsDataLength,
   questionData,
-  handlePreviousButtonClick,
   handleNextButtonClick,
   step,
 }) {
-  // Keep track of the value of radio button in state and via the onChange event
   const [selectedValue, setSelectedValue] = useState(null);
 
   return (
-    <div>
+    <>
       <StyledLegend>{questionData.question}</StyledLegend>
-      {/* Here we generate an array with 5 items in it, so we can generate 5 radio buttons */}
+
       {Array.from({ length: 3 }).map((_, i) => (
         <StyledFieldset key={`${questionData.topic}${i + 2}`}>
           <StyledInput
@@ -30,18 +27,6 @@ export default function QuizFormQuestion({
         </StyledFieldset>
       ))}
       <StyledNavigation>
-        {step != 0 && (
-          <StyledButton
-            type="button"
-            onClick={() =>
-              handlePreviousButtonClick(questionData.topic, selectedValue)
-            }
-          >
-            previous
-          </StyledButton>
-        )}
-        {console.log("questuondsDatalength", questionsDataLength)}
-
         <StyledButton
           type="button"
           onClick={() =>
@@ -51,7 +36,7 @@ export default function QuizFormQuestion({
           next
         </StyledButton>
       </StyledNavigation>
-    </div>
+    </>
   );
 }
 
@@ -68,6 +53,7 @@ const StyledFieldset = styled.fieldset`
 
 const StyledLegend = styled.legend`
   font-size: 1.5rem;
+  max-width: var(--mobilewidth);
 `;
 
 const StyledInput = styled.input`
@@ -104,11 +90,11 @@ const StyledButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.1rem 0.5em;
+  padding: 0.3rem 0.5em;
   cursor: pointer;
   background-color: var(--soft-background);
   color: var(--font-color);
-  font-size: 0.7rem;
+  font-size: 1rem;
   border-radius: var(--borderradius-small);
   border: 2px solid var(--soft-background);
   &:hover {
@@ -120,9 +106,10 @@ const StyledButton = styled.button`
 `;
 
 const StyledNavigation = styled.nav`
-  margin: var(--basicmargin);
+  margin-top: 2rem;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
 `;

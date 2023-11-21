@@ -53,20 +53,77 @@ const questionsData = [
       },
     ],
   },
+  {
+    id: 4,
+    question: "How important is it that your dog gets along with children?",
+    topic: "good_with_children",
+    answers: [
+      {
+        answer: "It is not important, my dog won't get in touch with children",
+      },
+      {
+        answer: "It would be good, but it's not crucial",
+      },
+      {
+        answer: " It is very important, I want a friendly dog",
+      },
+    ],
+  },
+  {
+    id: 5,
+    question: "How easily should your dog get along with other dogs?",
+    topic: "good_with_other_dogs",
+    answers: [
+      {
+        answer: "I want my dog to only care about his home",
+      },
+      {
+        answer: "My dog should be neutral with other dogs",
+      },
+      {
+        answer: "I want a sociable dog",
+      },
+    ],
+  },
+  {
+    id: 6,
+    question: "How protective do you want your dog to be?",
+    topic: "protectiveness",
+    answers: [
+      {
+        answer: "I do not want a protective dog",
+      },
+      {
+        answer: "A little protectiveness is good",
+      },
+      {
+        answer: "I want an alert and protective dog",
+      },
+    ],
+  },
+  {
+    id: 7,
+    question: "Does it bother you if your dog sheds?",
+    topic: "shedding",
+    answers: [
+      {
+        answer: "It bothers me a lot",
+      },
+      {
+        answer: "I do not mind if my dog sheds a little",
+      },
+      {
+        answer: "I do not mind at all",
+      },
+    ],
+  },
 ];
 
 export default function QuizFormMultiStep() {
-  const [questions, setQuestions] = useState(questionsData);
   const [formResults, setFormResults] = useState({});
   const [step, setStep] = useState(0);
 
   const router = useRouter();
-
-  function handlePreviousButtonClick(topic, value) {
-    if (step <= 0) return step;
-    setStep(step - 1);
-    setFormResults((oldFormResults) => ({ ...oldFormResults, [topic]: value }));
-  }
 
   function handleNextButtonClick(topic, value) {
     if (step >= step.length - 1) return step;
@@ -77,21 +134,17 @@ export default function QuizFormMultiStep() {
     event.preventDefault();
     const params = new URLSearchParams(formResults);
     router.push(`/quiz-results?${params}`);
-    console.log("formResults to give to URLSearchParams", formResults);
   }
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      {/* Here we show the submit button if we have reached the end of the questions */}
       {step === questionsData.length ? (
         <LinkButton>Submit</LinkButton>
       ) : (
         <QuizFormQuestion
           step={step}
-          questionsDataLength={questionsData.length}
           questionData={questionsData[step]}
           handleNextButtonClick={handleNextButtonClick}
-          handlePreviousButtonClick={handlePreviousButtonClick}
         />
       )}
     </StyledForm>
@@ -102,32 +155,5 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-`;
-
-const StyledButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.1rem 0.5em;
-  cursor: pointer;
-  background-color: var(--soft-background);
-  color: var(--font-color);
-  font-size: 0.7rem;
-  border-radius: var(--borderradius-small);
-  border: 2px solid var(--soft-background);
-  &:hover {
-    border: 2px solid var(--primary-color);
-    background-color: var(--primary-color);
-    color: var(--background-color);
-  }
-  min-width: 4.8rem;
-`;
-
-const StyledNavigation = styled.nav`
-  margin: var(--basicmargin);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 `;
