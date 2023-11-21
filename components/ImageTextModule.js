@@ -48,6 +48,7 @@ const StyledImage = styled(Image)`
   height: auto;
 `;
 const StyledP = styled.p`
+  text-align: ${({ $showImage }) => ($showImage ? "left" : "center")};
   font-size: 1.1rem;
   padding: ${({ $showImage }) => ($showImage ? "0" : "2rem 2.5rem")};
   padding-right: ${({ $showImage }) => ($showImage ? "1rem" : "2.5rem")};

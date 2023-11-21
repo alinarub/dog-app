@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import QuizFormQuestion from "./QuizFormQuestion";
 import LinkButton from "./LinkButton";
+import ImageTextModule from "./ImageTextModule";
 
 const questionsData = [
   {
@@ -126,29 +127,43 @@ export default function QuizFormMultiStep() {
   const router = useRouter();
 
   function handleNextButtonClick(topic, value) {
-    if (step >= step.length - 1) return step;
     setStep(step + 1);
     setFormResults((oldFormResults) => ({ ...oldFormResults, [topic]: value }));
   }
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("formresults", formResults);
     const params = new URLSearchParams(formResults);
     router.push(`/quiz-results?${params}`);
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      {step === questionsData.length ? (
-        <LinkButton>Submit</LinkButton>
-      ) : (
-        <QuizFormQuestion
-          step={step}
-          questionData={questionsData[step]}
-          handleNextButtonClick={handleNextButtonClick}
-        />
+    <>
+      {step <= questionsData.length - 1 && (
+        <ImageTextModule>
+          Answer the following questions and the genie will let you know which
+          dog fits to you.
+        </ImageTextModule>
       )}
-    </StyledForm>
+
+      {step >= questionsData.length && (
+        <ImageTextModule>
+          Congratulations on going on this journey. Your perfect companion is
+          waiting for you on the next page!
+        </ImageTextModule>
+      )}
+
+      <StyledForm onSubmit={handleSubmit}>
+        {step === questionsData.length ? (
+          <LinkButton>Show my results</LinkButton>
+        ) : (
+          <QuizFormQuestion
+            step={step}
+            questionData={questionsData[step]}
+            handleNextButtonClick={handleNextButtonClick}
+          />
+        )}
+      </StyledForm>
+    </>
   );
 }
 const StyledForm = styled.form`
