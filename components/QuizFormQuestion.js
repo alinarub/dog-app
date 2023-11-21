@@ -4,9 +4,14 @@ import styled from "styled-components";
 export default function QuizFormQuestion({
   questionData,
   handleNextButtonClick,
-  step,
 }) {
   const [selectedValue, setSelectedValue] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
+
+  function handleChange(value) {
+    setSelectedValue(Number(value));
+    setIsChecked(!isChecked);
+  }
 
   return (
     <>
@@ -19,7 +24,7 @@ export default function QuizFormQuestion({
             name={questionData.topic}
             id={`${questionData.topic}${i + 2}`}
             value={i + 2}
-            onChange={(event) => setSelectedValue(Number(event.target.value))}
+            onChange={(event) => handleChange(event.target.value)}
           />
           <StyledLabel htmlFor={`${questionData.topic}${i + 2}`}>
             {`${questionData.answers[i].answer}`}
@@ -29,9 +34,11 @@ export default function QuizFormQuestion({
       <StyledNavigation>
         <StyledButton
           type="button"
-          onClick={() =>
-            handleNextButtonClick(questionData.topic, selectedValue)
-          }
+          disabled={isChecked ? false : true}
+          onClick={() => {
+            handleNextButtonClick(questionData.topic, selectedValue);
+            setSelectedValue(null);
+          }}
         >
           next
         </StyledButton>

@@ -132,6 +132,7 @@ export default function QuizFormMultiStep() {
   }
   function handleSubmit(event) {
     event.preventDefault();
+    console.log("formresults", formResults);
     const params = new URLSearchParams(formResults);
     router.push(`/quiz-results?${params}`);
   }
