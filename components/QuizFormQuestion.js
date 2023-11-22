@@ -1,10 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function QuizFormQuestion({
-  questionData,
-  handleNextButtonClick,
-}) {
+export default function QuizFormQuestion({ questionData, onNextButtonClick }) {
   const [selectedValue, setSelectedValue] = useState(null);
 
   return (
@@ -30,7 +27,7 @@ export default function QuizFormQuestion({
           type="button"
           disabled={selectedValue ? false : true}
           onClick={() => {
-            handleNextButtonClick(questionData.topic, selectedValue);
+            onNextButtonClick(questionData.topic, selectedValue);
             setSelectedValue(null);
           }}
         >

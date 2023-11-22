@@ -157,9 +157,8 @@ export default function QuizFormMultiStep() {
           <LinkButton>Show my results</LinkButton>
         ) : (
           <QuizFormQuestion
-            step={step}
             questionData={questionsData[step]}
-            handleNextButtonClick={handleNextButtonClick}
+            onNextButtonClick={handleNextButtonClick}
           />
         )}
       </StyledForm>
