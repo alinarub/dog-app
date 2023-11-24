@@ -8,8 +8,8 @@ export default function ProgressBar({ step, questionsDataLength }) {
         <StyledProgress step={step} />
       </StyledContainer>
       <StyledProgressList>
-        {Array.from({ length: questionsDataLength }).map((_, index) => (
-          <StyledProgressListItem key={crypto.randomUUID()}>
+        {questions.map((question, index) => (
+          <StyledProgressListItem key={question.id}>
             <StyledPoints $step={step} $current={index}>
               {index + 1}
             </StyledPoints>
