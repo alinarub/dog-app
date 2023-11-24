@@ -3,14 +3,16 @@ import styled from "styled-components";
 export default function ProgressBar({ step }) {
   return (
     <>
-      <Container>
-        <Background />
-        <Progress step={step} />
-      </Container>
+      <StyledContainer>
+        <StyledBackground />
+        <StyledProgress step={step} />
+      </StyledContainer>
       <StyledProgressList>
         {Array.from({ length: 7 }).map((_, i) => (
-          <StyledProgressListItem $step={step} $current={i} key={i}>
-            {i + 1}
+          <StyledProgressListItem key={i}>
+            <StyledPoints $step={step} $current={i}>
+              {i + 1}
+            </StyledPoints>
           </StyledProgressListItem>
         ))}
       </StyledProgressList>
@@ -18,40 +20,35 @@ export default function ProgressBar({ step }) {
   );
 }
 
-const Container = styled.div`
-  height: 7px;
-  width: var(--mobilewidth);
+const StyledContainer = styled.div`
+  height: 0.7rem;
+  width: calc(var(--mobilewidth) + 0.6rem);
   position: relative;
   margin: auto;
 `;
 
-const BaseBox = styled.div`
+const StyledBaseBox = styled.div`
   height: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  border-radius: 3px;
+  border-radius: 8rem;
   transition: width 0.5s ease-in-out;
 `;
 
-const Background = styled(BaseBox)`
-  background: #bebfc5;
+const StyledBackground = styled(StyledBaseBox)`
+  background: var(--soft-background);
   width: 100%;
 `;
 
-const Progress = styled(BaseBox)`
+const StyledProgress = styled(StyledBaseBox)`
   background: var(--accent-color);
-  width: ${({ step }) => step * 14.2857}%;
+  width: ${({ step }) => step * 16.667}%;
 `;
 
 const StyledProgressListItem = styled.li`
-  padding: 0 0.3rem;
-  border-radius: 8rem;
-
-  background: ${(props) =>
-    props.$step === props.$current ? "var(--accent-color)" : "transparent"};
-  color: ${(props) =>
-    props.$step === props.$current ? "var(--font-color)" : "#bebfc5"};
+  border-radius: 50%;
+  position: relative;
 `;
 
 const StyledProgressList = styled.ul`
@@ -60,6 +57,22 @@ const StyledProgressList = styled.ul`
   justify-content: space-between;
   margin: auto;
   margin-top: 0.5rem;
-  margin-bottom: 10rem;
+  margin-bottom: 4rem;
   width: var(--mobilewidth);
+`;
+const StyledPoints = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin-left: -0.7rem;
+  padding: 0.4rem;
+  height: 1.3rem;
+  width: 1.3rem;
+  border-radius: 100%;
+  background: ${(props) =>
+    props.$step === props.$current ? "var(--accent-color)" : "transparent"};
+  color: ${(props) =>
+    props.$step === props.$current ? "var(--primary-color)" : "#bebfc5"};
+  font-size: small;
 `;
