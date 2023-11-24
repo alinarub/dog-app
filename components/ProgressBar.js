@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function ProgressBar({ step }) {
+export default function ProgressBar({ step, questionsDataLength }) {
   return (
     <>
       <StyledContainer>
@@ -8,10 +8,10 @@ export default function ProgressBar({ step }) {
         <StyledProgress step={step} />
       </StyledContainer>
       <StyledProgressList>
-        {Array.from({ length: 7 }).map((_, i) => (
-          <StyledProgressListItem key={i}>
-            <StyledPoints $step={step} $current={i}>
-              {i + 1}
+        {Array.from({ length: questionsDataLength }).map((_, index) => (
+          <StyledProgressListItem key={crypto.randomUUID()}>
+            <StyledPoints $step={step} $current={index}>
+              {index + 1}
             </StyledPoints>
           </StyledProgressListItem>
         ))}
