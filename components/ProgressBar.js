@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-export default function ProgressBar({ step, questionsDataLength }) {
+export default function ProgressBar({ step, questionsData }) {
   return (
     <>
       <StyledContainer>
         <StyledBackground />
-        <StyledProgress step={step} />
+        <StyledProgress step={step} questionsData={questionsData} />
       </StyledContainer>
       <StyledProgressList>
-        {questions.map((question, index) => (
+        {questionsData.map((question, index) => (
           <StyledProgressListItem key={question.id}>
             <StyledPoints $step={step} $current={index}>
               {index + 1}
@@ -43,7 +43,9 @@ const StyledBackground = styled(StyledBaseBox)`
 
 const StyledProgress = styled(StyledBaseBox)`
   background: var(--accent-color);
-  width: ${({ step }) => step * 16.667}%;
+
+  width: ${({ step, questionsData }) =>
+    (100 / (questionsData.length - 1)) * step}%;
 `;
 
 const StyledProgressListItem = styled.li`

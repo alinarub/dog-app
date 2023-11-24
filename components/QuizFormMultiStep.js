@@ -165,7 +165,7 @@ export default function QuizFormMultiStep() {
       </StyledForm>
 
       {step <= questionsData.length - 1 && (
-        <ProgressBar step={step} questionsDataLength={questionsData.length} />
+        <ProgressBar step={step} questionsData={questionsData} />
       )}
     </>
   );
