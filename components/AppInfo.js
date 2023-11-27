@@ -2,11 +2,11 @@ import Link from "next/link";
 import ImageTextModule from "./ImageTextModule";
 import styled from "styled-components";
 
-export default function AppInfo({ $hamburgerOpen, delay }) {
+export default function AppInfo({ $hamburgerOpen, $delay }) {
   return (
     <StyledImageTextModuleWrapper
       $hamburgerOpen={$hamburgerOpen}
-      $delay={delay}
+      $delay={$delay}
     >
       <ImageTextModule $makeGray>
         This little helper was brought to you by{" "}

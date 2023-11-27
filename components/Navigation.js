@@ -55,7 +55,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
           </StyledLink>
         </StyledNavigationListItem>
       </StyledNavigationList>
-      <AppInfo $hamburgerOpen={$hamburgerOpen} $delay="1200ms" />
+      <AppInfo $hamburgerOpen={$hamburgerOpen} $delay="1000ms" />
     </StyledNavigation>
   );
 }
@@ -64,8 +64,8 @@ const StyledNavigation = styled.nav`
   display: flex;
   overflow: hidden;
   visibility: ${(props) => (props.$hamburgerOpen ? "visible" : "hidden")};
-  transition: visibility ${(props) => props.delay} linear,
-    opacity ${(props) => props.delay} linear;
+  transition: visibility ${(props) => props.$delay} linear,
+    opacity ${(props) => props.$delay} linear;
   opacity: ${(props) => (props.$hamburgerOpen ? 1 : 0)};
   flex-direction: column;
   justify-content: start;
@@ -139,8 +139,8 @@ const StyledNavigationList = styled.ul`
 `;
 const StyledNavigationListItem = styled.li`
   visibility: ${(props) => (props.$hamburgerOpen ? "visible" : "hidden")};
-  transition: visibility ${(props) => props.delay} linear,
-    opacity ${(props) => props.delay} linear;
+  transition: visibility ${(props) => props.$delay} linear,
+    opacity ${(props) => props.$delay} linear;
   opacity: ${(props) => (props.$hamburgerOpen ? 1 : 0)};
   &:not(:last-child) {
     border-bottom: 2px solid var(--accent-color);

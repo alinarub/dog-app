@@ -37,8 +37,7 @@ const StyledBaseBox = styled.div`
 `;
 
 const StyledBackground = styled(StyledBaseBox)`
-  background: gray;
-
+  background: var(--primary-color);
   width: 100%;
 `;
 
