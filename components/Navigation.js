@@ -92,13 +92,6 @@ const StyledHeader = styled.nav`
   padding: var(--basicmargin) var(--basicmargin);
 `;
 
-const StyledWrapper = styled.div`
-  width: var(--mobilewidth);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 const StyledHamburgerButton = styled.button`
   border: none;
   background-color: transparent;

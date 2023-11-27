@@ -21,7 +21,7 @@ export default function ProgressBar({ step, questionsData }) {
 }
 
 const StyledContainer = styled.div`
-  height: 0.7rem;
+  height: 0.5rem;
   width: calc(var(--mobilewidth) + 0.6rem);
   position: relative;
   margin: auto;
@@ -33,11 +33,12 @@ const StyledBaseBox = styled.div`
   left: 0;
   top: 0;
   border-radius: 8rem;
-  transition: width 0.5s ease-in-out;
+  transition: width 0.3s ease-in-out;
 `;
 
 const StyledBackground = styled(StyledBaseBox)`
-  background: var(--primary-color);
+  background: #3b81b3;
+
   width: 100%;
 `;
 
