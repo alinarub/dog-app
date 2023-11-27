@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <StyledContainer>
       <Header />
-      <main>{children}</main>
+      <StyledMain>{children}</StyledMain>
     </StyledContainer>
   );
 }
@@ -16,4 +16,9 @@ const StyledContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const StyledMain = styled.main`
+  margin: auto;
+  margin-top: 6.2rem;
 `;

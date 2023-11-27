@@ -4,14 +4,9 @@ import styled from "styled-components";
 
 export default function Faq() {
   return (
-    <StyledDiv>
+    <>
       <Headline>FAQs</Headline>
       <Accordion />
-    </StyledDiv>
+    </>
   );
 }
-
-const StyledDiv = styled.div`
-  margin: 0 1rem;
-  margin-top: 8rem;
-`;

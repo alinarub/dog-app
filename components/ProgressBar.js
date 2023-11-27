@@ -37,13 +37,13 @@ const StyledBaseBox = styled.div`
 `;
 
 const StyledBackground = styled(StyledBaseBox)`
-  background: var(--soft-background);
+  background: gray;
+
   width: 100%;
 `;
 
 const StyledProgress = styled(StyledBaseBox)`
   background: var(--accent-color);
-
   width: ${({ step, questionsData }) =>
     (100 / (questionsData.length - 1)) * step}%;
 `;

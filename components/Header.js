@@ -18,20 +18,18 @@ export default function Header() {
       />
 
       <StyledHeader>
-        <StyledWrapper>
-          <Logo />
-          <StyledHeadline>Dog Genie</StyledHeadline>
-          <StyledHamburgerButton type="button" onClick={handleNavigation}>
-            <StyledHamburgerIcon
-              src="/hamburger-icon.svg"
-              alt="Icon of a hamburger menu"
-              width={40}
-              height={40}
-              blurDataURL="data:..."
-              placeholder="blur" // Optional blur-up while loading
-            />
-          </StyledHamburgerButton>
-        </StyledWrapper>
+        <Logo />
+        <StyledHeadline>Dog Genie</StyledHeadline>
+        <StyledHamburgerButton type="button" onClick={handleNavigation}>
+          <StyledHamburgerIcon
+            src="/hamburger-icon.svg"
+            alt="Icon of a hamburger menu"
+            width={40}
+            height={40}
+            blurDataURL="data:..."
+            placeholder="blur" // Optional blur-up while loading
+          />
+        </StyledHamburgerButton>
       </StyledHeader>
     </StyledSection>
   );
@@ -44,21 +42,16 @@ const StyledHeadline = styled.h2`
 const StyledHeader = styled.header`
   z-index: 10;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   top: 0;
   position: fixed;
   height: 6.2rem;
   width: 100%;
   background-color: var(--soft-background);
-  padding: var(--basicmargin) 0;
+  padding: var(--basicmargin) var(--basicmargin);
 `;
 
-const StyledWrapper = styled.div`
-  width: var(--mobilewidth);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 const StyledHamburgerIcon = styled(Image)`
   transition: transform 0.3s ease-in-out;
   cursor: pointer;

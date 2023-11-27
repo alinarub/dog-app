@@ -98,7 +98,7 @@ const StyledImage = styled(Image)`
   outline: 2px solid var(--primary-color);
   outline-offset: 0.5rem;
   margin: auto;
-  margin-top: 8rem;
+  margin-top: 3rem;
 `;
 
 const StyledList = styled.ul`

@@ -41,7 +41,6 @@ const StyledSection = styled.div`
   align-items: center;
   border: 2px solid var(--primary-color);
   border-radius: var(--borderradius-medium);
-  margin-top: 10rem;
 `;
 const StyledImage = styled(Image)`
   width: 10rem;

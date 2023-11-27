@@ -4,7 +4,10 @@ import styled from "styled-components";
 
 export default function AppInfo({ $hamburgerOpen, delay }) {
   return (
-    <StyledImageTextModuleWrapper $hamburgerOpen={$hamburgerOpen} delay={delay}>
+    <StyledImageTextModuleWrapper
+      $hamburgerOpen={$hamburgerOpen}
+      $delay={delay}
+    >
       <ImageTextModule $makeGray>
         This little helper was brought to you by{" "}
         <StyledSimpleLink
@@ -46,8 +49,8 @@ const StyledSimpleLink = styled(Link)`
 
 const StyledImageTextModuleWrapper = styled.div`
   visibility: ${(props) => (props.$hamburgerOpen ? "visible" : "hidden")};
-  transition: visibility ${(props) => props.delay} linear,
-    opacity ${(props) => props.delay} linear;
+  transition: visibility ${(props) => props.$delay} linear,
+    opacity ${(props) => props.$delay} linear;
   opacity: ${(props) => (props.$hamburgerOpen ? 1 : 0)};
-  transition-delay: 900ms;
+  transition-delay: 600ms;
 `;

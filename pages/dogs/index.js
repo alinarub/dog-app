@@ -62,7 +62,7 @@ export default function Dogs() {
   });
   return (
     <>
-      <Headline $marginTop="8rem">All dogs</Headline>
+      <Headline $marginTop="2rem">All dogs</Headline>
       <SearchBar handleSearch={handleSearch} dogsLength={dogs.length} />
       <StyledList>
         {!isFuseActive &&

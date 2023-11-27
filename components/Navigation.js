@@ -8,20 +8,18 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
   return (
     <StyledNavigation $hamburgerOpen={$hamburgerOpen} $delay="400ms">
       <StyledHeader>
-        <StyledWrapper>
-          <Logo handleNavigation={handleNavigation} />
-          <StyledHeadline>Dog Genie</StyledHeadline>
-          <StyledHamburgerButton type="button" onClick={handleNavigation}>
-            <Image
-              src="/close-icon.svg"
-              alt="close icon"
-              width={40}
-              height={40}
-              blurDataURL="data:..."
-              placeholder="blur" // Optional blur-up while loading
-            />
-          </StyledHamburgerButton>
-        </StyledWrapper>
+        <Logo handleNavigation={handleNavigation} />
+        <StyledHeadline>Dog Genie</StyledHeadline>
+        <StyledHamburgerButton type="button" onClick={handleNavigation}>
+          <Image
+            src="/close-icon.svg"
+            alt="close icon"
+            width={40}
+            height={40}
+            blurDataURL="data:..."
+            placeholder="blur" // Optional blur-up while loading
+          />
+        </StyledHamburgerButton>
       </StyledHeader>
       <StyledNavigationList>
         <StyledNavigationListItem
@@ -57,7 +55,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
           </StyledLink>
         </StyledNavigationListItem>
       </StyledNavigationList>
-      <AppInfo $hamburgerOpen={$hamburgerOpen} $delay="800ms" />
+      <AppInfo $hamburgerOpen={$hamburgerOpen} $delay="1200ms" />
     </StyledNavigation>
   );
 }
@@ -70,10 +68,10 @@ const StyledNavigation = styled.nav`
     opacity ${(props) => props.delay} linear;
   opacity: ${(props) => (props.$hamburgerOpen ? 1 : 0)};
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   z-index: 20;
-  top: 0;
+  top: 6.2rem;
   left: 0;
   position: fixed;
   height: 100%;
@@ -84,13 +82,14 @@ const StyledNavigation = styled.nav`
 const StyledHeader = styled.nav`
   z-index: 10;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   top: 0;
   position: fixed;
   height: 6.2rem;
   width: 100%;
   background-color: var(--soft-background);
-  padding: var(--basicmargin) 0;
+  padding: var(--basicmargin) var(--basicmargin);
 `;
 
 const StyledWrapper = styled.div`
@@ -137,7 +136,6 @@ const StyledNavigationList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: -8rem;
 `;
 const StyledNavigationListItem = styled.li`
   visibility: ${(props) => (props.$hamburgerOpen ? "visible" : "hidden")};
@@ -155,5 +153,8 @@ const StyledNavigationListItem = styled.li`
   }
   &:nth-child(3) {
     transition-delay: 500ms;
+  }
+  &:nth-child(4) {
+    transition-delay: 600ms;
   }
 `;
