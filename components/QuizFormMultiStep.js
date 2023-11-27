@@ -4,6 +4,7 @@ import { useState } from "react";
 import QuizFormQuestion from "./QuizFormQuestion";
 import LinkButton from "./LinkButton";
 import ImageTextModule from "./ImageTextModule";
+import ProgressBar from "./ProgressBar";
 
 const questionsData = [
   {
@@ -162,6 +163,10 @@ export default function QuizFormMultiStep() {
           />
         )}
       </StyledForm>
+
+      {step <= questionsData.length - 1 && (
+        <ProgressBar step={step} questionsData={questionsData} />
+      )}
     </>
   );
 }

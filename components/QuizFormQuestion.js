@@ -8,17 +8,17 @@ export default function QuizFormQuestion({ questionData, onNextButtonClick }) {
     <>
       <StyledLegend>{questionData.question}</StyledLegend>
 
-      {Array.from({ length: 3 }).map((_, i) => (
-        <StyledFieldset key={`${questionData.topic}${i + 2}`}>
+      {Array.from({ length: 3 }).map((_, index) => (
+        <StyledFieldset key={`${questionData.topic}${index + 2}`}>
           <StyledInput
             type="radio"
             name={questionData.topic}
-            id={`${questionData.topic}${i + 2}`}
-            value={i + 2}
+            id={`${questionData.topic}${index + 2}`}
+            value={index + 2}
             onChange={(event) => setSelectedValue(Number(event.target.value))}
           />
-          <StyledLabel htmlFor={`${questionData.topic}${i + 2}`}>
-            {`${questionData.answers[i].answer}`}
+          <StyledLabel htmlFor={`${questionData.topic}${index + 2}`}>
+            {`${questionData.answers[index].answer}`}
           </StyledLabel>
         </StyledFieldset>
       ))}
