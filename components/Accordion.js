@@ -49,9 +49,11 @@ export default function Accordion() {
   ));
 }
 const StyledDetails = styled.details`
-  max-width: var(--mobilewidth);
+  width: var(--mobilewidth);
   text-align: center;
-  margin: 0.7rem var(--basicmargin);
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 0.4rem 0.7rem;
   min-height: 4.3rem;
   background-color: var(--soft-background);

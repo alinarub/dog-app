@@ -97,16 +97,18 @@ const StyledImage = styled(Image)`
   border-radius: var(--borderradius-medium);
   outline: 2px solid var(--primary-color);
   outline-offset: 0.5rem;
+  object-fit: scale-down;
+  width: var(--mobilewidth);
   height: auto;
-  width: auto;
   margin: auto;
   margin-top: 3rem;
 `;
 
 const StyledList = styled.ul`
   list-style: none;
-  margin-left: -0.6rem;
-  margin: var(--basicmargin) 0;
+  margin: auto;
+  margin-top: 1rem;
+  width: var(--mobilewidth);
 `;
 
 const StyledListItem = styled.li`
@@ -114,9 +116,12 @@ const StyledListItem = styled.li`
 `;
 
 const StyledNavigation = styled.nav`
-  margin: 2rem 0;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
   display: flex;
   justify-content: space-between;
+  width: var(--mobilewidth);
 `;
 
 const StyledButton = styled.button`

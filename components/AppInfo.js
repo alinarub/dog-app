@@ -48,6 +48,7 @@ const StyledSimpleLink = styled(Link)`
 `;
 
 const StyledImageTextModuleWrapper = styled.div`
+  margin-top: -1rem;
   visibility: ${(props) => (props.$hamburgerOpen ? "visible" : "hidden")};
   transition: visibility ${(props) => props.$delay} linear,
     opacity ${(props) => props.$delay} linear;

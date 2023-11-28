@@ -35,7 +35,8 @@ export default function ImageTextModule({ children, $showImage, $makeGray }) {
 const StyledSection = styled.div`
   position: relative;
   width: var(--mobilewidth);
-  margin: 2rem var(--basicmargin);
+  margin: auto;
+  margin-top: var(--basicmargin);
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -35,7 +35,7 @@ const StyledList = styled.ul`
   flex-direction: column;
   list-style: none;
   width: var(--mobilewidth);
-  margin: var(--basicmargin);
+  margin: auto;
   gap: 1rem;
 `;
 const StyledListItem = styled.li`
