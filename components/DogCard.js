@@ -36,6 +36,7 @@ const StyledList = styled.ul`
   list-style: none;
   width: var(--mobilewidth);
   margin: auto;
+  margin-top: 1rem;
   gap: 1rem;
 `;
 const StyledListItem = styled.li`

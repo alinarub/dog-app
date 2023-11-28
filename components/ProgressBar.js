@@ -22,7 +22,7 @@ export default function ProgressBar({ step, questionsData }) {
 
 const StyledContainer = styled.div`
   height: 0.5rem;
-  width: calc(var(--mobilewidth) + 0.6rem);
+  width: calc(var(--mobilewidth) - 3rem);
   position: relative;
   margin: auto;
 `;
@@ -60,7 +60,7 @@ const StyledProgressList = styled.ul`
   margin: auto;
   margin-top: 0.5rem;
   margin-bottom: 4rem;
-  width: var(--mobilewidth);
+  width: calc(var(--mobilewidth) - 3rem);
 `;
 const StyledPoints = styled.div`
   display: flex;

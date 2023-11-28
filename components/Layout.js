@@ -20,5 +20,7 @@ const StyledContainer = styled.div`
 
 const StyledMain = styled.main`
   margin: auto;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
   margin-top: 6.2rem;
 `;

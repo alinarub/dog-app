@@ -85,7 +85,8 @@ const StyledList = styled.ul`
   flex-direction: column;
   list-style: none;
   width: var(--mobilewidth);
-  margin: var(--basicmargin);
+  margin: auto;
+  margin-top: 1.5rem;
   gap: 1rem;
 `;
 const StyledParagraph = styled.p`
