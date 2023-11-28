@@ -1,10 +1,13 @@
 import Image from "next/image";
 import styled from "styled-components";
 import image404 from "@/public/404.png";
+import LinkButton from "@/components/LinkButton";
 
 export default function Custom404() {
   return (
     <StyledWrapper>
+      <StyledHeadline>404 </StyledHeadline>
+
       <StyledImage
         src={image404}
         alt="Logo of a Genie with a Lamp"
@@ -13,7 +16,7 @@ export default function Custom404() {
         blurDataURL="data:..."
         placeholder="blur" // Optional blur-up while loading
       />
-      <h2>404</h2>
+      <LinkButton href={"/"}>Go back home </LinkButton>
     </StyledWrapper>
   );
 }
@@ -21,12 +24,15 @@ export default function Custom404() {
 const StyledImage = styled(Image)`
   width: auto;
   height: auto;
+  border-radius: var(--borderradius-small);
 `;
 
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  justify-content: start;
+`;
 
-  background-color: var(--primary-color);
+const StyledHeadline = styled.h1`
+  color: var(--background-color);
 `;
