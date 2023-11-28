@@ -1,4 +1,4 @@
-import data from "@/data.json";
+import data from "@/lib/data.json";
 
 // Combine Api Data with what the user wants as characteristics
 function processData(entries, query = {}) {
