@@ -7,6 +7,7 @@ export default function RatingLine({ characteristic, rating }) {
   for (let i = 1; i < 6; ++i) {
     stars.push(
       <StyledImage
+        key={i}
         src={i <= +rating ? "/paw-icon-yellow.svg" : "/paw-icon-gray.svg"}
         alt="Icon of a paw"
         width={15}

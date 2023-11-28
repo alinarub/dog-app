@@ -5,7 +5,7 @@ export default function ProgressBar({ step, questionsData }) {
     <>
       <StyledContainer>
         <StyledBackground />
-        <StyledProgress step={step} questionsData={questionsData} />
+        <StyledProgress $step={step} $questionsData={questionsData} />
       </StyledContainer>
       <StyledProgressList>
         {questionsData.map((question, index) => (
@@ -44,8 +44,8 @@ const StyledBackground = styled(StyledBaseBox)`
 
 const StyledProgress = styled(StyledBaseBox)`
   background: var(--accent-color);
-  width: ${({ step, questionsData }) =>
-    (100 / (questionsData.length - 1)) * step}%;
+  width: ${({ $step, $questionsData }) =>
+    (100 / ($questionsData.length - 1)) * $step}%;
 `;
 
 const StyledProgressListItem = styled.li`
