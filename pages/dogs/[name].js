@@ -34,8 +34,8 @@ export default function Name() {
       <StyledImage
         src={dog.image_link}
         alt={`Image of ${dog.name}`}
-        width={256}
-        height={171}
+        width={600}
+        height={400}
         blurDataURL="data:..."
         placeholder="blur" // Optional blur-up while loading
       />
@@ -97,6 +97,8 @@ const StyledImage = styled(Image)`
   border-radius: var(--borderradius-medium);
   outline: 2px solid var(--primary-color);
   outline-offset: 0.5rem;
+  height: auto;
+  width: auto;
   margin: auto;
   margin-top: 3rem;
 `;
