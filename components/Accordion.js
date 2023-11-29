@@ -73,9 +73,6 @@ const StyledSummary = styled.summary`
     text-decoration: 2px var(--accent-color) underline;
     text-underline-offset: 0.4rem;
   }
-  &:active {
-    color: var(--accent-color);
-  }
   &::-webkit-details-marker {
     display: none;
   }
