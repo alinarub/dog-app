@@ -3,7 +3,8 @@ import Headline from "@/components/Headline";
 import useSWR from "swr";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import { useRouter } from "next/router";
-import DogCard from "@/components/DogCard";
+import styled from "styled-components";
+import FavoriteDogsCard from "@/components/ResultsDogsCard";
 
 export default function QuizResults() {
   const router = useRouter();
@@ -22,7 +23,24 @@ export default function QuizResults() {
         according to their points.
       </ImageTextModule>
       <Headline>Your best matches</Headline>
-      <DogCard dogs={dogs} showPoints />
+
+      <StyledList>
+        {dogs.map((dog, index) => {
+          if (index < 5) {
+            return <FavoriteDogsCard dog={dog} key={dog.name} />;
+          }
+        })}
+      </StyledList>
     </>
   );
 }
+
+const StyledList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: var(--mobilewidth);
+  margin: auto;
+  margin-top: 1rem;
+  gap: 1rem;
+`;
