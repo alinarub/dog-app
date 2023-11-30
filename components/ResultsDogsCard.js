@@ -29,7 +29,7 @@ const StyledListItem = styled.li`
   justify-content: center;
   align-items: center;
   background-color: var(--soft-background);
-  border-radius: var(--borderradius-small);
+  border-radius: var(--borderradius-medium);
   width: 100%;
   &:hover {
     background-color: var(--accent-color);
@@ -41,14 +41,15 @@ const StyledParagraph = styled.p`
   text-align: left;
   font-size: 0.9rem;
   padding-left: 1rem;
+  padding-right: 1rem;
 `;
 
 const StyledImage = styled(Image)`
   width: 10rem;
   height: auto;
 
-  border-top-right-radius: var(--borderradius-small);
-  border-bottom-right-radius: var(--borderradius-small);
+  border-top-right-radius: var(--borderradius-medium);
+  border-bottom-right-radius: var(--borderradius-medium);
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -59,8 +60,8 @@ const StyledPoints = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 3.1rem;
-  top: 4.1rem;
+  right: 0.6rem;
+  top: 0.6rem;
   background-color: var(--accent-color);
   padding: 0.4rem;
   height: 25px;

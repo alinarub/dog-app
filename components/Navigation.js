@@ -80,24 +80,25 @@ const StyledNavigation = styled.nav`
 `;
 
 const StyledHeader = styled.nav`
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 10rem 1fr;
+  align-items: center;
   position: fixed;
-  height: 6.2rem;
   width: 100%;
   background-color: var(--soft-background);
-  padding: var(--basicmargin) var(--basicmargin);
+  padding: 0 var(--basicmargin);
 `;
 
 const StyledHamburgerButton = styled.button`
+  justify-self: end;
   border: none;
   background-color: transparent;
   cursor: pointer;
 `;
 const StyledHeadline = styled.h2`
+  justify-self: center;
   font-size: 2rem;
 `;
 

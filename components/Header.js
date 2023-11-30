@@ -36,20 +36,19 @@ export default function Header() {
 }
 
 const StyledHeadline = styled.h2`
+  justify-self: center;
   font-size: 2rem;
 `;
 
 const StyledHeader = styled.header`
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 10rem 1fr;
   align-items: center;
-  top: 0;
   position: fixed;
-  height: 6.2rem;
   width: 100%;
   background-color: var(--soft-background);
-  padding: var(--basicmargin) var(--basicmargin);
+  padding: 0 var(--basicmargin);
 `;
 
 const StyledHamburgerIcon = styled(Image)`
@@ -65,6 +64,7 @@ const StyledSection = styled.section`
   width: 100%;
 `;
 const StyledHamburgerButton = styled.button`
+  justify-self: end;
   transition: transform 0.3s ease-in-out;
   cursor: pointer;
   border: none;
