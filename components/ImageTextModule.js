@@ -35,13 +35,13 @@ export default function ImageTextModule({ children, $showImage, $makeGray }) {
 const StyledSection = styled.div`
   position: relative;
   width: var(--mobilewidth);
-  margin: 2rem var(--basicmargin);
+  margin: auto;
+  margin-top: var(--basicmargin);
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 2px solid var(--primary-color);
   border-radius: var(--borderradius-medium);
-  margin-top: 10rem;
 `;
 const StyledImage = styled(Image)`
   width: 10rem;
@@ -50,6 +50,7 @@ const StyledImage = styled(Image)`
 const StyledP = styled.p`
   text-align: ${({ $showImage }) => ($showImage ? "left" : "center")};
   font-size: 1.1rem;
+  line-height: 1.25;
   padding: ${({ $showImage }) => ($showImage ? "0" : "2rem 2.5rem")};
   padding-right: ${({ $showImage }) => ($showImage ? "1rem" : "2.5rem")};
 `;

@@ -4,10 +4,11 @@ import Image from "next/image";
 export default function RatingLine({ characteristic, rating }) {
   let stars = [];
 
-  for (let i = 1; i < 6; ++i) {
+  for (let index = 1; index < 6; ++index) {
     stars.push(
       <StyledImage
-        src={i <= +rating ? "/paw-icon-yellow.svg" : "/paw-icon-gray.svg"}
+        key={index}
+        src={index <= +rating ? "/paw-icon-yellow.svg" : "/paw-icon-gray.svg"}
         alt="Icon of a paw"
         width={15}
         height={15}

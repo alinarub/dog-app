@@ -49,9 +49,11 @@ export default function Accordion() {
   ));
 }
 const StyledDetails = styled.details`
-  max-width: var(--mobilewidth);
+  width: var(--mobilewidth);
   text-align: center;
-  margin: 0.7rem;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 0.4rem 0.7rem;
   min-height: 4.3rem;
   background-color: var(--soft-background);
@@ -70,9 +72,6 @@ const StyledSummary = styled.summary`
   &:hover {
     text-decoration: 2px var(--accent-color) underline;
     text-underline-offset: 0.4rem;
-  }
-  &:active {
-    color: var(--accent-color);
   }
   &::-webkit-details-marker {
     display: none;

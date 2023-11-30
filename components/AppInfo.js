@@ -2,9 +2,12 @@ import Link from "next/link";
 import ImageTextModule from "./ImageTextModule";
 import styled from "styled-components";
 
-export default function AppInfo({ $hamburgerOpen, delay }) {
+export default function AppInfo({ $hamburgerOpen, $delay }) {
   return (
-    <StyledImageTextModuleWrapper $hamburgerOpen={$hamburgerOpen} delay={delay}>
+    <StyledImageTextModuleWrapper
+      $hamburgerOpen={$hamburgerOpen}
+      $delay={$delay}
+    >
       <ImageTextModule $makeGray>
         This little helper was brought to you by{" "}
         <StyledSimpleLink
@@ -36,18 +39,24 @@ export default function AppInfo({ $hamburgerOpen, delay }) {
 }
 
 const StyledSimpleLink = styled(Link)`
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-color);
+  text-decoration-thickness: 0.125rem;
+  text-underline-offset: 0.2rem;
   color: var(--font-color);
-  border-bottom: 2px solid var(--accent-color);
   &:hover {
-    border-bottom: 2px solid var(--primary-color);
+    text-decoration-color: var(--primary-color);
   }
 `;
 
 const StyledImageTextModuleWrapper = styled.div`
   visibility: ${(props) => (props.$hamburgerOpen ? "visible" : "hidden")};
-  transition: visibility ${(props) => props.delay} linear,
-    opacity ${(props) => props.delay} linear;
+  transition: visibility ${(props) => props.$delay} linear,
+    opacity ${(props) => props.$delay} linear;
   opacity: ${(props) => (props.$hamburgerOpen ? 1 : 0)};
-  transition-delay: 900ms;
+  transition-delay: 600ms;
+  margin: auto;
+  margin-top: -1rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
 `;

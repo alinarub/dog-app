@@ -1,7 +1,7 @@
 import ImageTextModule from "@/components/ImageTextModule";
 import Headline from "@/components/Headline";
 import useSWR from "swr";
-
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { useRouter } from "next/router";
 import DogCard from "@/components/DogCard";
 
@@ -12,7 +12,7 @@ export default function QuizResults() {
   );
 
   if (!dogs || isLoading) {
-    return "Loading...";
+    return <LoadingSpinner />;
   }
 
   return (

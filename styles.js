@@ -52,7 +52,7 @@ export default createGlobalStyle`
     --soft-background: #E5E4E2;
   
 
-    --mobilewidth: 23rem;
+    --mobilewidth: 21rem;
     --borderradius-small: .5rem;
     --borderradius-medium: 1.3rem;
     --basicmargin: 2.4rem;

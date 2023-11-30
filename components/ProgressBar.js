@@ -5,7 +5,7 @@ export default function ProgressBar({ step, questionsData }) {
     <>
       <StyledContainer>
         <StyledBackground />
-        <StyledProgress step={step} questionsData={questionsData} />
+        <StyledProgress $step={step} $questionsData={questionsData} />
       </StyledContainer>
       <StyledProgressList>
         {questionsData.map((question, index) => (
@@ -21,8 +21,8 @@ export default function ProgressBar({ step, questionsData }) {
 }
 
 const StyledContainer = styled.div`
-  height: 0.7rem;
-  width: calc(var(--mobilewidth) + 0.6rem);
+  height: 0.5rem;
+  width: calc(var(--mobilewidth) - 3rem);
   position: relative;
   margin: auto;
 `;
@@ -33,19 +33,19 @@ const StyledBaseBox = styled.div`
   left: 0;
   top: 0;
   border-radius: 8rem;
-  transition: width 0.5s ease-in-out;
+  transition: width 0.3s ease-in-out;
 `;
 
 const StyledBackground = styled(StyledBaseBox)`
-  background: var(--soft-background);
+  background: #3b81b3;
+
   width: 100%;
 `;
 
 const StyledProgress = styled(StyledBaseBox)`
   background: var(--accent-color);
-
-  width: ${({ step, questionsData }) =>
-    (100 / (questionsData.length - 1)) * step}%;
+  width: ${({ $step, $questionsData }) =>
+    (100 / ($questionsData.length - 1)) * $step}%;
 `;
 
 const StyledProgressListItem = styled.li`
@@ -60,7 +60,7 @@ const StyledProgressList = styled.ul`
   margin: auto;
   margin-top: 0.5rem;
   margin-bottom: 4rem;
-  width: var(--mobilewidth);
+  width: calc(var(--mobilewidth) - 3rem);
 `;
 const StyledPoints = styled.div`
   display: flex;

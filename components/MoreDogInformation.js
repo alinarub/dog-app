@@ -63,13 +63,15 @@ export default function MoreDogInformation({ dog }) {
 
 const StyledList = styled.ul`
   list-style: none;
-  margin-left: -0.6rem;
-  margin: var(--basicmargin) 0;
+  margin: auto;
+  margin-bottom: 1rem;
+  width: var(--mobilewidth);
 `;
 
 const StyledListItem = styled.li`
   display: flex;
   justify-content: space-between;
+  margin-top: 0.2rem;
 `;
 
 const StyledUnit = styled.span`

@@ -96,6 +96,7 @@ const StyledButton = styled.button`
   color: var(--font-color);
   font-size: 1rem;
   border-radius: var(--borderradius-small);
+  margin-top: -0.7rem;
 
   &:hover {
     border: 2px solid var(--primary-color);

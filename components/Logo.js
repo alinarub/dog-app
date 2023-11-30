@@ -11,8 +11,8 @@ export default function Logo({ handleNavigation }) {
           <StyledImage
             src={genieLogo}
             alt="Logo of a Genie with a Lamp"
-            width={502}
-            height={698}
+            width={749}
+            height={1393}
             blurDataURL="data:..."
             placeholder="blur" // Optional blur-up while loading
           />
@@ -23,8 +23,8 @@ export default function Logo({ handleNavigation }) {
           <StyledImage
             src={genieLogo}
             alt="Logo of a Genie with a Lamp"
-            width={502}
-            height={698}
+            width={749}
+            height={1393}
             blurDataURL="data:..."
             placeholder="blur" // Optional blur-up while loading
           />
@@ -35,6 +35,6 @@ export default function Logo({ handleNavigation }) {
 }
 
 const StyledImage = styled(Image)`
-  width: 5rem;
+  width: 3.5rem;
   height: auto;
 `;

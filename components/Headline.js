@@ -9,6 +9,7 @@ const StyledH1 = styled.h1`
   padding-bottom: 0.8rem;
   font-size: 2rem;
   font-weight: 200;
-  margin: 0 var(--basicmargin);
+  margin: auto;
   margin-top: ${(props) => props.$marginTop || "2rem"};
+  width: var(--mobilewidth);
 `;

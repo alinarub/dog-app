@@ -62,7 +62,7 @@ export default function Dogs() {
   });
   return (
     <>
-      <Headline $marginTop="8rem">All dogs</Headline>
+      <Headline $marginTop="2rem">All dogs</Headline>
       <SearchBar handleSearch={handleSearch} dogsLength={dogs.length} />
       <StyledList>
         {!isFuseActive &&
@@ -85,7 +85,8 @@ const StyledList = styled.ul`
   flex-direction: column;
   list-style: none;
   width: var(--mobilewidth);
-  margin: var(--basicmargin);
+  margin: auto;
+  margin-top: 1.5rem;
   gap: 1rem;
 `;
 const StyledParagraph = styled.p`
