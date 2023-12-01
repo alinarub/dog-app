@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import FavoriteDogsCard from "@/components/ResultsDogsCard";
 import Link from "next/link";
+import Confetti from "react-confetti";
 
 export default function QuizResults() {
   const router = useRouter();
@@ -26,6 +27,7 @@ export default function QuizResults() {
         <br />
         <StyledSimpleLink href="/quiz-page">Restart the quiz!</StyledSimpleLink>
       </ImageTextModule>
+      <Confetti recycle={false} />
       <Headline>Your best matches</Headline>
 
       <StyledList>
