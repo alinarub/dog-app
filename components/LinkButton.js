@@ -62,6 +62,7 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0.7rem 1.6em;
+  margin-top: 1.5rem;
 
   cursor: pointer;
   background-color: var(--soft-background);
