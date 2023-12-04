@@ -7,7 +7,7 @@ import AppInfo from "./AppInfo";
 export default function Navigation({ handleNavigation, $hamburgerOpen }) {
   return (
     <StyledNavigation $hamburgerOpen={$hamburgerOpen} $delay="400ms">
-      <StyledHeader>
+      <StyledTopBar>
         <Logo handleNavigation={handleNavigation} />
         <StyledHeadline>Dog Genie</StyledHeadline>
         <StyledHamburgerButton type="button" onClick={handleNavigation}>
@@ -20,7 +20,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
             placeholder="blur" // Optional blur-up while loading
           />
         </StyledHamburgerButton>
-      </StyledHeader>
+      </StyledTopBar>
       <StyledNavigationList>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
@@ -79,7 +79,7 @@ const StyledNavigation = styled.nav`
   background-color: var(--soft-background);
 `;
 
-const StyledHeader = styled.nav`
+const StyledTopBar = styled.div`
   top: 0;
   z-index: 10;
   display: grid;

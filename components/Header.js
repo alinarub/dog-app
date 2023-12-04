@@ -35,7 +35,7 @@ export default function Header() {
   );
 }
 
-const StyledHeadline = styled.h2`
+const StyledHeadline = styled.h1`
   justify-self: center;
   font-size: 2rem;
 `;
