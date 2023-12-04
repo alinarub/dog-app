@@ -7,9 +7,15 @@ import Headline from "@/components/Headline";
 import RatingLine from "@/components/RatingLine";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import MoreDogInformation from "@/components/MoreDogInformation";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function Name() {
   const [toggleInformation, setToggleInformation] = useState(false);
+  const [toggleFavorite, setToggleFavorite] = useState(false);
+  const [favoriteDogs, setFavoriteDogs] = useLocalStorageState("favoriteDogs", {
+    defaultValue: [],
+  });
+
   // get route from URL
   const router = useRouter();
 
@@ -29,13 +35,32 @@ export default function Name() {
     setToggleInformation(!toggleInformation);
   }
 
+  const localDog = favoriteDogs.find((findDog) => findDog.name === dog.name);
+
+  // click favorite button
+  function handleAddFavorite() {
+    setToggleFavorite(!toggleFavorite);
+    const localDog = favoriteDogs.find((findDog) => findDog.name === dog.name);
+    if (localDog) {
+      setFavoriteDogs(
+        favoriteDogs.map((favoriteDog) =>
+          favoriteDog.name === dog.name
+            ? { ...favoriteDog, isFavorited: !favoriteDog.isFavorited }
+            : favoriteDog
+        )
+      );
+    } else {
+      setFavoriteDogs([{ name: dog.name, isFavorited: true }, ...favoriteDogs]);
+    }
+  }
+
   return (
     <>
       <StyledImage
         src={dog.image_link}
         alt={`Image of ${dog.name}`}
-        width={600}
-        height={400}
+        width={256}
+        height={171}
         blurDataURL="data:..."
         placeholder="blur" // Optional blur-up while loading
       />
@@ -85,6 +110,25 @@ export default function Name() {
           />
           back
         </StyledButton>
+        <StyledButton type="button" onClick={handleAddFavorite}>
+          {localDog?.isFavorited ? (
+            <Image
+              src="/heart-icon-filled.svg"
+              alt="Icon of a filled heart"
+              width={30}
+              height={30}
+              blurDataURL="data:..."
+            />
+          ) : (
+            <Image
+              src="/heart-icon-unfilled.svg"
+              alt="Icon of an unfilled heart"
+              width={30}
+              height={30}
+              blurDataURL="data:..."
+            />
+          )}
+        </StyledButton>
         <StyledButton type="button" onClick={toggleMoreDogInformation}>
           {toggleInformation ? "less" : "more"}
         </StyledButton>
@@ -97,18 +141,14 @@ const StyledImage = styled(Image)`
   border-radius: var(--borderradius-medium);
   outline: 2px solid var(--primary-color);
   outline-offset: 0.5rem;
-  object-fit: scale-down;
-  width: var(--mobilewidth);
-  height: auto;
   margin: auto;
-  margin-top: 3rem;
+  margin-top: 8rem;
 `;
 
 const StyledList = styled.ul`
   list-style: none;
-  margin: auto;
-  margin-top: 1rem;
-  width: var(--mobilewidth);
+  margin-left: -0.6rem;
+  margin: var(--basicmargin) 0;
 `;
 
 const StyledListItem = styled.li`
@@ -116,12 +156,9 @@ const StyledListItem = styled.li`
 `;
 
 const StyledNavigation = styled.nav`
-  margin: auto;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
   display: flex;
   justify-content: space-between;
-  width: var(--mobilewidth);
 `;
 
 const StyledButton = styled.button`
