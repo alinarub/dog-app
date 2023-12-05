@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export default function Headline({ children, $marginTop }) {
-  return <StyledH1 $marginTop={$marginTop}>{children}</StyledH1>;
+  return <StyledHeadline $marginTop={$marginTop}>{children}</StyledHeadline>;
 }
 
-const StyledH1 = styled.h2`
+const StyledHeadline = styled.h2`
   border-bottom: 2px solid var(--accent-color);
   padding-bottom: 0.8rem;
   font-size: 2rem;

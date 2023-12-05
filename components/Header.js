@@ -11,13 +11,13 @@ export default function Header() {
     setHamburgerOpen(!hamburgerOpen);
   }
   return (
-    <StyledSection>
+    <StyledHeader>
       <Navigation
         handleNavigation={handleNavigation}
         $hamburgerOpen={hamburgerOpen}
       />
 
-      <StyledHeader>
+      <StyledSection>
         <Logo />
         <StyledHeadline>Dog Genie</StyledHeadline>
         <StyledHamburgerButton type="button" onClick={handleNavigation}>
@@ -30,8 +30,8 @@ export default function Header() {
             placeholder="blur" // Optional blur-up while loading
           />
         </StyledHamburgerButton>
-      </StyledHeader>
-    </StyledSection>
+      </StyledSection>
+    </StyledHeader>
   );
 }
 
@@ -40,7 +40,7 @@ const StyledHeadline = styled.h1`
   font-size: 2rem;
 `;
 
-const StyledHeader = styled.header`
+const StyledSection = styled.section`
   z-index: 10;
   display: grid;
   grid-template-columns: 1fr 10rem 1fr;
@@ -59,7 +59,7 @@ const StyledHamburgerIcon = styled(Image)`
   }
 `;
 
-const StyledSection = styled.section`
+const StyledHeader = styled.header`
   position: relative;
   width: 100%;
 `;

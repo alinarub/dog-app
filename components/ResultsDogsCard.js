@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function ResultsDogsCard({ dog }) {
   const { image_link, name, points } = dog;
   return (
-    <StyledLink href={`dogs/${name}`}>
-      <StyledListItem>
+    <StyledListItem>
+      <StyledLink href={`dogs/${name}`}>
         <StyledPoints>{points}</StyledPoints>
         <StyledParagraph>{name}</StyledParagraph>
 
@@ -18,16 +18,11 @@ export default function ResultsDogsCard({ dog }) {
           blurDataURL="data:..."
           placeholder="blur" // Optional blur-up while loading
         />
-      </StyledListItem>
-    </StyledLink>
+      </StyledLink>
+    </StyledListItem>
   );
 }
 const StyledListItem = styled.li`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   background-color: var(--soft-background);
   border-radius: var(--borderradius-medium);
   width: 100%;
@@ -52,6 +47,11 @@ const StyledImage = styled(Image)`
   border-bottom-right-radius: var(--borderradius-medium);
 `;
 const StyledLink = styled(Link)`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
   color: var(--font-color);
 `;
