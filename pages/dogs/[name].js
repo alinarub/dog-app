@@ -10,8 +10,8 @@ import MoreDogInformation from "@/components/MoreDogInformation";
 import useLocalStorageState from "use-local-storage-state";
 
 export default function Name() {
-  const [toggleInformation, setToggleInformation] = useState(false);
-  const [toggleFavorite, setToggleFavorite] = useState(false);
+  const [showMoreInformation, setShowMoreInformation] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [favoriteDogs, setFavoriteDogs] = useLocalStorageState("favoriteDogs", {
     defaultValue: [],
   });
@@ -32,14 +32,14 @@ export default function Name() {
   const dog = dogs.find((findDog) => findDog.name === routerName);
 
   function toggleMoreDogInformation() {
-    setToggleInformation(!toggleInformation);
+    setShowMoreInformation(!showMoreInformation);
   }
 
   const localDog = favoriteDogs.find((findDog) => findDog.name === dog.name);
 
   // click favorite button
-  function handleAddFavorite() {
-    setToggleFavorite(!toggleFavorite);
+  function handleToggleFavorite() {
+    setIsFavorite(!isFavorite);
     const localDog = favoriteDogs.find((findDog) => findDog.name === dog.name);
     if (localDog) {
       setFavoriteDogs(
@@ -98,7 +98,7 @@ export default function Name() {
           <RatingLine rating={dog.trainability} characteristic="Trainability" />
         </StyledListItem>
       </StyledList>
-      {toggleInformation && <MoreDogInformation dog={dog} />}
+      {showMoreInformation && <MoreDogInformation dog={dog} />}
       <StyledNavigation>
         <StyledButton type="button" onClick={() => router.back()}>
           <StyledIconLeft
@@ -110,27 +110,21 @@ export default function Name() {
           />
           back
         </StyledButton>
-        <StyledButton type="button" onClick={handleAddFavorite}>
-          {localDog?.isFavorited ? (
-            <Image
-              src="/heart-icon-filled.svg"
-              alt="Icon of a filled heart"
-              width={30}
-              height={30}
-              blurDataURL="data:..."
-            />
-          ) : (
-            <Image
-              src="/heart-icon-unfilled.svg"
-              alt="Icon of an unfilled heart"
-              width={30}
-              height={30}
-              blurDataURL="data:..."
-            />
-          )}
+        <StyledButton type="button" onClick={handleToggleFavorite}>
+          <Image
+            src={
+              localDog?.isFavorited
+                ? "/heart-icon-filled.svg"
+                : "/heart-icon-unfilled.svg"
+            }
+            alt="Icon of a heart"
+            width={25}
+            height={25}
+            blurDataURL="data:..."
+          />
         </StyledButton>
         <StyledButton type="button" onClick={toggleMoreDogInformation}>
-          {toggleInformation ? "less" : "more"}
+          {showMoreInformation ? "less" : "more"}
         </StyledButton>
       </StyledNavigation>
     </>

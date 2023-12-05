@@ -2,11 +2,11 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ResultsDogsCard({ dog }) {
+export default function FavoritedDogsCard({ dog }) {
   const { image_link, name } = dog;
   return (
-    <StyledLink href={`dogs/${name}`}>
-      <StyledListItem>
+    <StyledListItem>
+      <StyledLink href={`dogs/${name}`}>
         <StyledParagraph>{name}</StyledParagraph>
 
         <StyledImage
@@ -17,23 +17,20 @@ export default function ResultsDogsCard({ dog }) {
           blurDataURL="data:..."
           placeholder="blur" // Optional blur-up while loading
         />
-      </StyledListItem>
-    </StyledLink>
+      </StyledLink>
+    </StyledListItem>
   );
 }
-const StyledListItem = styled.li`
+const StyledLink = styled(Link)`
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: var(--soft-background);
-  border-radius: var(--borderradius-medium);
+
   width: 100%;
-  &:hover {
-    background-color: var(--accent-color);
-    cursor: pointer;
-  }
+  text-decoration: none;
+  color: var(--font-color);
 `;
 const StyledParagraph = styled.p`
   width: 100%;
@@ -50,7 +47,11 @@ const StyledImage = styled(Image)`
   border-top-right-radius: var(--borderradius-medium);
   border-bottom-right-radius: var(--borderradius-medium);
 `;
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: var(--font-color);
+const StyledListItem = styled.li`
+  background-color: var(--soft-background);
+  border-radius: var(--borderradius-medium);
+  &:hover {
+    background-color: var(--accent-color);
+    cursor: pointer;
+  }
 `;
