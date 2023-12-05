@@ -1,8 +1,8 @@
-import Logo from "./Logo";
+import { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
+import Logo from "./Logo";
 import Navigation from "./Navigation";
-import { useState } from "react";
 
 export default function Header() {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);

@@ -1,12 +1,12 @@
 import useSWR from "swr";
 import { useState } from "react";
 import { useEffect } from "react";
+import Fuse from "fuse.js";
+import styled from "styled-components";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import AllDogsCard from "@/components/AllDogsCard";
-import styled from "styled-components";
 import Headline from "@/components/Headline";
 import SearchBar from "@/components/SearchBar";
-import Fuse from "fuse.js";
 
 const fuseOptions = {
   // isCaseSensitive: false,

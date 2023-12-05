@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
+import styled from "styled-components";
 
 export default function ResultsDogsCard({ dog }) {
   const { image_link, name, points } = dog;

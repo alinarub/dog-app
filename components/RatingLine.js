@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import Image from "next/image";
+import styled from "styled-components";
 
 export default function RatingLine({ characteristic, rating }) {
   let stars = [];

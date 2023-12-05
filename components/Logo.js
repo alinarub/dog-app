@@ -1,7 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
 import genieLogo from "../public/genie-logo.png";
-import Link from "next/link";
 
 export default function Logo({ handleNavigation }) {
   return (

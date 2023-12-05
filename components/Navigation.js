@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Logo from "./Logo";
 import Link from "next/link";
 import styled from "styled-components";
+import Logo from "./Logo";
 import AppInfo from "./AppInfo";
 
 export default function Navigation({ handleNavigation, $hamburgerOpen }) {

@@ -1,12 +1,12 @@
-import ImageTextModule from "@/components/ImageTextModule";
-import Headline from "@/components/Headline";
 import useSWR from "swr";
-import LoadingSpinner from "@/components/LoadingSpinner";
 import { useRouter } from "next/router";
-import styled from "styled-components";
-import ResultsDogsCard from "@/components/ResultsDogsCard";
 import Link from "next/link";
 import Confetti from "react-confetti";
+import styled from "styled-components";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import ImageTextModule from "@/components/ImageTextModule";
+import Headline from "@/components/Headline";
+import ResultsDogsCard from "@/components/ResultsDogsCard";
 
 export default function QuizResults() {
   const router = useRouter();
@@ -29,11 +29,9 @@ export default function QuizResults() {
       <Headline>Your best matches</Headline>
 
       <StyledList>
-        {dogs.map((dog, index) => {
-          if (index < 5) {
-            return <ResultsDogsCard dog={dog} key={dog.name} />;
-          }
-        })}
+        {dogs.slice(0, 5).map((dog) => (
+          <ResultsDogsCard dog={dog} key={dog.name} />
+        ))}
       </StyledList>
     </>
   );

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styled from "styled-components";
 import Image from "next/image";
+import styled from "styled-components";
 
 export default function LinkButton({ href, children, $fullWidth }) {
   return (
