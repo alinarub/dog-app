@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import Image from "next/image";
+import styled from "styled-components";
 import genieLogo from "../public/genie-logo.png";
 import lampIcon from "../public/lamp-icon.png";
 
@@ -44,7 +44,7 @@ const StyledSection = styled.div`
   border-radius: var(--borderradius-medium);
 `;
 const StyledImage = styled(Image)`
-  width: 10rem;
+  width: 8rem;
   height: auto;
 `;
 const StyledP = styled.p`

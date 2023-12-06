@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styled from "styled-components";
 import Image from "next/image";
+import styled from "styled-components";
 
 export default function LinkButton({ href, children, $fullWidth }) {
   return (
@@ -62,6 +62,7 @@ const StyledButton = styled.button`
   justify-content: center;
   align-items: center;
   padding: 0.7rem 1.6em;
+  margin-top: 1.5rem;
 
   cursor: pointer;
   background-color: var(--soft-background);

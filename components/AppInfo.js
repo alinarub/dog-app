@@ -1,6 +1,6 @@
 import Link from "next/link";
-import ImageTextModule from "./ImageTextModule";
 import styled from "styled-components";
+import ImageTextModule from "./ImageTextModule";
 
 export default function AppInfo({ $hamburgerOpen, $delay }) {
   return (

@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
 import useSWR from "swr";
+import { useRouter } from "next/router";
 import Image from "next/image";
+import { useState } from "react";
 import styled from "styled-components";
 import Headline from "@/components/Headline";
 import RatingLine from "@/components/RatingLine";

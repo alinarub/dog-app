@@ -74,6 +74,7 @@ const StyledLabel = styled.label`
   text-align: center;
   margin: 0.7rem;
   height: 4.3rem;
+  padding: 0 0.5rem;
   cursor: pointer;
   background-color: var(--soft-background);
   color: var(--font-color);
