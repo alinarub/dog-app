@@ -5,6 +5,8 @@ import QuizFormQuestion from "./QuizFormQuestion";
 import LinkButton from "./LinkButton";
 import ImageTextModule from "./ImageTextModule";
 import ProgressBar from "./ProgressBar";
+import useSWR from "swr";
+import { updateService } from "@/lib/api";
 
 const questionsData = [
   {
@@ -124,13 +126,21 @@ const questionsData = [
 export default function QuizFormMultiStep() {
   const [formResults, setFormResults] = useState({});
   const [step, setStep] = useState(0);
-
+  const { data, error, isLoading } = useSWR("/api/statistics");
+  console.log("data", data);
   const router = useRouter();
 
-  function handleNextButtonClick(topic, value) {
+  async function handleNextButtonClick(topic, value) {
     setStep(step + 1);
     setFormResults((oldFormResults) => ({ ...oldFormResults, [topic]: value }));
+    // Update Statistics
+    await updateService({ amount: Number(7) });
   }
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   const params = new URLSearchParams(formResults);
+  //   router.push(`/quiz-results?${params}`);
+  // }
   function handleSubmit(event) {
     event.preventDefault();
     const params = new URLSearchParams(formResults);
