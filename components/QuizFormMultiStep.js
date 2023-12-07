@@ -7,6 +7,7 @@ import ImageTextModule from "./ImageTextModule";
 import ProgressBar from "./ProgressBar";
 import useSWR from "swr";
 import { updateService } from "@/lib/api";
+import LoadingSpinner from "./LoadingSpinner";
 
 const questionsData = [
   {
@@ -126,25 +127,38 @@ const questionsData = [
 export default function QuizFormMultiStep() {
   const [formResults, setFormResults] = useState({});
   const [step, setStep] = useState(0);
-  const { data, error, isLoading } = useSWR("/api/statistics");
-  console.log("data", data);
   const router = useRouter();
+  // Get statistics from the database
+  const { data, error, isLoading, mutate } = useSWR("/api/statistics");
+  console.log("data from frontend---", data[0].amount);
 
-  async function handleNextButtonClick(topic, value) {
+  function handleNextButtonClick(topic, value) {
+    // Go to the next question
     setStep(step + 1);
     setFormResults((oldFormResults) => ({ ...oldFormResults, [topic]: value }));
-    // Update Statistics
-    await updateService({ amount: Number(7) });
   }
   // function handleSubmit(event) {
   //   event.preventDefault();
   //   const params = new URLSearchParams(formResults);
   //   router.push(`/quiz-results?${params}`);
   // }
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    // Update statistics
+    await updateService({ ...data, amount: Number("7") });
+    mutate("/api/statistics");
     const params = new URLSearchParams(formResults);
     router.push(`/quiz-results?${params}`);
+  }
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  if (!data) {
+    return;
+  }
+  if (error) {
+    return <h2>An error occured...</h2>;
   }
 
   return (
@@ -158,7 +172,8 @@ export default function QuizFormMultiStep() {
 
       {step >= questionsData.length && (
         <ImageTextModule>
-          Congratulations on going on this journey. Your perfect companion is
+          Congratulations on going on this journey. By the way, you are the #
+          {data[0].amount} person to take this quiz. Your perfect companion is
           waiting for you on the next page!
         </ImageTextModule>
       )}

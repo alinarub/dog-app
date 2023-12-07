@@ -7,6 +7,7 @@ import DogCard from "@/components/DogCard";
 
 export default function QuizResults() {
   const router = useRouter();
+  // Get user choices from form
   const { data: dogs, isLoading } = useSWR(
     router.isReady ? `/api/dogs?${new URLSearchParams(router.query)}` : null
   );
