@@ -158,7 +158,7 @@ export default function QuizFormMultiStep() {
     return;
   }
   if (error) {
-    return <h2>An error occured...</h2>;
+    return <h2>An error occurred...</h2>;
   }
 
   return (
@@ -172,9 +172,9 @@ export default function QuizFormMultiStep() {
 
       {step >= questionsData.length && (
         <ImageTextModule>
-          Congratulations on going on this journey. By the way, you are the #
-          {data[0].amount} person to take this quiz. Your perfect companion is
-          waiting for you on the next page!
+          Congratulations on going on this journey. {data[0].amount} people have
+          already taken the quiz before you. Your perfect companion is waiting
+          for you on the next page!
         </ImageTextModule>
       )}
 

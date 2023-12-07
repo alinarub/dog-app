@@ -1,5 +1,6 @@
-import LoadingSpinner from "@/components/LoadingSpinner";
 import useSWR from "swr";
+import LoadingSpinner from "@/components/LoadingSpinner";
+
 export default function Statistics() {
   const { data, error, isLoading } = useSWR("/api/statistics");
 
@@ -10,7 +11,7 @@ export default function Statistics() {
     return;
   }
   if (error) {
-    return <h2>An error occured...</h2>;
+    return <h2>An error occurred...</h2>;
   }
 
   console.log("data---", data);

@@ -24,7 +24,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
       <StyledNavigationList>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="600ms"
+          $delay="400ms"
         >
           <StyledLink href="/" onClick={handleNavigation}>
             Home
@@ -32,7 +32,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
         </StyledNavigationListItem>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="700ms"
+          $delay="500ms"
         >
           <StyledLink href="/quiz-page" onClick={handleNavigation}>
             Quiz page
@@ -40,7 +40,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
         </StyledNavigationListItem>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="800ms"
+          $delay="600ms"
         >
           <StyledLink href="/dogs" onClick={handleNavigation}>
             All dogs
@@ -48,14 +48,22 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
         </StyledNavigationListItem>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="900ms"
+          $delay="700ms"
+        >
+          <StyledLink href="/statistics" onClick={handleNavigation}>
+            Statistics
+          </StyledLink>
+        </StyledNavigationListItem>
+        <StyledNavigationListItem
+          $hamburgerOpen={$hamburgerOpen}
+          $delay="800ms"
         >
           <StyledLink href="/faq" onClick={handleNavigation}>
             FAQ
           </StyledLink>
         </StyledNavigationListItem>
       </StyledNavigationList>
-      <AppInfo $hamburgerOpen={$hamburgerOpen} $delay="1000ms" />
+      <AppInfo $hamburgerOpen={$hamburgerOpen} $delay="900ms" />
     </StyledNavigation>
   );
 }
@@ -150,5 +158,8 @@ const StyledNavigationListItem = styled.li`
   }
   &:nth-child(4) {
     transition-delay: 600ms;
+  }
+  &:nth-child(5) {
+    transition-delay: 700ms;
   }
 `;
