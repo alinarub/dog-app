@@ -1,13 +1,13 @@
 import Image from "next/image";
-import Logo from "./Logo";
 import Link from "next/link";
 import styled from "styled-components";
+import Logo from "./Logo";
 import AppInfo from "./AppInfo";
 
 export default function Navigation({ handleNavigation, $hamburgerOpen }) {
   return (
     <StyledNavigation $hamburgerOpen={$hamburgerOpen} $delay="400ms">
-      <StyledHeader>
+      <StyledTopBar>
         <Logo handleNavigation={handleNavigation} />
         <StyledHeadline>Dog Genie</StyledHeadline>
         <StyledHamburgerButton type="button" onClick={handleNavigation}>
@@ -20,7 +20,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
             placeholder="blur" // Optional blur-up while loading
           />
         </StyledHamburgerButton>
-      </StyledHeader>
+      </StyledTopBar>
       <StyledNavigationList>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
@@ -79,25 +79,26 @@ const StyledNavigation = styled.nav`
   background-color: var(--soft-background);
 `;
 
-const StyledHeader = styled.nav`
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+const StyledTopBar = styled.div`
   top: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 10rem 1fr;
+  align-items: center;
   position: fixed;
-  height: 6.2rem;
   width: 100%;
   background-color: var(--soft-background);
-  padding: var(--basicmargin) var(--basicmargin);
+  padding: 0 var(--basicmargin);
 `;
 
 const StyledHamburgerButton = styled.button`
+  justify-self: end;
   border: none;
   background-color: transparent;
   cursor: pointer;
 `;
 const StyledHeadline = styled.h2`
+  justify-self: center;
   font-size: 2rem;
 `;
 

@@ -1,8 +1,8 @@
-import Logo from "./Logo";
+import { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
+import Logo from "./Logo";
 import Navigation from "./Navigation";
-import { useState } from "react";
 
 export default function Header() {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -11,13 +11,13 @@ export default function Header() {
     setHamburgerOpen(!hamburgerOpen);
   }
   return (
-    <StyledSection>
+    <StyledHeader>
       <Navigation
         handleNavigation={handleNavigation}
         $hamburgerOpen={hamburgerOpen}
       />
 
-      <StyledHeader>
+      <StyledSection>
         <Logo />
         <StyledHeadline>Dog Genie</StyledHeadline>
         <StyledHamburgerButton type="button" onClick={handleNavigation}>
@@ -30,26 +30,25 @@ export default function Header() {
             placeholder="blur" // Optional blur-up while loading
           />
         </StyledHamburgerButton>
-      </StyledHeader>
-    </StyledSection>
+      </StyledSection>
+    </StyledHeader>
   );
 }
 
-const StyledHeadline = styled.h2`
+const StyledHeadline = styled.h1`
+  justify-self: center;
   font-size: 2rem;
 `;
 
-const StyledHeader = styled.header`
+const StyledSection = styled.section`
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 10rem 1fr;
   align-items: center;
-  top: 0;
   position: fixed;
-  height: 6.2rem;
   width: 100%;
   background-color: var(--soft-background);
-  padding: var(--basicmargin) var(--basicmargin);
+  padding: 0 var(--basicmargin);
 `;
 
 const StyledHamburgerIcon = styled(Image)`
@@ -60,11 +59,12 @@ const StyledHamburgerIcon = styled(Image)`
   }
 `;
 
-const StyledSection = styled.section`
+const StyledHeader = styled.header`
   position: relative;
   width: 100%;
 `;
 const StyledHamburgerButton = styled.button`
+  justify-self: end;
   transition: transform 0.3s ease-in-out;
   cursor: pointer;
   border: none;

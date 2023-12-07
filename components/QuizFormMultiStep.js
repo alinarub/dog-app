@@ -1,6 +1,6 @@
-import styled from "styled-components";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import styled from "styled-components";
 import QuizFormQuestion from "./QuizFormQuestion";
 import LinkButton from "./LinkButton";
 import ImageTextModule from "./ImageTextModule";

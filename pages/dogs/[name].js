@@ -1,15 +1,21 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
 import useSWR from "swr";
+import { useRouter } from "next/router";
 import Image from "next/image";
+import { useState } from "react";
 import styled from "styled-components";
 import Headline from "@/components/Headline";
 import RatingLine from "@/components/RatingLine";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import MoreDogInformation from "@/components/MoreDogInformation";
+import useLocalStorageState from "use-local-storage-state";
 
 export default function Name() {
-  const [toggleInformation, setToggleInformation] = useState(false);
+  const [showMoreInformation, setShowMoreInformation] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [favoriteDogs, setFavoriteDogs] = useLocalStorageState("favoriteDogs", {
+    defaultValue: [],
+  });
+
   // get route from URL
   const router = useRouter();
 
@@ -26,7 +32,26 @@ export default function Name() {
   const dog = dogs.find((findDog) => findDog.name === routerName);
 
   function toggleMoreDogInformation() {
-    setToggleInformation(!toggleInformation);
+    setShowMoreInformation(!showMoreInformation);
+  }
+
+  const localDog = favoriteDogs.find((findDog) => findDog.name === dog.name);
+
+  // click favorite button
+  function handleToggleFavorite() {
+    setIsFavorite(!isFavorite);
+    const localDog = favoriteDogs.find((findDog) => findDog.name === dog.name);
+    if (localDog) {
+      setFavoriteDogs(
+        favoriteDogs.map((favoriteDog) =>
+          favoriteDog.name === dog.name
+            ? { ...favoriteDog, isFavorited: !favoriteDog.isFavorited }
+            : favoriteDog
+        )
+      );
+    } else {
+      setFavoriteDogs([{ name: dog.name, isFavorited: true }, ...favoriteDogs]);
+    }
   }
 
   return (
@@ -34,8 +59,8 @@ export default function Name() {
       <StyledImage
         src={dog.image_link}
         alt={`Image of ${dog.name}`}
-        width={600}
-        height={400}
+        width={256}
+        height={171}
         blurDataURL="data:..."
         placeholder="blur" // Optional blur-up while loading
       />
@@ -73,7 +98,7 @@ export default function Name() {
           <RatingLine rating={dog.trainability} characteristic="Trainability" />
         </StyledListItem>
       </StyledList>
-      {toggleInformation && <MoreDogInformation dog={dog} />}
+      {showMoreInformation && <MoreDogInformation dog={dog} />}
       <StyledNavigation>
         <StyledButton type="button" onClick={() => router.back()}>
           <StyledIconLeft
@@ -85,8 +110,21 @@ export default function Name() {
           />
           back
         </StyledButton>
+        <StyledButton type="button" onClick={handleToggleFavorite}>
+          <Image
+            src={
+              localDog?.isFavorited
+                ? "/heart-icon-filled.svg"
+                : "/heart-icon-unfilled.svg"
+            }
+            alt="Icon of a heart"
+            width={25}
+            height={25}
+            blurDataURL="data:..."
+          />
+        </StyledButton>
         <StyledButton type="button" onClick={toggleMoreDogInformation}>
-          {toggleInformation ? "less" : "more"}
+          {showMoreInformation ? "less" : "more"}
         </StyledButton>
       </StyledNavigation>
     </>
@@ -97,18 +135,14 @@ const StyledImage = styled(Image)`
   border-radius: var(--borderradius-medium);
   outline: 2px solid var(--primary-color);
   outline-offset: 0.5rem;
-  object-fit: scale-down;
-  width: var(--mobilewidth);
-  height: auto;
   margin: auto;
-  margin-top: 3rem;
+  margin-top: 8rem;
 `;
 
 const StyledList = styled.ul`
   list-style: none;
-  margin: auto;
-  margin-top: 1rem;
-  width: var(--mobilewidth);
+  margin-left: -0.6rem;
+  margin: var(--basicmargin) 0;
 `;
 
 const StyledListItem = styled.li`
@@ -116,12 +150,9 @@ const StyledListItem = styled.li`
 `;
 
 const StyledNavigation = styled.nav`
-  margin: auto;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
   display: flex;
   justify-content: space-between;
-  width: var(--mobilewidth);
 `;
 
 const StyledButton = styled.button`
