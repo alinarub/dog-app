@@ -7,7 +7,7 @@ import LinkButton from "./LinkButton";
 import ImageTextModule from "./ImageTextModule";
 import ProgressBar from "./ProgressBar";
 import LoadingSpinner from "./LoadingSpinner";
-import { updateService } from "@/lib/api";
+import { createStatistic } from "@/lib/api";
 
 const questionsData = [
   {
@@ -144,10 +144,11 @@ export default function QuizFormMultiStep() {
   // }
   async function handleSubmit(event) {
     event.preventDefault();
-    // Update statistics
-    await updateService({ ...data, amount: Number("7") });
-    mutate("/api/statistics");
     const params = new URLSearchParams(formResults);
+    // Update statistics
+    await createStatistic({ params: formResults });
+    mutate("/api/statistics");
+
     router.push(`/quiz-results?${params}`);
   }
 
@@ -172,9 +173,9 @@ export default function QuizFormMultiStep() {
 
       {step >= questionsData.length && (
         <ImageTextModule>
-          Congratulations on going on this journey. {data[0].amount} people have
-          already taken the quiz before you. Your perfect companion is waiting
-          for you on the next page!
+          Congratulations on going on this journey. people have already taken
+          the quiz before you. Your perfect companion is waiting for you on the
+          next page!
         </ImageTextModule>
       )}
 

@@ -37,8 +37,8 @@ export default async function handler(request, response) {
   if (request.method === "POST") {
     try {
       const statisticData = request.body;
-      await Statistic.create(statisticData);
-      response.status(201).json({ message: "Expense created." });
+      await Statistic.create(statisticData.params);
+      response.status(201).json({ message: "Statistic created." });
     } catch (error) {
       return response.json({ message: "Something went wrong", error: error });
     }
