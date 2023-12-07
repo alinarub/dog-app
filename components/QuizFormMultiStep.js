@@ -1,13 +1,13 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import useSWR from "swr";
 import styled from "styled-components";
 import QuizFormQuestion from "./QuizFormQuestion";
 import LinkButton from "./LinkButton";
 import ImageTextModule from "./ImageTextModule";
 import ProgressBar from "./ProgressBar";
-import useSWR from "swr";
-import { updateService } from "@/lib/api";
 import LoadingSpinner from "./LoadingSpinner";
+import { updateService } from "@/lib/api";
 
 const questionsData = [
   {
@@ -130,7 +130,7 @@ export default function QuizFormMultiStep() {
   const router = useRouter();
   // Get statistics from the database
   const { data, error, isLoading, mutate } = useSWR("/api/statistics");
-  console.log("data from frontend---", data[0].amount);
+  // console.log("data from frontend---", data[0].amount);
 
   function handleNextButtonClick(topic, value) {
     // Go to the next question
