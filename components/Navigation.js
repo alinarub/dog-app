@@ -24,7 +24,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
       <StyledNavigationList>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="400ms"
+          $delay="300ms"
         >
           <StyledLink href="/" onClick={handleNavigation}>
             Home
@@ -32,7 +32,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
         </StyledNavigationListItem>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="500ms"
+          $delay="400ms"
         >
           <StyledLink href="/quiz-page" onClick={handleNavigation}>
             Quiz page
@@ -40,10 +40,18 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
         </StyledNavigationListItem>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="600ms"
+          $delay="500ms"
         >
           <StyledLink href="/dogs" onClick={handleNavigation}>
             All dogs
+          </StyledLink>
+        </StyledNavigationListItem>
+        <StyledNavigationListItem
+          $hamburgerOpen={$hamburgerOpen}
+          $delay="600ms"
+        >
+          <StyledLink href="/favorite-dogs" onClick={handleNavigation}>
+            Favorite dogs
           </StyledLink>
         </StyledNavigationListItem>
         <StyledNavigationListItem
@@ -161,5 +169,8 @@ const StyledNavigationListItem = styled.li`
   }
   &:nth-child(5) {
     transition-delay: 700ms;
+  }
+  &:nth-child(6) {
+    transition-delay: 800ms;
   }
 `;

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import FavoritedDogsCard from "@/components/FavoritedDogsCard";
 import Headline from "@/components/Headline";
 import ImageTextModule from "@/components/ImageTextModule";
-import Link from "next/link";
 import useSWR from "swr";
 import LoadingSpinner from "@/components/LoadingSpinner";
 
@@ -30,7 +29,7 @@ export default function FavoriteDogs() {
       <ImageTextModule $showImage>
         Here you can gather all of your favorite dogs that you stumble upon.
       </ImageTextModule>
-      <Headline>Favorites</Headline>
+      <Headline>My favorites</Headline>
 
       {filteredDogs.length === 0 ? (
         <StyledParagraph>
