@@ -145,7 +145,7 @@ export default function QuizFormMultiStep() {
   async function handleSubmit(event) {
     event.preventDefault();
     const params = new URLSearchParams(formResults);
-    // Update statistics
+    // Create statistics
     await createStatistic({ params: formResults });
     mutate("/api/statistics");
 
@@ -173,9 +173,8 @@ export default function QuizFormMultiStep() {
 
       {step >= questionsData.length && (
         <ImageTextModule>
-          Congratulations on going on this journey. people have already taken
-          the quiz before you. Your perfect companion is waiting for you on the
-          next page!
+          Congratulations on going on this journey. Your perfect companion is
+          waiting for you on the next page!
         </ImageTextModule>
       )}
 

@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import LoadingSpinner from "@/components/LoadingSpinner";
+import Headline from "@/components/Headline";
 
 export default function Statistics() {
   const { data, error, isLoading } = useSWR("/api/statistics");
@@ -15,5 +16,10 @@ export default function Statistics() {
   }
 
   console.log("data---", data);
-  return <div>Statistics</div>;
+  return (
+    <>
+      <Headline>Statistics</Headline>
+      <p>{data.length} people have already taken the quiz before you!</p>
+    </>
+  );
 }
