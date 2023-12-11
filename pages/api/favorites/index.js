@@ -3,16 +3,18 @@ import Favorite from "@/db/models/Favorite";
 
 export default async function handler(request, response) {
   await connect();
+  // Get all winner dogs from the database
   if (request.method === "GET") {
     console.log("request body", request.body);
     try {
       const favorite = await Favorite.find();
+      console.log("favorite---", favorite);
       response.status(200).json(favorite);
     } catch (error) {
       return response.status(400).json({ message: error });
     }
   }
-  // Add the winner of the quiz to the Database
+  // Add the winner of the quiz to the database
   if (request.method === "POST") {
     try {
       const favoriteData = request.body;
@@ -40,9 +42,6 @@ export default async function handler(request, response) {
           .status(201)
           .json({ message: "New entry created", entry: newEntry });
       }
-      // our old approac
-      // await Favorite.create(favoriteData);
-      // response.status(201).json({ message: "Favorite created." });
     } catch (error) {
       return response.json({ message: "Something went wrong", error: error });
     }
