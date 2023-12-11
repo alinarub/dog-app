@@ -8,21 +8,30 @@ import Headline from "@/components/Headline";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Statistics() {
-  const { data, error, isLoading } = useSWR("/api/favorites");
+  const {
+    data: dataFavorites,
+    error: errorFavorites,
+    isLoading: isLoadingFavorites,
+  } = useSWR("/api/favorites");
+  const {
+    data: dataStatistics,
+    error: errorStatistics,
+    isLoading: isLoadingStatistics,
+  } = useSWR("/api/statistics");
 
-  if (isLoading) {
+  if (isLoadingFavorites || isLoadingStatistics) {
     return <LoadingSpinner />;
   }
 
-  if (error) {
+  if (errorFavorites || errorStatistics) {
     return <h2>An error occurred...</h2>;
   }
 
   // All dogs
-  const allDogs = [...data];
+  const allDogs = [...dataFavorites];
 
   // Sort and Slice dogs data
-  const dogsSortedByPoints = data
+  const dogsSortedByPoints = dataFavorites
     .sort(function (a, b) {
       return b.value - a.value;
     })
@@ -82,9 +91,14 @@ export default function Statistics() {
 
   return (
     <>
-      <Headline>Statistics</Headline>
+      <Headline>Quiz visitors</Headline>
       <StyledParagraph>
-        These dogs are the best matches for those of you who took the quiz.
+        <StyledSpan>{dataStatistics.length}</StyledSpan> people have taken the
+        quiz so far.
+      </StyledParagraph>
+      <Headline>Best matches</Headline>
+      <StyledParagraph>
+        These dogs are the most common matches for our quiz visitors.
       </StyledParagraph>
       <Doughnut data={chartData} options={options} />
     </>
@@ -98,4 +112,9 @@ const StyledParagraph = styled.p`
   color: var(--font-color);
   font-weight: 300;
   font-size: 1.1rem;
+`;
+
+const StyledSpan = styled.span`
+  font-weight: 600;
+  color: var(--primary-color);
 `;
