@@ -1,19 +1,14 @@
 import useSWR from "swr";
-import { useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-
+import styled from "styled-components";
 import LoadingSpinner from "@/components/LoadingSpinner";
 import Headline from "@/components/Headline";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Statistics() {
-  const { data, error, isLoading, mutate } = useSWR("/api/favorites");
-
-  // useEffect(() => {
-  //   mutate();
-  // }, [data]);
+  const { data, error, isLoading } = useSWR("/api/favorites");
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -31,45 +26,76 @@ export default function Statistics() {
     .sort(function (a, b) {
       return b.value - a.value;
     })
-    .splice(0, 5);
+    .slice(0, 5);
 
   // extract names as array of strings
   const dogNames = dogsSortedByPoints.map((dog) => dog.name);
-  // console.log("data", data);
-  // console.log("allDogs", allDogs);
-  // console.log("dogsSortedByPoints", dogsSortedByPoints);
-  // console.log("dogNames", dogNames);
+
   const chartData = {
     labels: dogNames,
     datasets: [
       {
-        label: "# of Votes",
+        label: "Points",
         data: dogsSortedByPoints.map((dog) => dog.value),
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
+          "#febb49",
+          "#056393",
+          "#1694d4",
+          "#4cb4e4",
+          "#84bfde",
         ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-        ],
-        borderWidth: 1,
+        borderColor: ["#ddeaee"],
+        borderWidth: 3,
       },
     ],
+    options: {
+      interaction: {
+        // Overrides the global setting
+        borderRadius: 20,
+      },
+    },
+  };
+
+  const options = {
+    cutout: "30%", // Adjust the cutout percentage as needed
+    elements: {
+      arc: {
+        borderRadius: 10, // Set the border radius for the arcs
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+        position: "top",
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+    elements: {
+      arc: {
+        borderRadius: 10,
+      },
+    },
+    font: { size: 20 },
   };
 
   return (
     <>
       <Headline>Statistics</Headline>
-      {/* <p>{data.length} people have already taken the quiz before you!</p> */}
-      <p>{allDogs.length} dogs are listed as most favorited.</p>
-      <Doughnut data={chartData} />
+      <StyledParagraph>
+        These dogs are the best matches for those of you who took the quiz.
+      </StyledParagraph>
+      <Doughnut data={chartData} options={options} />
     </>
   );
 }
+
+const StyledParagraph = styled.p`
+  text-align: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--font-color);
+  font-weight: 300;
+  font-size: 1.1rem;
+`;

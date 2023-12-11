@@ -130,7 +130,7 @@ const StyledLink = styled(Link)`
   font-size: 1rem;
   text-align: center;
   margin: 0.4rem;
-  padding: 0.7rem 1em;
+  padding: 0.2rem 1em;
   border: 2px solid var(--soft-background);
   border-radius: var(--borderradius-small);
   &:hover {

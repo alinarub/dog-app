@@ -130,18 +130,13 @@ export default function QuizFormMultiStep() {
   const router = useRouter();
   // Get statistics from the database
   const { data, error, isLoading, mutate } = useSWR("/api/statistics");
-  // console.log("data from frontend---", data[0].amount);
 
   function handleNextButtonClick(topic, value) {
     // Go to the next question
     setStep(step + 1);
     setFormResults((oldFormResults) => ({ ...oldFormResults, [topic]: value }));
   }
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-  //   const params = new URLSearchParams(formResults);
-  //   router.push(`/quiz-results?${params}`);
-  // }
+
   async function handleSubmit(event) {
     event.preventDefault();
     const params = new URLSearchParams(formResults);

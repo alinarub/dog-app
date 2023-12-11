@@ -23,7 +23,6 @@ export default function QuizResults() {
   const filteredDog = dogs.slice(0, 1);
   const { name, points } = filteredDog[0];
 
-  console.log("filtered dogs? ---", name);
   // Create favorites
   createFavorite({ name: name, value: points });
 

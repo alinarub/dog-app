@@ -14,21 +14,11 @@ export default async function handler(request, response) {
 
   if (request.method === "PUT") {
     try {
-      // Diego's approach
-      // const statistic = await Statistic.findOneAndUpdate(
-      //   { _id: request.query.id },
-      //   request.body,
-      //   { new: true }
-      // );
-
-      // Gregor's approach
       const statistic = await Statistic.findOne({});
       statistic.amount = Number(statistic.amount + 1);
       await statistic.save();
-      console.log("statistic data from backend---", statistic);
       response.status(200).json(statistic);
     } catch (error) {
-      console.log("PUT /api/services/:id", error);
       response.status(500).json({ message: "Error updating service" });
     }
     return;
