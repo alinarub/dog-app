@@ -5,10 +5,9 @@ export default async function handler(request, response) {
   await connect();
   // Get all winner dogs from the database
   if (request.method === "GET") {
-    console.log("request body", request.body);
     try {
       const favorite = await Favorite.find();
-      console.log("favorite---", favorite);
+
       response.status(200).json(favorite);
     } catch (error) {
       return response.status(400).json({ message: error });
