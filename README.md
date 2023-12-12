@@ -8,7 +8,7 @@ This app is a fun tool for all dog lovers that are looking for a dog that matche
 
 ### Features
 
-The core of the app is a seven step quiz where a user can answer questions about their needs in order to find the perfect dog for them.
+The core of the app is a seven step quiz where the user can answer questions about their needs in order to find the perfect dog for them.
 
 - A page with over 250 dog breeds listed
 - Detail page for each dog breed
