@@ -1,12 +1,10 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import useSWR from "swr";
 import styled from "styled-components";
 import QuizFormQuestion from "./QuizFormQuestion";
 import LinkButton from "./LinkButton";
 import ImageTextModule from "./ImageTextModule";
 import ProgressBar from "./ProgressBar";
-import LoadingSpinner from "./LoadingSpinner";
 import { createStatistic } from "@/lib/api";
 
 const questionsData = [
@@ -128,11 +126,8 @@ export default function QuizFormMultiStep() {
   const [formResults, setFormResults] = useState({});
   const [step, setStep] = useState(0);
   const router = useRouter();
-  // Get statistics from the database
-  const { data, error, isLoading, mutate } = useSWR("/api/statistics");
 
   function handleNextButtonClick(topic, value) {
-    // Go to the next question
     setStep(step + 1);
     setFormResults((oldFormResults) => ({ ...oldFormResults, [topic]: value }));
   }
@@ -140,21 +135,10 @@ export default function QuizFormMultiStep() {
   async function handleSubmit(event) {
     event.preventDefault();
     const params = new URLSearchParams(formResults);
-    // Create statistics
+
     await createStatistic({ params: formResults });
-    mutate("/api/statistics");
 
     router.push(`/quiz-results?${params}`);
-  }
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-  if (!data) {
-    return;
-  }
-  if (error) {
-    return <h2>An error occurred...</h2>;
   }
 
   return (
