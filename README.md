@@ -2,7 +2,7 @@
 
 ![Heroimage](/public/heroimage-readme.jpg "Dog Genie")
 
-This app is made for all dog lovers that are looking for a fun way to find a dog match. With seven simple questions it brings the user a step closer to their dream dog.
+This app is a fun tool for all dog lovers that are looking for a dog that matches their needs. With seven simple questions it brings the user a step closer to their dream dog.
 
 ---
 
