@@ -69,8 +69,8 @@ const circle = keyframes`
       opacity: 1;
     }
     100% {
-      width: 200%;
-      height: 200%;
+      width: 120%;
+      height: 120%;
       opacity: 0;
     }
 `;
