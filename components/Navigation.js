@@ -24,7 +24,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
       <StyledNavigationList>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="600ms"
+          $delay="300ms"
         >
           <StyledLink href="/" onClick={handleNavigation}>
             Home
@@ -32,7 +32,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
         </StyledNavigationListItem>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="700ms"
+          $delay="400ms"
         >
           <StyledLink href="/quiz-page" onClick={handleNavigation}>
             Quiz page
@@ -40,7 +40,7 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
         </StyledNavigationListItem>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="800ms"
+          $delay="500ms"
         >
           <StyledLink href="/dogs" onClick={handleNavigation}>
             All dogs
@@ -48,14 +48,30 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
         </StyledNavigationListItem>
         <StyledNavigationListItem
           $hamburgerOpen={$hamburgerOpen}
-          $delay="900ms"
+          $delay="600ms"
+        >
+          <StyledLink href="/favorite-dogs" onClick={handleNavigation}>
+            Favorite dogs
+          </StyledLink>
+        </StyledNavigationListItem>
+        <StyledNavigationListItem
+          $hamburgerOpen={$hamburgerOpen}
+          $delay="700ms"
+        >
+          <StyledLink href="/statistics" onClick={handleNavigation}>
+            Statistics
+          </StyledLink>
+        </StyledNavigationListItem>
+        <StyledNavigationListItem
+          $hamburgerOpen={$hamburgerOpen}
+          $delay="800ms"
         >
           <StyledLink href="/faq" onClick={handleNavigation}>
             FAQ
           </StyledLink>
         </StyledNavigationListItem>
       </StyledNavigationList>
-      <AppInfo $hamburgerOpen={$hamburgerOpen} $delay="1000ms" />
+      <AppInfo $hamburgerOpen={$hamburgerOpen} $delay="900ms" />
     </StyledNavigation>
   );
 }
@@ -114,7 +130,7 @@ const StyledLink = styled(Link)`
   font-size: 1rem;
   text-align: center;
   margin: 0.4rem;
-  padding: 0.7rem 1em;
+  padding: 0.2rem 1em;
   border: 2px solid var(--soft-background);
   border-radius: var(--borderradius-small);
   &:hover {
@@ -150,5 +166,11 @@ const StyledNavigationListItem = styled.li`
   }
   &:nth-child(4) {
     transition-delay: 600ms;
+  }
+  &:nth-child(5) {
+    transition-delay: 700ms;
+  }
+  &:nth-child(6) {
+    transition-delay: 800ms;
   }
 `;

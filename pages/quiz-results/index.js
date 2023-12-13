@@ -7,9 +7,11 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import ImageTextModule from "@/components/ImageTextModule";
 import Headline from "@/components/Headline";
 import ResultsDogsCard from "@/components/ResultsDogsCard";
+import { createFavorite } from "@/lib/api";
 
 export default function QuizResults() {
   const router = useRouter();
+  // Get user choices from form
   const { data: dogs, isLoading } = useSWR(
     router.isReady ? `/api/dogs?${new URLSearchParams(router.query)}` : null
   );
@@ -17,6 +19,12 @@ export default function QuizResults() {
   if (!dogs || isLoading) {
     return <LoadingSpinner />;
   }
+  // Get the first five dogs (with the most points)
+  const filteredDog = dogs.slice(0, 1);
+  const { name, points } = filteredDog[0];
+
+  // Create favorites
+  createFavorite({ name: name, value: points });
 
   return (
     <>

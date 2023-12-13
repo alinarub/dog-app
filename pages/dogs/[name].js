@@ -22,6 +22,7 @@ export default function Name() {
   const { data: dogs, isLoading } = useSWR(
     router.isReady ? `/api/dogs?` : null
   );
+
   const routerName = router.query.name;
 
   if (!dogs || isLoading) {
