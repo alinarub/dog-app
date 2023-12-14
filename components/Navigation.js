@@ -112,7 +112,10 @@ const StyledHamburgerButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
+  background-color: var(--primary-color);
+  border-radius: 50%;
 `;
+
 const StyledHeadline = styled.h2`
   justify-self: center;
   font-size: 2rem;

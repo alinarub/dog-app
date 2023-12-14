@@ -3,7 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import Logo from "./Logo";
 import Navigation from "./Navigation";
-import ThemeButton from "./ThemeButton";
+import DarkmodeButton from "@/components/DarkmodeButton";
 
 export default function Header() {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -19,10 +19,15 @@ export default function Header() {
       />
 
       <StyledSection>
-        <Logo />
-        <StyledHeadline>Dog Genie</StyledHeadline>
-        <div>
-          <ThemeButton />
+        <StyledWrapper>
+          <Logo />
+          <StyledHeadline>
+            Dog
+            <br /> Genie
+          </StyledHeadline>
+        </StyledWrapper>
+        <StyledWrapper>
+          <DarkmodeButton />
           <StyledHamburgerButton type="button" onClick={handleNavigation}>
             <StyledHamburgerIcon
               src="/hamburger-icon.svg"
@@ -33,21 +38,29 @@ export default function Header() {
               placeholder="blur" // Optional blur-up while loading
             />
           </StyledHamburgerButton>
-        </div>
+        </StyledWrapper>
       </StyledSection>
     </StyledHeader>
   );
 }
 
 const StyledHeadline = styled.h1`
-  justify-self: center;
   font-size: 2rem;
+  line-height: 1;
+  text-align: left;
+`;
+
+const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
 `;
 
 const StyledSection = styled.section`
   z-index: 10;
-  display: grid;
-  grid-template-columns: 1fr 10rem 1fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   position: fixed;
   width: 100%;
@@ -61,6 +74,9 @@ const StyledHamburgerIcon = styled(Image)`
   &:hover {
     transform: rotate(90deg);
   }
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  padding: 0.2rem;
 `;
 
 const StyledHeader = styled.header`
