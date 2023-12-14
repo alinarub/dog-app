@@ -21,17 +21,19 @@ export default function Header() {
       <StyledSection>
         <Logo />
         <StyledHeadline>Dog Genie</StyledHeadline>
-        <ThemeButton />
-        <StyledHamburgerButton type="button" onClick={handleNavigation}>
-          <StyledHamburgerIcon
-            src="/hamburger-icon.svg"
-            alt="Icon of a hamburger menu"
-            width={40}
-            height={40}
-            blurDataURL="data:..."
-            placeholder="blur" // Optional blur-up while loading
-          />
-        </StyledHamburgerButton>
+        <div>
+          <ThemeButton />
+          <StyledHamburgerButton type="button" onClick={handleNavigation}>
+            <StyledHamburgerIcon
+              src="/hamburger-icon.svg"
+              alt="Icon of a hamburger menu"
+              width={40}
+              height={40}
+              blurDataURL="data:..."
+              placeholder="blur" // Optional blur-up while loading
+            />
+          </StyledHamburgerButton>
+        </div>
       </StyledSection>
     </StyledHeader>
   );

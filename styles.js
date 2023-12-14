@@ -44,13 +44,14 @@ export const DarkModeStyles = createGlobalStyle`
     background-color: var(--background-color);
     font-weight: 300;
   }
-
+  /* darkmode */
   :root {
     --accent-color: #febb49;
     --primary-color: #056393;
-    --background-color: #F2F3F4;
-    --font-color: #242124;
-    --soft-background: green;
+    --background-color: #003153;
+    --font-color: white;
+    --soft-background: #005B7C;
+    --almost-black-color: #242124;
   
 
     --mobilewidth: 21rem;
@@ -62,11 +63,15 @@ export const DarkModeStyles = createGlobalStyle`
   p {
     line-height: 1.6;
     font-size: 1rem;
+    color: var(--font-color);
+    font-weight: 100;
+   
+
   }
 
   h1, h2, h3, h4, h5, h6, legend {
     font-family: ${decorativeFont.style.fontFamily}; 
-    color: var(--primary-color);
+    color: var(--font-color);
     text-align: center;
   }
 `;
@@ -87,6 +92,7 @@ export default createGlobalStyle`
 
   input, button, textarea, select {
     font: inherit;
+
   }
 
   p, h1, h2, h3, h4, h5, h6 {
@@ -98,7 +104,7 @@ export default createGlobalStyle`
     background-color: var(--background-color);
     font-weight: 300;
   }
-
+  /* lightmode */
   :root {
     --accent-color: #febb49;
     --primary-color: #056393;

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
+import useTheme from "@/contexts/theme";
 
 export default function QuizFormQuestion({ questionData, onNextButtonClick }) {
   const [selectedValue, setSelectedValue] = useState(null);
+  const { themeMode } = useTheme();
 
   return (
     <>
@@ -11,6 +13,7 @@ export default function QuizFormQuestion({ questionData, onNextButtonClick }) {
       {Array.from({ length: 3 }).map((_, index) => (
         <StyledFieldset key={`${questionData.topic}${index + 2}`}>
           <StyledInput
+            $themeMode={themeMode}
             type="radio"
             name={questionData.topic}
             id={`${questionData.topic}${index + 2}`}
@@ -24,6 +27,7 @@ export default function QuizFormQuestion({ questionData, onNextButtonClick }) {
       ))}
       <StyledNavigation>
         <StyledButton
+          $themeMode={themeMode}
           type="button"
           disabled={selectedValue ? false : true}
           onClick={() => {
@@ -63,6 +67,10 @@ const StyledInput = styled.input`
     border: 2px solid var(--primary-color);
     background-color: var(--accent-color);
     border: 2px solid var(--accent-color);
+    color: ${({ $themeMode }) =>
+      $themeMode === "light"
+        ? `var(--font-color)`
+        : `var(--almost-black-color)`};
   }
 `;
 
@@ -78,6 +86,7 @@ const StyledLabel = styled.label`
   cursor: pointer;
   background-color: var(--soft-background);
   color: var(--font-color);
+
   border-radius: var(--borderradius-small);
   border: 2px solid var(--soft-background);
   &:hover {
@@ -98,14 +107,20 @@ const StyledButton = styled.button`
   font-size: 1rem;
   border-radius: var(--borderradius-small);
   margin-top: -0.7rem;
+  color: ${({ $themeMode }) =>
+    $themeMode === "light" ? `var(--font-color)` : `var(--almost-black-color)`};
 
   &:hover {
     border: 2px solid var(--primary-color);
     background-color: var(--primary-color);
-    color: var(--background-color);
+
+    color: ${({ $themeMode }) =>
+      $themeMode === "light" ? `var(--background-color)` : `var(--font-color)`};
   }
   &:disabled:hover {
     color: var(--font-color);
+    color: ${({ $themeMode }) =>
+      $themeMode === "light" ? `var(--font-color)` : `var(--background-color)`};
   }
   &:disabled {
     background-color: var(--soft-background);
