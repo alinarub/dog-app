@@ -28,18 +28,17 @@ export default function HomePage() {
       </LinkButton>
       <Headline>Dog of the moment</Headline>
       <StyledLink href={`dogs/${randomDog.name}`}>
-        <div>
-          <StyledFigure>
-            <StyledImage
-              src={randomDog.image_link}
-              alt={`Image of ${randomDog.name}`}
-              width={256}
-              height={171}
-              blurDataURL="data:..."
-              placeholder="blur" // Optional blur-up while loading
-            />
-          </StyledFigure>
-        </div>
+        <StyledFigure>
+          <StyledImage
+            src={randomDog.image_link}
+            alt={`Image of ${randomDog.name}`}
+            width={256}
+            height={171}
+            blurDataURL="data:..."
+            placeholder="blur" // Optional blur-up while loading
+          />
+        </StyledFigure>
+
         <StyledParagraph>{randomDog.name}</StyledParagraph>
       </StyledLink>
     </>
@@ -65,10 +64,10 @@ const circle = keyframes`
   0% {
       opacity: 1;
     }
-    40% {
+  40% {
       opacity: 1;
     }
-    100% {
+  100% {
       width: 120%;
       height: 120%;
       opacity: 0;
