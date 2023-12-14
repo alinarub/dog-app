@@ -16,6 +16,61 @@ export const basicFont = Poppins({
   display: "swap",
 });
 
+// darkrmode
+export const DarkModeStyles = createGlobalStyle`
+ *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input, button, textarea, select {
+    font: inherit;
+  }
+
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+
+  body {
+    font-family: ${basicFont.style.fontFamily}; 
+    background-color: var(--background-color);
+    font-weight: 300;
+  }
+
+  :root {
+    --accent-color: #febb49;
+    --primary-color: #056393;
+    --background-color: #F2F3F4;
+    --font-color: #242124;
+    --soft-background: green;
+  
+
+    --mobilewidth: 21rem;
+    --borderradius-small: .5rem;
+    --borderradius-medium: 1.3rem;
+    --basicmargin: 2.4rem;
+  }
+
+  p {
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  h1, h2, h3, h4, h5, h6, legend {
+    font-family: ${decorativeFont.style.fontFamily}; 
+    color: var(--primary-color);
+    text-align: center;
+  }
+`;
+
 export default createGlobalStyle`
   *,
   *::before,

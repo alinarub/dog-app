@@ -1,11 +1,28 @@
 import GlobalStyle from "../styles";
 import { SWRConfig } from "swr";
+import { useEffect, useState } from "react";
+import { ThemeProvider } from "@/contexts/theme";
 import Layout from "@/components/Layout";
+import { DarkModeStyles } from "../styles";
 
 export default function App({ Component, pageProps }) {
+  const [themeMode, setThemeMode] = useState("light");
+
+  const darkTheme = () => {
+    setThemeMode("dark");
+  };
+
+  const lightTheme = () => {
+    setThemeMode("light");
+  };
+
+  useEffect(() => {
+    console.log("switch to darkmode");
+  }, [themeMode]);
+
   return (
-    <>
-      <GlobalStyle />
+    <ThemeProvider value={{ themeMode, darkTheme, lightTheme }}>
+      {themeMode === "light" ? <GlobalStyle /> : <DarkModeStyles />}
       <SWRConfig
         value={{
           fetcher: (resource, init) =>
@@ -16,6 +33,6 @@ export default function App({ Component, pageProps }) {
           <Component {...pageProps} />
         </Layout>
       </SWRConfig>
-    </>
+    </ThemeProvider>
   );
 }

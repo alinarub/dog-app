@@ -3,6 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import Logo from "./Logo";
 import Navigation from "./Navigation";
+import ThemeButton from "./ThemeButton";
 
 export default function Header() {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function Header() {
       <StyledSection>
         <Logo />
         <StyledHeadline>Dog Genie</StyledHeadline>
+        <ThemeButton />
         <StyledHamburgerButton type="button" onClick={handleNavigation}>
           <StyledHamburgerIcon
             src="/hamburger-icon.svg"
