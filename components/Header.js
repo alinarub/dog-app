@@ -48,6 +48,8 @@ const StyledHeadline = styled.h1`
   font-size: 2rem;
   line-height: 1;
   text-align: left;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
 `;
 
 const StyledWrapper = styled.div`

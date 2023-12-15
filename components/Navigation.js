@@ -119,6 +119,8 @@ const StyledHamburgerButton = styled.button`
 const StyledHeadline = styled.h2`
   justify-self: center;
   font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
 `;
 
 const StyledLink = styled(Link)`

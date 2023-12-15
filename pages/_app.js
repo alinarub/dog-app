@@ -16,9 +16,9 @@ export default function App({ Component, pageProps }) {
     setThemeMode("light");
   };
 
-  useEffect(() => {
-    console.log("switch to darkmode");
-  }, [themeMode]);
+  // useEffect(() => {
+  //   console.log("switch to darkmode");
+  // }, [themeMode]);
 
   return (
     <ThemeProvider value={{ themeMode, darkTheme, lightTheme }}>
