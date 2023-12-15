@@ -45,7 +45,7 @@ const StyledHeadline = styled.h1`
   line-height: 1;
   text-align: center;
   font-weight: 400;
-  letter-spacing: 0.05rem;
+  letter-spacing: 0.07rem;
 `;
 
 const StyledWrapper = styled.div`
@@ -59,11 +59,17 @@ const StyledSection = styled.section`
   z-index: 10;
   display: grid;
   grid-template-columns: 1fr 7rem 1fr;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 15rem 1fr;
+  }
   align-items: center;
   position: fixed;
   width: 100%;
   background-color: var(--soft-background);
   padding: 0 1rem;
+  @media (min-width: 768px) {
+    padding: 0 5rem;
+  }
 `;
 
 const StyledHamburgerIcon = styled(Image)`
