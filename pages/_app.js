@@ -1,12 +1,14 @@
 import GlobalStyle from "../styles";
 import { SWRConfig } from "swr";
-import { useEffect, useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { ThemeProvider } from "@/contexts/theme";
 import Layout from "@/components/Layout";
 import { DarkModeStyles } from "../styles";
 
 export default function App({ Component, pageProps }) {
-  const [themeMode, setThemeMode] = useState("light");
+  const [themeMode, setThemeMode] = useLocalStorageState("themeMode", {
+    defaultValue: ["light"],
+  });
 
   const darkTheme = () => {
     setThemeMode("dark");
@@ -15,10 +17,6 @@ export default function App({ Component, pageProps }) {
   const lightTheme = () => {
     setThemeMode("light");
   };
-
-  // useEffect(() => {
-  //   console.log("switch to darkmode");
-  // }, [themeMode]);
 
   return (
     <ThemeProvider value={{ themeMode, darkTheme, lightTheme }}>

@@ -2,7 +2,7 @@ import useTheme from "@/contexts/theme";
 import styled, { keyframes, css } from "styled-components";
 import { useState } from "react";
 
-export default function ThemeButton() {
+export default function DarkmodeButton() {
   const { themeMode, lightTheme, darkTheme } = useTheme();
   const [isToggled, setToggled] = useState(false);
 
