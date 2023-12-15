@@ -16,7 +16,7 @@ export const basicFont = Poppins({
   display: "swap",
 });
 
-// darkrmode
+// darkmode
 export const DarkModeStyles = createGlobalStyle`
  *,
   *::before,
@@ -44,7 +44,7 @@ export const DarkModeStyles = createGlobalStyle`
     background-color: var(--background-color);
     font-weight: 300;
   }
-  /* darkmode */
+  /* darkmode colors*/
   :root {
     --accent-color: #febb49;
     --primary-color: #056393;
@@ -75,7 +75,7 @@ export const DarkModeStyles = createGlobalStyle`
     text-align: center;
   }
 `;
-
+// lightmode
 export default createGlobalStyle`
   *,
   *::before,
@@ -104,7 +104,7 @@ export default createGlobalStyle`
     background-color: var(--background-color);
     font-weight: 300;
   }
-  /* lightmode */
+  /* lightmode colors */
   :root {
     --accent-color: #febb49;
     --primary-color: #056393;

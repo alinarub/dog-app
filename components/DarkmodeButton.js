@@ -6,15 +6,7 @@ export default function ThemeButton() {
   const { themeMode, lightTheme, darkTheme } = useTheme();
   const [isToggled, setToggled] = useState(false);
 
-  const togglel = () => {
-    setToggled(true);
-  };
-
-  const toggled = () => {
-    setToggled(false);
-  };
-
-  const onChangeButton = (event) => {
+  const onChangeToDark = (event) => {
     const darkModeStatus = event.currentTarget.checked;
     setToggled(!isToggled);
     if (darkModeStatus) {
@@ -26,15 +18,15 @@ export default function ThemeButton() {
 
   return (
     <>
-      <ToggleContainer onClick={onChangeButton}>
+      <ToggleContainer>
         <ToggleBorder>
-          <Toggle $isToggled={isToggled}>
+          <Toggle $isToggled={isToggled} onClick={onChangeToDark}>
             <StyledInput
               type="checkbox"
               value=""
               checked={themeMode === "dark"}
               className=""
-              onChange={onChangeButton}
+              onChange={onChangeToDark}
             />
           </Toggle>
         </ToggleBorder>
@@ -43,9 +35,8 @@ export default function ThemeButton() {
   );
 }
 
-const ToggleContainer = styled.button`
+const ToggleContainer = styled.div`
   border: none;
-  cursor: pointer;
   width: 4rem;
   height: 2.5rem;
   display: flex;
