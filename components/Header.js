@@ -19,21 +19,17 @@ export default function Header() {
       />
 
       <StyledSection>
-        <StyledWrapper>
-          <Logo />
-          <StyledHeadline>
-            Dog
-            <br /> Genie
-          </StyledHeadline>
-        </StyledWrapper>
+        <Logo />
+        <StyledHeadline>Dog Genie</StyledHeadline>
+
         <StyledWrapper>
           <DarkmodeButton />
           <StyledHamburgerButton type="button" onClick={handleNavigation}>
             <StyledHamburgerIcon
               src="/hamburger-icon.svg"
               alt="Icon of a hamburger menu"
-              width={40}
-              height={40}
+              width={35}
+              height={35}
               blurDataURL="data:..."
               placeholder="blur" // Optional blur-up while loading
             />
@@ -47,7 +43,7 @@ export default function Header() {
 const StyledHeadline = styled.h1`
   font-size: 2rem;
   line-height: 1;
-  text-align: left;
+  text-align: center;
   font-weight: 400;
   letter-spacing: 0.05rem;
 `;
@@ -61,13 +57,13 @@ const StyledWrapper = styled.div`
 
 const StyledSection = styled.section`
   z-index: 10;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 7rem 1fr;
   align-items: center;
   position: fixed;
   width: 100%;
   background-color: var(--soft-background);
-  padding: 0 var(--basicmargin);
+  padding: 0 1rem;
 `;
 
 const StyledHamburgerIcon = styled(Image)`
@@ -76,7 +72,7 @@ const StyledHamburgerIcon = styled(Image)`
   &:hover {
     transform: rotate(90deg);
   }
-  background-color: var(--primary-color);
+  background-color: var(--accent-color);
   border-radius: 50%;
   padding: 0.2rem;
 `;

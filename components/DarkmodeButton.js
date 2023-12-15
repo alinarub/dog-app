@@ -37,8 +37,8 @@ export default function DarkmodeButton() {
 
 const ToggleContainer = styled.div`
   border: none;
-  width: 4rem;
-  height: 2.5rem;
+  width: 3.5rem;
+  height: 2.2rem;
   display: flex;
   align-self: end;
   border-radius: 70px;
@@ -59,13 +59,13 @@ const ToggleBorder = styled.div`
 
 const roll = keyframes`
   100% {
-    transform: translateX(1.5rem) rotate(360deg);
+    transform: translateX(1rem) rotate(360deg);
   }
 `;
 
 const rollback = keyframes`
   0% {
-    transform: translateX(1.5rem) rotate(180deg);
+    transform: translateX(1rem) rotate(360deg);
   }
   100% {
     transform: translateX(0) rotate(0deg);
