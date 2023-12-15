@@ -20,7 +20,7 @@ export default function ThemeButton() {
     <>
       <ToggleContainer>
         <ToggleBorder>
-          <Toggle $isToggled={isToggled} onClick={onChangeToDark}>
+          <Toggle $isToggled={isToggled}>
             <StyledInput
               type="checkbox"
               value=""
