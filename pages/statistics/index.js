@@ -116,5 +116,4 @@ const StyledParagraph = styled.p`
 
 const StyledSpan = styled.span`
   font-weight: 600;
-  color: var(--primary-color);
 `;

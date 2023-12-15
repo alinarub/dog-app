@@ -72,7 +72,7 @@ const StyledButton = styled.button`
   &:hover {
     border: 2px solid var(--primary-color);
     background-color: var(--primary-color);
-    color: var(--background-color);
+    color: white;
   }
 `;
 

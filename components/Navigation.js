@@ -105,6 +105,9 @@ const StyledTopBar = styled.div`
   width: 100%;
   background-color: var(--soft-background);
   padding: 0 1rem;
+  @media (min-width: 768px) {
+    padding: 0 5rem;
+  }
 `;
 
 const StyledHamburgerButton = styled.button`
