@@ -14,13 +14,13 @@ const questionsData = [
     topic: "barking",
     answers: [
       {
-        answer: "I do not want any barking",
+        answer: "I don't want any barking",
       },
       {
         answer: "A little bit of barking is ok",
       },
       {
-        answer: "I am deaf anyway",
+        answer: "Barking doesn't bother me at all",
       },
     ],
   },
@@ -46,13 +46,13 @@ const questionsData = [
     topic: "trainability",
     answers: [
       {
-        answer: "He does not need to do any tricks",
+        answer: "My dog doesn't need to do any tricks",
       },
       {
         answer: "I want to teach my dog some tricks",
       },
       {
-        answer: "He should be able to learn a lot",
+        answer: "My dog should be able to learn a lot",
       },
     ],
   },
@@ -62,7 +62,7 @@ const questionsData = [
     topic: "good_with_children",
     answers: [
       {
-        answer: "It is not important, my dog won't get in touch with children",
+        answer: "It is not important, my dog won't be in contact with children",
       },
       {
         answer: "It would be good, but it's not crucial",
@@ -78,7 +78,7 @@ const questionsData = [
     topic: "good_with_other_dogs",
     answers: [
       {
-        answer: "I want my dog to only care about his home",
+        answer: "I want my dog to only care about their home",
       },
       {
         answer: "My dog should be neutral with other dogs",
@@ -94,7 +94,7 @@ const questionsData = [
     topic: "protectiveness",
     answers: [
       {
-        answer: "I do not want a protective dog",
+        answer: "I don't want a protective dog",
       },
       {
         answer: "A little protectiveness is good",
@@ -113,10 +113,10 @@ const questionsData = [
         answer: "It bothers me a lot",
       },
       {
-        answer: "I do not mind if my dog sheds a little",
+        answer: "I don't mind if my dog sheds a little",
       },
       {
-        answer: "I do not mind at all",
+        answer: "I don't mind at all",
       },
     ],
   },
