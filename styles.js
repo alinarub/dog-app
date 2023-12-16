@@ -16,14 +16,20 @@ export const basicFont = Poppins({
   display: "swap",
 });
 
-// darkmode
-export const DarkModeStyles = createGlobalStyle`
- *,
+export const SharedGlobalStyles = createGlobalStyle` 
+  *,
   *::before,
   *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+
+  :root {
+    --mobilewidth: 21rem;
+    --borderradius-small: .5rem;
+    --borderradius-medium: 1.3rem;
+    --basicmargin: 2.4rem;
   }
 
   img, picture, video, canvas, svg {
@@ -44,6 +50,11 @@ export const DarkModeStyles = createGlobalStyle`
     background-color: var(--background-color);
     font-weight: 300;
   }
+`;
+
+// darkmode
+export const DarkModeStyles = createGlobalStyle`
+
   /* darkmode colors*/
   :root {
     --accent-color: #febb49;
@@ -52,12 +63,7 @@ export const DarkModeStyles = createGlobalStyle`
     --font-color: white;
     --soft-background: #005B7C;
     --almost-black-color: #242124;
-  
-
-    --mobilewidth: 21rem;
-    --borderradius-small: .5rem;
-    --borderradius-medium: 1.3rem;
-    --basicmargin: 2.4rem;
+ 
   }
 
   p {
@@ -77,33 +83,6 @@ export const DarkModeStyles = createGlobalStyle`
 `;
 // lightmode
 export default createGlobalStyle`
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  img, picture, video, canvas, svg {
-    display: block;
-    max-width: 100%;
-  }
-
-  input, button, textarea, select {
-    font: inherit;
-
-  }
-
-  p, h1, h2, h3, h4, h5, h6 {
-    overflow-wrap: break-word;
-  }
-
-  body {
-    font-family: ${basicFont.style.fontFamily}; 
-    background-color: var(--background-color);
-    font-weight: 300;
-  }
   /* lightmode colors */
   :root {
     --accent-color: #febb49;
@@ -111,12 +90,8 @@ export default createGlobalStyle`
     --background-color: #F2F3F4;
     --font-color: #242124;
     --soft-background: #E5E4E2;
-  
-
-    --mobilewidth: 21rem;
-    --borderradius-small: .5rem;
-    --borderradius-medium: 1.3rem;
-    --basicmargin: 2.4rem;
+    --almost-black-color: #242124;
+ 
   }
 
   p {

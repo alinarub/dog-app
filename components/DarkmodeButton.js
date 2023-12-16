@@ -17,21 +17,17 @@ export default function DarkmodeButton() {
   };
 
   return (
-    <>
-      <ToggleContainer>
-        <ToggleBorder>
-          <Toggle $isToggled={isToggled}>
-            <StyledInput
-              type="checkbox"
-              value=""
-              checked={themeMode === "dark"}
-              className=""
-              onChange={onChangeToDark}
-            />
-          </Toggle>
-        </ToggleBorder>
-      </ToggleContainer>
-    </>
+    <ToggleContainer>
+      <ToggleBorder>
+        <Toggle $isToggled={isToggled}>
+          <StyledInput
+            type="checkbox"
+            checked={themeMode === "dark"}
+            onChange={onChangeToDark}
+          />
+        </Toggle>
+      </ToggleBorder>
+    </ToggleContainer>
   );
 }
 

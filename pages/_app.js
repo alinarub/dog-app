@@ -3,11 +3,11 @@ import { SWRConfig } from "swr";
 import useLocalStorageState from "use-local-storage-state";
 import { ThemeProvider } from "@/contexts/theme";
 import Layout from "@/components/Layout";
-import { DarkModeStyles } from "../styles";
+import { DarkModeStyles, SharedGlobalStyles } from "../styles";
 
 export default function App({ Component, pageProps }) {
   const [themeMode, setThemeMode] = useLocalStorageState("themeMode", {
-    defaultValue: ["light"],
+    defaultValue: "light",
   });
 
   const darkTheme = () => {
@@ -20,6 +20,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ThemeProvider value={{ themeMode, darkTheme, lightTheme }}>
+      <SharedGlobalStyles />
       {themeMode === "light" ? <GlobalStyle /> : <DarkModeStyles />}
       <SWRConfig
         value={{

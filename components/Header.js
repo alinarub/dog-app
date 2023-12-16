@@ -30,8 +30,6 @@ export default function Header() {
               alt="Icon of a hamburger menu"
               width={35}
               height={35}
-              blurDataURL="data:..."
-              placeholder="blur" // Optional blur-up while loading
             />
           </StyledHamburgerButton>
         </StyledWrapper>
