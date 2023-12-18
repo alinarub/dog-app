@@ -100,7 +100,7 @@ export default function Statistics() {
       <StyledParagraph>
         These dogs are the most common matches for our quiz visitors.
       </StyledParagraph>
-      <Doughnut data={chartData} options={options} />
+      <StyledDoughnut data={chartData} options={options} />
     </>
   );
 }
@@ -116,4 +116,7 @@ const StyledParagraph = styled.p`
 
 const StyledSpan = styled.span`
   font-weight: 600;
+`;
+const StyledDoughnut = styled(Doughnut)`
+  margin-bottom: 3rem;
 `;
