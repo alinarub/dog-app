@@ -16,13 +16,20 @@ export const basicFont = Poppins({
   display: "swap",
 });
 
-export default createGlobalStyle`
+export const SharedGlobalStyles = createGlobalStyle` 
   *,
   *::before,
   *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+
+  :root {
+    --mobilewidth: 21rem;
+    --borderradius-small: .5rem;
+    --borderradius-medium: 1.3rem;
+    --basicmargin: 2.4rem;
   }
 
   img, picture, video, canvas, svg {
@@ -43,19 +50,48 @@ export default createGlobalStyle`
     background-color: var(--background-color);
     font-weight: 300;
   }
+`;
 
+// darkmode
+export const DarkModeStyles = createGlobalStyle`
+
+  /* darkmode colors*/
+  :root {
+    --accent-color: #febb49;
+    --primary-color: #056393;
+    --background-color: #003153;
+    --font-color: white;
+    --soft-background: #005B7C;
+    --almost-black-color: #242124;
+ 
+  }
+
+  p {
+    line-height: 1.6;
+    font-size: 1rem;
+    color: var(--font-color);
+    font-weight: 100;
+   
+
+  }
+
+  h1, h2, h3, h4, h5, h6, legend {
+    font-family: ${decorativeFont.style.fontFamily}; 
+    color: var(--font-color);
+    text-align: center;
+  }
+`;
+// lightmode
+export default createGlobalStyle`
+  /* lightmode colors */
   :root {
     --accent-color: #febb49;
     --primary-color: #056393;
     --background-color: #F2F3F4;
     --font-color: #242124;
     --soft-background: #E5E4E2;
-  
-
-    --mobilewidth: 21rem;
-    --borderradius-small: .5rem;
-    --borderradius-medium: 1.3rem;
-    --basicmargin: 2.4rem;
+    --almost-black-color: #242124;
+ 
   }
 
   p {

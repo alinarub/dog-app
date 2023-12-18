@@ -3,6 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import Logo from "./Logo";
 import Navigation from "./Navigation";
+import DarkmodeButton from "@/components/DarkmodeButton";
 
 export default function Header() {
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -20,35 +21,53 @@ export default function Header() {
       <StyledSection>
         <Logo />
         <StyledHeadline>Dog Genie</StyledHeadline>
-        <StyledHamburgerButton type="button" onClick={handleNavigation}>
-          <StyledHamburgerIcon
-            src="/hamburger-icon.svg"
-            alt="Icon of a hamburger menu"
-            width={40}
-            height={40}
-            blurDataURL="data:..."
-            placeholder="blur" // Optional blur-up while loading
-          />
-        </StyledHamburgerButton>
+
+        <StyledWrapper>
+          <DarkmodeButton />
+          <StyledHamburgerButton type="button" onClick={handleNavigation}>
+            <StyledHamburgerIcon
+              src="/hamburger-icon.svg"
+              alt="Icon of a hamburger menu"
+              width={35}
+              height={35}
+            />
+          </StyledHamburgerButton>
+        </StyledWrapper>
       </StyledSection>
     </StyledHeader>
   );
 }
 
 const StyledHeadline = styled.h1`
-  justify-self: center;
   font-size: 2rem;
+  line-height: 1;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 0.07rem;
+`;
+
+const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 1rem;
 `;
 
 const StyledSection = styled.section`
   z-index: 10;
   display: grid;
-  grid-template-columns: 1fr 10rem 1fr;
+  grid-template-columns: 1fr 7rem 1fr;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 15rem 1fr;
+  }
   align-items: center;
   position: fixed;
   width: 100%;
   background-color: var(--soft-background);
-  padding: 0 var(--basicmargin);
+  padding: 0 1rem;
+  @media (min-width: 768px) {
+    padding: 0 5rem;
+  }
 `;
 
 const StyledHamburgerIcon = styled(Image)`
@@ -57,6 +76,9 @@ const StyledHamburgerIcon = styled(Image)`
   &:hover {
     transform: rotate(90deg);
   }
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  padding: 0.2rem;
 `;
 
 const StyledHeader = styled.header`

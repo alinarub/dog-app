@@ -77,10 +77,10 @@ const StyledListItem = styled.li`
 const StyledUnit = styled.span`
   color: black;
   background-color: #bebfc5;
-  opacity: 0.5;
-  border-radius: var(--borderradius-small);
+  opacity: 0.7;
+  border-radius: var(--borderradius-medium);
   font-size: 0.7rem;
-  padding: 0 0.2rem;
+  padding: 0.1rem 0.4rem;
   margin-left: 0.3rem;
 `;
 

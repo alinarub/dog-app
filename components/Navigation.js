@@ -14,8 +14,8 @@ export default function Navigation({ handleNavigation, $hamburgerOpen }) {
           <Image
             src="/close-icon.svg"
             alt="close icon"
-            width={40}
-            height={40}
+            width={35}
+            height={35}
             blurDataURL="data:..."
             placeholder="blur" // Optional blur-up while loading
           />
@@ -104,7 +104,10 @@ const StyledTopBar = styled.div`
   position: fixed;
   width: 100%;
   background-color: var(--soft-background);
-  padding: 0 var(--basicmargin);
+  padding: 0 1rem;
+  @media (min-width: 768px) {
+    padding: 0 5rem;
+  }
 `;
 
 const StyledHamburgerButton = styled.button`
@@ -112,10 +115,15 @@ const StyledHamburgerButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
+  background-color: var(--accent-color);
+  border-radius: 50%;
 `;
+
 const StyledHeadline = styled.h2`
   justify-self: center;
   font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
 `;
 
 const StyledLink = styled(Link)`

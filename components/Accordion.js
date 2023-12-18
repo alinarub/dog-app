@@ -92,6 +92,8 @@ const StyledIcon = styled(Image)`
   transition: all 0.25s;
   width: 1.5rem;
   height: 1.5rem;
+  background-color: var(--accent-color);
+  border-radius: 50%;
 `;
 const StyledSimpleLink = styled(Link)`
   text-decoration: none;
