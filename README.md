@@ -1,4 +1,4 @@
-# Dog Genie 🐾
+# [Dog Genie](https://dog-genie.com) 🐾 
 
 ![Heroimage](/public/heroimage-readme.jpg "Dog Genie")
 
