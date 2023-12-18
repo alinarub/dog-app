@@ -39,7 +39,7 @@ const ToggleContainer = styled.div`
   align-self: end;
   border-radius: 70px;
   padding: 2px;
-  box-shadow: 5px 5px 5px var(--secondary-color) inset, 0.5px 0.5px 50px yellow;
+  background-color: var(--primary-color);
   transition: background-color 0.5s, box-shadow 0.5s;
 `;
 
